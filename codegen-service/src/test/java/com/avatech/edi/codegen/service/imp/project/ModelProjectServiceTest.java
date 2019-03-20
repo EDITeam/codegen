@@ -1,9 +1,6 @@
 package com.avatech.edi.codegen.service.imp.project;
 
-import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.model.bo.Table;
-import com.avatech.edi.codegen.model.bo.TableLine;
+import com.avatech.edi.codegen.model.bo.*;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
 import org.junit.Test;
@@ -28,29 +25,48 @@ public class ModelProjectServiceTest {
 
         List<DomainModel> domainModelList = new ArrayList<>();
         DomainModel domainModel = new DomainModel();
-        domainModel.setModelName("SalesReturn");
+        domainModel.setModelName("SalesOrder");
 
         Table table = new Table();
         table.setTableName("AVA_SM_ORDR");
-        table.setTableProperty("SalesReturn");
+        table.setTableProperty("SalesOrder");
         TableLine tableLine = new TableLine();
         tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Integer");
+        tableLine.setProDataType("Long");
+        tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
+        tableLine.setProDataType("Long");
+        table.getTableLines().add(tableLine);
+        domainModel.getTableList().add(table);
+
+        table = new Table();
+        table.setTableName("AVA_SM_RDR1");
+        table.setTableProperty("SalesOrderItem");
+        tableLine = new TableLine();
+        tableLine.setProName("DocEntry");
+        tableLine.setProDataType("Long");
+        tableLine.setProDesc("单据号");
+        tableLine.setFieldName("DocEntry");
+        tableLine.setProDataType("Long");
+        table.getTableLines().add(tableLine);
+        tableLine = new TableLine();
+        tableLine.setProName("LineNum");
+        tableLine.setProDataType("Integer");
+        tableLine.setFieldName("LineNum");
+        tableLine.setProDesc("行号");
         tableLine.setProDataType("Int");
         table.getTableLines().add(tableLine);
         domainModel.getTableList().add(table);
 
-        table.setTableName("AVA_SM_ORDR");
-        table.setTableProperty("SalesReturn");
-        tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Integer");
-        tableLine.setFieldName("DocEntry");
-        tableLine.setProDataType("Int");
-        table.getTableLines().add(tableLine);
-        domainModel.getTableList().add(table);
+        BusinessObjectMap businessObjectMap = new BusinessObjectMap();
+        businessObjectMap.setTableName("AVA_SM_ORDR");
+        businessObjectMap.setChildTableNames("AVA_SM_RDR1");
+        businessObjectMap.setTableProName("SalesOrder");
+        businessObjectMap.setChildTableProName("SalesOrderItem");
+        domainModel.getBusinessObjectMaps().add(businessObjectMap);
 
         domainModelList.add(domainModel);
+
 
         ModelProjectService modelProjectService = new ModelProjectService();
         modelProjectService.createProject(domainModelList,projectInitial);

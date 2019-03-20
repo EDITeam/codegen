@@ -3,13 +3,19 @@ package ${table.packageName};
 public class ${table.tableProperty}{
 
 <#list table.tableLines as tableLine>
+
+    <#if tableLine.proDesc?has_content>
+    /**
+     * ${tableLine.proDesc}
+     */
+   </#if>
     private ${tableLine.proDataType} ${tableLine.proName};
 
 </#list>
 
-<#if table.businessObject?has_content>
-    <#list table.tableLines.childTableProNames as childTableProName>
-    private List<${childTableProName}> ${childTableProName}s;
+<#if table.businessObjectMaps?has_content>
+    <#list table.businessObjectMaps as childTable>
+    private List<${childTable.childTableProName}> ${childTable.childTableProName}s;
 
     </#list>
 </#if>
@@ -23,14 +29,14 @@ public class ${table.tableProperty}{
         this.${tableLine.proName} = ${tableLine.proName};
     }
 
-    <#if table.businessObject?has_content>
-        <#list table.tableLines.childTableProNames as childTableProName>
-    public List<${childTableProName}> get${childTableProName?cap_first}() {
-        return ${childTableProName}s;
+    <#if table.businessObjectMaps?has_content>
+        <#list table.businessObjectMaps as childTable>
+    public List<${childTable.childTableProName}> get${childTable.childTableProName?cap_first}s() {
+        return ${childTable.childTableProName}s;
     }
 
-    public void set${childTableProName?cap_first}(List<${childTableProName}> ${childTableProName}s) {
-        this.${childTableProName}s = ${childTableProName}s;
+    public void set${childTable.childTableProName?cap_first}s(List<${childTable.childTableProName}> ${childTable.childTableProName}s) {
+        this.${childTable.childTableProName}s = ${childTable.childTableProName}s;
     }
         </#list>
     </#if>

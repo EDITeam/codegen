@@ -3,14 +3,25 @@ package com.avatech.edi.codegen.model.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 领域模型
+ */
 public class DomainModel {
 
-    public DomainModel() {
-        this.tableList = new ArrayList<>();
-        this.businessObjects = new ArrayList<>();
-    }
-
+    /**
+     * 领域名称
+     */
     private String modelName;
+
+    /**
+     * 表
+     */
+    private List<Table> tableList;
+
+    /**
+     * 对象
+     */
+    private List<BusinessObjectMap> businessObjectMaps;
 
     public String getModelName() {
         return modelName;
@@ -20,12 +31,10 @@ public class DomainModel {
         this.modelName = modelName;
     }
 
-    /**
-     * 表
-     */
-    private List<Table> tableList;
-
     public List<Table> getTableList() {
+        if(tableList == null){
+            tableList = new ArrayList<>();
+        }
         return tableList;
     }
 
@@ -33,16 +42,14 @@ public class DomainModel {
         this.tableList = tableList;
     }
 
-    /**
-     * 对象
-     */
-    private List<BusinessObject> businessObjects;
-
-    public List<BusinessObject> getBusinessObjects() {
-        return businessObjects;
+    public List<BusinessObjectMap> getBusinessObjectMaps() {
+        if(businessObjectMaps == null){
+            businessObjectMaps = new ArrayList<>();
+        }
+        return businessObjectMaps;
     }
 
-    public void setBusinessObjects(List<BusinessObject> businessObjects) {
-        this.businessObjects = businessObjects;
+    public void setBusinessObjectMaps(List<BusinessObjectMap> businessObjectMaps) {
+        this.businessObjectMaps = businessObjectMaps;
     }
 }

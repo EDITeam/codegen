@@ -2,7 +2,10 @@ package com.avatech.edi.codegen.model.bo;
 
 import java.util.List;
 
-public class BusinessObject {
+/**
+ * 业务对象
+ */
+public class BusinessObjectMap {
 
     private String tableName;
 
@@ -10,9 +13,9 @@ public class BusinessObject {
 
     private String objectCode;
 
-    private List<String> childTableNames;
+    private String childTableName;
 
-    private List<String> childTableProNames;
+    private String childTableProName;
 
 
     public String getTableName() {
@@ -40,19 +43,19 @@ public class BusinessObject {
         this.objectCode = objectCode;
     }
 
-    public List<String> getChildTableNames() {
-        return childTableNames;
+    public String getChildTableName() {
+        return childTableName;
     }
 
-    public void setChildTableNames(List<String> childTableNames) {
-        this.childTableNames = childTableNames;
+    public void setChildTableNames(String childTableName) {
+        this.childTableName = childTableName;
     }
 
-    public List<String> getChildTableProNames() {
-        return childTableProNames;
+    public String getChildTableProName() {
+        return childTableProName;
     }
 
-    public void setChildTableProNames(List<String> childTableProNames) {
-        this.childTableProNames = childTableProNames;
+    public void setChildTableProName(String childTableProName) {
+        this.childTableProName = childTableProName;
     }
 }

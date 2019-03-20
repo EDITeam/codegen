@@ -3,25 +3,40 @@ package com.avatech.edi.codegen.model.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 类-表关系
+ */
 public class Table {
 
     public Table(){
         this.tableLines = new ArrayList<>();
     }
 
+    /**
+     * 包名称
+     */
     private String packageName;
 
+    /**
+     * 表名称
+     */
     private String tableName;
 
+    /**
+     * 表描述
+     */
     private String tableDes;
 
     private String tableProperty;
 
+    /**
+     * 表类型
+     */
     private Integer tableType;
 
     private List<TableLine> tableLines;
 
-    private BusinessObject businessObject;
+    private List<BusinessObjectMap> businessObjectMaps;
 
     public String getPackageName() {
         return packageName;
@@ -71,11 +86,14 @@ public class Table {
         this.tableLines = tableLines;
     }
 
-    public BusinessObject getBusinessObject() {
-        return businessObject;
+    public List<BusinessObjectMap> getBusinessObjectMaps() {
+        if(businessObjectMaps == null){
+            businessObjectMaps = new ArrayList<>();
+        }
+        return businessObjectMaps;
     }
 
-    public void setBusinessObject(BusinessObject businessObject) {
-        this.businessObject = businessObject;
+    public void setBusinessObjectMaps(List<BusinessObjectMap> businessObjectMaps) {
+        this.businessObjectMaps = businessObjectMaps;
     }
 }

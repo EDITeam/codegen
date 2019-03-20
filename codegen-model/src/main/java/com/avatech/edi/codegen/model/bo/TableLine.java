@@ -15,7 +15,7 @@ public class TableLine {
 
     private String fieldName;
 
-    private String fieldDesc;
+    private String proDesc;
 
     private String fieldType;
 
@@ -45,12 +45,12 @@ public class TableLine {
         this.fieldName = fieldName;
     }
 
-    public String getFieldDesc() {
-        return fieldDesc;
+    public String getProDesc() {
+        return proDesc;
     }
 
-    public void setFieldDesc(String fieldDesc) {
-        this.fieldDesc = fieldDesc;
+    public void setProDesc(String proDesc) {
+        this.proDesc = proDesc;
     }
 
     public String getFieldType() {

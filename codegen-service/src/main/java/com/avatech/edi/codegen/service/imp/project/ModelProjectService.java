@@ -1,6 +1,6 @@
 package com.avatech.edi.codegen.service.imp.project;
 
-import com.avatech.edi.codegen.model.bo.BusinessObject;
+import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.model.bo.Table;
@@ -12,6 +12,7 @@ import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.springframework.stereotype.Service;
+import sun.tools.jconsole.Tab;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -80,19 +81,29 @@ public class ModelProjectService implements IProjectService {
                 if (!StringUtils.isEmpty(domain.getModelName())) {
                     boPackage = boFilePath + "/" + domain.getModelName().toLowerCase();
                     new File(boPackage).mkdirs();
-
-
                     // TODO 获取BO模板
                     for (Table table : domain.getTableList()) {
-                        table.setPackageName(String.format("com.avatech.edi.%s.model.bo." + domain.getModelName(), projectInitial.getProjectName()));
-                        createBOFile(table,boPackage);
+                        table.setPackageName(String.format("com.avatech.edi.%s.model.bo." + table.getTableProperty(), projectInitial.getProjectName()));
+                        createBOFile(getTableMap(table,domain.getBusinessObjectMaps()),boPackage);
                     }
                 }
             }
-
         } catch (Exception e) {
             throw new BusinessServiceException("2001", "创建Model模块失败");
         }
+    }
+
+
+    private Table getTableMap(Table table, List<BusinessObjectMap> businessObjectMaps){
+        if(businessObjectMaps == null || businessObjectMaps.size() ==0){
+            return table;
+        }
+        for (BusinessObjectMap businessObjectMap:businessObjectMaps){
+            if(businessObjectMap.getTableName().toUpperCase().equals(table.getTableName().toUpperCase())){
+                table.getBusinessObjectMaps().add(businessObjectMap);
+            }
+        }
+        return table;
     }
 
     /**
@@ -125,7 +136,7 @@ public class ModelProjectService implements IProjectService {
 
 
                 for (Table table : domain.getTableList()) {
-                    table.setPackageName(String.format("com/avatech/edi/%s/model/bo/" + domain.getModelName(), projectInitial.getProjectName()));
+                    table.setPackageName(String.format("com/avatech/edi/%s/model/bo/" + table.getTableProperty(), projectInitial.getProjectName()));
 
                 }
             }
@@ -149,7 +160,7 @@ public class ModelProjectService implements IProjectService {
             Map root = new HashMap<>();
             root.put("table", table);
             // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
-            Writer out = new FileWriter(new File(filePath+"/"+table.getTableName()));
+            Writer out = new FileWriter(new File(filePath+"/"+table.getTableProperty()+".java"));
             // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。
             template.process(root, out);
             // 第十步：关闭writer对象。
