@@ -3,17 +3,17 @@
 <mapper namespace="${table.tableProperty}">
 
     <resultMap id="BuyerInformation" type="com.avatech.edi.bluestar.model.bo.account.BuyerInformation">
-        <result column="buyerSapCode" property="buyerSapCode" jdbcType="VARCHAR"/>
-        <result column="sellerSapCode" property="sellerSapCode" jdbcType="VARCHAR"/>
-        <result column="operationType" property="operationType" jdbcType="VARCHAR"/>
-        <result column="payAmountNum" property="payAmountNum" jdbcType="VARCHAR"/>
-        <result column="extend1" property="extend1" jdbcType="VARCHAR"/>
-        <result column="extend2" property="extend2" jdbcType="VARCHAR"/>
-        <result column="extend3" property="extend3" jdbcType="VARCHAR"/>
-        <result column="extend4" property="extend4" jdbcType="VARCHAR"/>
-        <result column="extend5" property="extend5" jdbcType="VARCHAR"/>
+        <#list table.tableLines as tableLine>
+        <result column="${tableLine.proName}" property="${tableLine.proName}" jdbcType="${tableLine.proDataType}"/>
+        </#list>
     </resultMap>
 
+    <#if table.businessObjectMaps?has_content>
+        <#list table.businessObjectMaps as childTable>
+    private List<${childTable.childTableProName}> ${childTable.childTableProName}s;
+
+        </#list>
+    </#if>
     <resultMap id="AccountPostItemMap" type="com.avatech.edi.bluestar.model.bo.account.AccountPostItem">
         <result column="payAmountNum" property="payAmountNum" jdbcType="VARCHAR"/>
         <result column="lineName" property="lineName" jdbcType="VARCHAR"/>

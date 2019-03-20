@@ -5,28 +5,55 @@ import java.util.List;
 
 public class TableLine {
 
-    public TableLine() {
 
-    }
-
+    /**
+     * 表名称
+     */
     private String tableName;
 
+    /**
+     * 表对应类名称
+     */
     private String tableProName;
 
+    /**
+     * 字段名称
+     */
     private String fieldName;
 
+    /**
+     * 属性描述
+     */
     private String proDesc;
 
+    /**
+     * 字段类型
+     */
     private String fieldType;
 
+    /**
+     * 属性名称
+     */
     private String proName;
 
+    /**
+     * 属性类型
+     */
     private String proDataType;
+
+    /**
+     * 是否主键
+     */
+    private boolean isKey;
 
 
 
     public void setTableName(String tableName) {
         this.tableName = tableName;
+    }
+
+    public String getTableName() {
+        return tableName;
     }
 
     public String getTableProName() {
@@ -78,4 +105,11 @@ public class TableLine {
     }
 
 
+    public boolean isKey() {
+        return isKey;
+    }
+
+    public void setKey(boolean key) {
+        isKey = key;
+    }
 }
