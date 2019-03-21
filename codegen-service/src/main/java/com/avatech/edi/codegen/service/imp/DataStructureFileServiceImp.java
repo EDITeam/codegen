@@ -12,6 +12,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 数据结构文件解析
+ */
 public class DataStructureFileServiceImp implements IDataStructureFileService {
 
     @Override
