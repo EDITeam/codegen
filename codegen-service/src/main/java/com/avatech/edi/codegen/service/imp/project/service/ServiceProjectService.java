@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.service;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;

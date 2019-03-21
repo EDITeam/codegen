@@ -3,11 +3,18 @@ package com.avatech.edi.codegen.service.imp;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.service.IProjectService;
-import com.avatech.edi.codegen.service.imp.project.*;
+import com.avatech.edi.codegen.service.imp.project.common.CommonProjectService;
+import com.avatech.edi.codegen.service.imp.project.job.ControllerProjectService;
+import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
+import com.avatech.edi.codegen.service.imp.project.repository.RepositoryProjectService;
+import com.avatech.edi.codegen.service.imp.project.repositorybusinessone.RepositoryBusinessOneProjectServcie;
+import com.avatech.edi.codegen.service.imp.project.service.ServiceProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProjectService implements IProjectService{
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.common;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
@@ -8,15 +8,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ControllerProjectService implements IProjectService {
+public class CommonProjectService implements IProjectService {
 
-    /**
-     * 创建控制层模块
+     /**
+     * 创建公共模块
      * @param domainModels
-     * @param projectInitial
      */
     @Override
     public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+        // TODO 创建文件夹
+
+
+        // TODO 创建POM文件
+
+
+        // TODO 创建类文件
+
 
     }
+
 }

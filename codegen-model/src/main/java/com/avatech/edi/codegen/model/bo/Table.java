@@ -79,6 +79,9 @@ public class Table {
     }
 
     public List<TableLine> getTableLines() {
+        if(tableLines == null){
+            tableLines = new ArrayList<>();
+        }
         return tableLines;
     }
 

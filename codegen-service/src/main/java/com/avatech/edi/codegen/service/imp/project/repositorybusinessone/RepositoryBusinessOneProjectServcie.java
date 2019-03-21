@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.repositorybusinessone;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RepositoryProjectService implements IProjectService {
+public class RepositoryBusinessOneProjectServcie implements IProjectService {
 
     /**
-     * 创建仓储模块
+     * 创建B1仓储模块
      * @param domainModels
      */
     @Override

@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.model;
 
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
@@ -6,24 +6,27 @@ import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.condegen.common.StringUtils;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.tools.jconsole.Tab;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
 public class ModelProjectService implements IProjectService {
+
+    @Autowired
+    private CommonService commonService;
 
     /**
      * 创建BO项目
@@ -40,7 +43,7 @@ public class ModelProjectService implements IProjectService {
                 createSingleProject(domainModels,projectInitial);
 
             } else if (projectInitial.getProjectType().equals(Dictionary.Multiple_Model)) {
-                //创建模块
+                // 创建模块
                 // TODO 创建POM文件
                 createMutileProject(domainModels,projectInitial);
 
@@ -77,6 +80,7 @@ public class ModelProjectService implements IProjectService {
             String boFilePath = modelProjectFilePath + String.format("/bo", projectInitial.getProjectName());
             file = new File(boFilePath);
             file.mkdirs();
+            HashMap root;
             for (DomainModel domain : domainModels) {
                 if (!StringUtils.isEmpty(domain.getModelName())) {
                     boPackage = boFilePath + "/" + domain.getModelName().toLowerCase();
@@ -84,27 +88,20 @@ public class ModelProjectService implements IProjectService {
                     // TODO 获取BO模板
                     for (Table table : domain.getTableList()) {
                         table.setPackageName(String.format("com.avatech.edi.%s.model.bo." + table.getTableProperty(), projectInitial.getProjectName()));
-                        createBOFile(getTableMap(table,domain.getBusinessObjectMaps()),boPackage);
+                        root = new HashMap();
+                        root.put("table",getTableMap(table,domain.getBusinessObjectMaps()));
+                        //commonService.createTmpleCode(root,boPackage+"/"+table.getTableProperty()+".java","projectTemple");
+                        createTmpleCode(root,boPackage+"/"+table.getTableProperty()+".java","projectTemple");
                     }
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BusinessServiceException("2001", "创建Model模块失败");
         }
     }
 
 
-    private Table getTableMap(Table table, List<BusinessObjectMap> businessObjectMaps){
-        if(businessObjectMaps == null || businessObjectMaps.size() ==0){
-            return table;
-        }
-        for (BusinessObjectMap businessObjectMap:businessObjectMaps){
-            if(businessObjectMap.getTableName().toUpperCase().equals(table.getTableName().toUpperCase())){
-                table.getBusinessObjectMaps().add(businessObjectMap);
-            }
-        }
-        return table;
-    }
 
     /**
      * 创建多模块项目
@@ -147,22 +144,30 @@ public class ModelProjectService implements IProjectService {
     }
 
 
+    private Table getTableMap(Table table, List<BusinessObjectMap> businessObjectMaps){
+        if(businessObjectMaps == null || businessObjectMaps.size() ==0){
+            return table;
+        }
+        for (BusinessObjectMap businessObjectMap:businessObjectMaps){
+            if(businessObjectMap.getTableName().toUpperCase().equals(table.getTableName().toUpperCase())){
+                table.getBusinessObjectMaps().add(businessObjectMap);
+            }
+        }
+        return table;
+    }
 
-    private void createBOFile(Table table,String filePath){
+    private void createTmpleCode(HashMap map,String desFilePath,String templeCode){
         Configuration configuration = new Configuration(Configuration.getVersion());
         try{
-            configuration.setDirectoryForTemplateLoading(new File(this.getClass().getClassLoader().getResource("projectTemple").getPath()));
+            configuration.setDirectoryForTemplateLoading(new File(this.getClass().getClassLoader().getResource(templeCode).getPath()));
             // 第五步：设置config的默认字符集。一般是utf-8
             configuration.setDefaultEncoding("utf-8");
             // 第六步：从config对象中获得模板对象。需要制定一个模板文件的名字。
             Template template = configuration.getTemplate("model.ftl");
-            // 第七步：创建模板需要的数据集。可以是一个map对象也可以是一个pojo，把模板需要的数据都放入数据集。
-            Map root = new HashMap<>();
-            root.put("table", table);
             // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
-            Writer out = new FileWriter(new File(filePath+"/"+table.getTableProperty()+".java"));
+            Writer out = new FileWriter(new File(desFilePath));
             // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。
-            template.process(root, out);
+            template.process(map, out);
             // 第十步：关闭writer对象。
             out.flush();
             out.close();

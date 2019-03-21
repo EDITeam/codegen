@@ -1,11 +1,14 @@
 package com.avatech.edi.codegen.model.bo.mapperBO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * mapper对象
  */
 public class MapperObject {
+
+    private String filePath;
 
     /**
      * 包名称
@@ -15,7 +18,15 @@ public class MapperObject {
     /**
      * mapper对象名称
      */
-    private String mapperName;
+    private String mapperObjName;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * mapper明细
@@ -30,15 +41,18 @@ public class MapperObject {
         this.packageName = packageName;
     }
 
-    public String getMapperName() {
-        return mapperName;
+    public String getMapperObjName() {
+        return mapperObjName;
     }
 
-    public void setMapperName(String mapperName) {
-        this.mapperName = mapperName;
+    public void setMapperObjName(String mapperObjName) {
+        this.mapperObjName = mapperObjName;
     }
 
     public List<MapperObjectItem> getMapperObjectItems() {
+        if(mapperObjectItems == null){
+            mapperObjectItems = new ArrayList<>();
+        }
         return mapperObjectItems;
     }
 

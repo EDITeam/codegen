@@ -1,16 +1,19 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.model;
 
 import com.avatech.edi.codegen.model.bo.*;
+import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
 import com.avatech.edi.condegen.data.Dictionary;
-import com.avatech.edi.condegen.data.ProjectData;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class ModelProjectServiceTest {
+
 
     @Test
     public void createModelProjectTest(){
