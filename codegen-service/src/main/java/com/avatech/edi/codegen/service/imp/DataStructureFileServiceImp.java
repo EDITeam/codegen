@@ -3,6 +3,7 @@ package com.avatech.edi.codegen.service.imp;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.apache.commons.io.IOUtils;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * 数据结构文件解析
  */
+@Service
 public class DataStructureFileServiceImp implements IDataStructureFileService {
 
     @Override

@@ -1,8 +1,7 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.imp.project.repository;
 
 import com.avatech.edi.codegen.model.bo.*;
 import com.avatech.edi.condegen.data.Dictionary;
-import com.avatech.edi.condegen.data.ProjectData;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,17 +9,17 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ModelProjectServiceTest {
+public class RepositoryProjectServiceTest {
 
     @Test
-    public void createModelProjectTest(){
+    public void createProject() {
         ProjectInitial projectInitial = new ProjectInitial();
         projectInitial.setProjectName("ava");
         projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
         projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
         projectInitial.setProjectType(Dictionary.Single_Model);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
-        projectInitial.setProjectFilePath("D:\\EDI");
+        projectInitial.setProjectFilePath("/Users/fanxing/Documents/dev/");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
 
         List<DomainModel> domainModelList = new ArrayList<>();
@@ -35,7 +34,7 @@ public class ModelProjectServiceTest {
         tableLine.setProDataType("Long");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setFieldType("Long");
         table.getTableLines().add(tableLine);
         domainModel.getTableList().add(table);
 
@@ -47,14 +46,14 @@ public class ModelProjectServiceTest {
         tableLine.setProDataType("Long");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setFieldType("Long");
         table.getTableLines().add(tableLine);
         tableLine = new TableLine();
         tableLine.setProName("LineNum");
         tableLine.setProDataType("Integer");
         tableLine.setFieldName("LineNum");
         tableLine.setProDesc("行号");
-        tableLine.setProDataType("Int");
+        tableLine.setFieldType("Integer");
         table.getTableLines().add(tableLine);
         domainModel.getTableList().add(table);
 
@@ -66,13 +65,7 @@ public class ModelProjectServiceTest {
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
 
         domainModelList.add(domainModel);
-
-
-        ModelProjectService modelProjectService = new ModelProjectService();
-        modelProjectService.createProject(domainModelList,projectInitial);
-
-
-
+        RepositoryProjectService repositoryProjectService = new RepositoryProjectService();
+        repositoryProjectService.createProject(domainModelList,projectInitial);
     }
-
 }

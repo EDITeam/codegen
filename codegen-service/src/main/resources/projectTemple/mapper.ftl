@@ -1,18 +1,22 @@
 package ${mapperObject.packageName};
 
-public interface ${table.mapperName}{
 
-    void insert${table.tableProperty}(${table.tableProperty} ${table.tableProperty});
+<#if mapperObject.mapperObjectItems?has_content>
+    <#list mapperObject.mapperObjectItems as mapperItem>
+import ${mapperItem.boPackageName};
+    </#list>
+</#if>
+import org.springframework.stereotype.Component;
+import java.util.List;
 
-    void insert${childTableProName?cap_first}(${childTableProName?cap_first} ${childTableProName});
-
-    List<${table.tableProperty}> search${table.tableProperty}();
-
-    List<${childTableProName?cap_first}> search${childTableProName?cap_first}(Long docEntry);
-
+@Component
+public interface ${mapperObject.mapperObjName}Mapper{
     <#if mapperObject.mapperObjectItems?has_content>
         <#list mapperObject.mapperObjectItems as mapperItem>
-        private List<${mapperItem.childTableProName}> ${childTable.childTableProName}s;
+
+        void insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty});
+
+        List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
         </#list>
     </#if>
 }
