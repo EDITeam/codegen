@@ -67,14 +67,10 @@ public class ModelProjectServiceTest {
         businessObjectMap.setTableProName("SalesOrder");
         businessObjectMap.setChildTableProName("SalesOrderItem");
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
-
         domainModelList.add(domainModel);
-
 
         ModelProjectService modelProjectService = new ModelProjectService();
         modelProjectService.createProject(domainModelList,projectInitial);
-
-
 
     }
 

@@ -62,7 +62,8 @@ public class RepositoryProjectService implements IProjectService {
             // TODO 创建mapper类
             HashMap root = new HashMap();
             root.put("mapperObject", mapperObject);
-            createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java", "mapper");
+            createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java", "repository.ftl");
+            createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "RepositoryImp.java", "repositoryimp.ftl");
 
         } catch (Exception e) {
             throw new BusinessServiceException("20012", "mapper类型错误");
@@ -94,7 +95,7 @@ public class RepositoryProjectService implements IProjectService {
             // 第五步：设置config的默认字符集。一般是utf-8
             configuration.setDefaultEncoding("utf-8");
             // 第六步：从config对象中获得模板对象。需要制定一个模板文件的名字。
-            Template template = configuration.getTemplate("repository.ftl");
+            Template template = configuration.getTemplate(templeCode);
             // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
             Writer out = new FileWriter(new File(desFilePath));
             // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。

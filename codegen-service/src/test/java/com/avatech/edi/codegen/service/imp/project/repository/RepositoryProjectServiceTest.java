@@ -65,7 +65,6 @@ public class RepositoryProjectServiceTest {
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
 
         domainModelList.add(domainModel);
-
         RepositoryProjectService repositoryProjectService = new RepositoryProjectService();
         repositoryProjectService.createProject(domainModelList,projectInitial);
     }
