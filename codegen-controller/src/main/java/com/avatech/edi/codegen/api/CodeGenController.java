@@ -9,6 +9,7 @@ import com.avatech.edi.codegen.service.imp.DataStructureFileServiceImp;
 import com.avatech.edi.condegen.common.StringUtils;
 import com.avatech.edi.condegen.data.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+
 public class CodeGenController {
 
     @Autowired
@@ -32,8 +34,8 @@ public class CodeGenController {
         projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
         projectInitial.setOrmType(Dictionary.ORMTypes_MYBATIS);
         projectInitial.setProjectType(Dictionary.Single_Model);
-        projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
-        projectInitial.setProjectFilePath("/Users/fanxing/Documents/dev/");
+        projectInitial.setDataFilePath("C:\\Temp\\Out");
+        projectInitial.setProjectFilePath("C:\\Temp\\In");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
         return projectInitial.toString();
     }

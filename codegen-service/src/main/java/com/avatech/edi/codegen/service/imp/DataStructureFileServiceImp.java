@@ -84,7 +84,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             for (Element field : fieldNodes ){
                 TableLine tableLine = new TableLine();
                 tableLine.setFieldName(field.attributeValue("Name"));
-                 String dataType =  DataType.getDataType(field.attributeValue("Type"));
+                 String dataType =  DataType.getDataType(field.attributeValue("DataType"));
                 tableLine.setFieldType(dataType);
                 tableLine.setProDataType(field.attributeValue("FixedDataType"));
                 tableLine.setProDesc(field.attributeValue("Description"));
@@ -103,17 +103,22 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         List<BusinessObjectMap>businessObjectMaps =new ArrayList<>();
         for (Element element1 : nodes1){
             BusinessObjectMap businessObjectMap = new BusinessObjectMap();
-            businessObjectMap.setChildTableNames(element1.attributeValue("Name"));
+
             businessObjectMap.setObjectCode(element1.attributeValue("Code"));
+            businessObjectMap.setTableProName(element1.attributeValue("PropertyName"));
+            businessObjectMap.setChildTableNames(element1.attributeValue("TableName"));
             Element chid = element1.element("ChildTables");
            List<Element>  childNodeList = chid.elements("ChildTable");
-           for (Element childNode : childNodeList){
-               businessObjectMap.setChildTableNames(childNode.attributeValue("TableName"));
-               businessObjectMap.setChildTableProName(childNode.attributeValue("PropertyName"));
+
+               for (Element childNode : childNodeList) {
+
+                      businessObjectMap.setChildTableNames(childNode.attributeValue("TableName"));
+                      businessObjectMap.setChildTableProName(childNode.attributeValue("PropertyName"));
+
+                     businessObjectMaps.add(businessObjectMap);
            }
 
 
-            businessObjectMaps.add(businessObjectMap);
         }
             domainModel.setTableList(tableList);
             domainModel.setBusinessObjectMaps(businessObjectMaps);
