@@ -76,7 +76,7 @@ public class RepositoryProjectService implements IProjectService {
      */
     private MapperObject getMapperObject(DomainModel domainModel,ProjectInitial projectInitial){
         MapperObject mapperObject = new MapperObject();
-        mapperObject.setFilePath( projectInitial.getProjectFilePath() + String.format(ProjectData.SINGLE_BASE_MAPPER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName()));
+        mapperObject.setFilePath( projectInitial.getProjectFilePath() +"/" + String.format(ProjectData.SINGLE_BASE_MAPPER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName()));
         mapperObject.setPackageName(String.format("com.avatech.edi.%s.mapper",projectInitial.getProjectName()));
         mapperObject.setMapperObjName(domainModel.getModelName());
 
