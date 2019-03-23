@@ -105,4 +105,20 @@ public class ProjectInitial {
     public void setProjectFilePath(String projectFilePath) {
         this.projectFilePath = projectFilePath;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"projectName\":\"" + projectName + '\"' +
+                ",\"projectType\":\"" + projectType +'\"'+
+                ",\"serviceProtocol\":\"" + serviceProtocol +'\"'+
+                ",\"serializaFormat\":\"" + serializaFormat +'\"'+
+                ",\"dataBaseType\":\"" + dataBaseType +'\"'+
+                ",\"ormType\":\"" + ormType +'\"'+
+                ",\"dataFilePath\":\"" + dataFilePath + '\"' +
+                ",\"projectFilePath\":\"" + projectFilePath + '\"' +
+                '}';
+    }
+
+
 }
