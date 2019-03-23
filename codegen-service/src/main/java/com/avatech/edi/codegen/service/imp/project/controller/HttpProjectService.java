@@ -1,9 +1,7 @@
-package com.avatech.edi.codegen.service.imp.project.common;
+package com.avatech.edi.codegen.service.imp.project.controller;
 
 import com.avatech.edi.codegen.model.bo.BusinessObject;
-import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.Configuration;
@@ -14,35 +12,22 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.HashMap;
-import java.util.List;
 
+/**
+ * http协议项目服务
+ */
 @Service
-public class CommonProjectService implements IProjectService {
-
-     /**
-     * 创建公共模块
-     * @param domainModels
-     */
-    @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
-        // TODO 创建文件夹
+public class HttpProjectService {
 
 
-        // TODO 创建POM文件
+    public void createHttpProjectFile(BusinessObject businessObject, ProjectInitial projectInitial){
 
-
-        // TODO 创建类文件
-        createApplication(projectInitial);
-
-    }
-
-    public void createApplication(ProjectInitial projectInitial){
-        String controllerFilePath = projectInitial.getProjectFilePath() + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
+        String controllerFilePath = projectInitial.getProjectFilePath() + String.format(ProjectData.SINGLE_BASE_CONTROLLER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
         File file = new File(controllerFilePath);
         file.mkdirs();
         HashMap map = new HashMap();
-        map.put("projectInitial",projectInitial);
-        createTmpleCode(map, controllerFilePath +"/" + projectInitial.getProjectName()+ "Application.java","controller.ftl");
+        map.put("businessObject",businessObject);
+        createTmpleCode(map, controllerFilePath +"/" + businessObject.getBussinessObjectName()+ "Controller.java","controller.ftl");
     }
 
     private void createTmpleCode(HashMap map, String desFilePath, String templeCode){

@@ -36,6 +36,8 @@ public class ProjectData {
 
     public static final String SINGLE_BASE_CONTROLLER_PROJECT_URL = BASE_APPLICATION_URL + "/src/main/java/com/avatech/edi/%s/api";
 
+    public static final String APPLICATION_URL = BASE_APPLICATION_URL + "/src/main/java/com/avatech/edi/%s";
+
 
     /***************************************模块包路径*****************************************************/
 
