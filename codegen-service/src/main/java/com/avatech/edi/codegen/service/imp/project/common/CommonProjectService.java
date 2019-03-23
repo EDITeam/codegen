@@ -36,14 +36,22 @@ public class CommonProjectService implements IProjectService {
 
     }
 
-    public void createApplication(ProjectInitial projectInitial){
+    private void createApplication(ProjectInitial projectInitial){
         String controllerFilePath = projectInitial.getProjectFilePath() + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
+        String resourceFilePath = String.format("%s/%s.application/src/main/resources",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(controllerFilePath);
+        file.mkdirs();
+        file = new File(resourceFilePath);
         file.mkdirs();
         HashMap map = new HashMap();
         map.put("projectInitial",projectInitial);
-        createTmpleCode(map, controllerFilePath +"/" + projectInitial.getProjectName()+ "Application.java","controller.ftl");
+        map.put("applicationname","EDI");
+        createTmpleCode(map, controllerFilePath +"/" + projectInitial.getProjectName().toUpperCase()+ "Application.java","application.ftl");
+        createTmpleCode(map,resourceFilePath +"/application.yml","resourceforapplication.ftl");
+        //createTmpleCode(map,resourceFilePath +"/logback-spring.xml","resourceforlog.ftl");
     }
+
+
 
     private void createTmpleCode(HashMap map, String desFilePath, String templeCode){
         Configuration configuration = new Configuration(Configuration.getVersion());
@@ -56,6 +64,7 @@ public class CommonProjectService implements IProjectService {
             // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
             Writer out = new FileWriter(new File(desFilePath));
             // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。
+
             template.process(map, out);
             // 第十步：关闭writer对象。
             out.flush();
