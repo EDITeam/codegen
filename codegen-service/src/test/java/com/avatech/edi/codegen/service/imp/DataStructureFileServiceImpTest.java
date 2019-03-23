@@ -10,7 +10,6 @@ public class DataStructureFileServiceImpTest {
     @Test
     public void readerDataStructureFile() throws DocumentException {
         DataStructureFileServiceImp imp = new DataStructureFileServiceImp();
-       imp.readerDataStructureFile("C:\\Temp\\Out");
-
+        imp.readerDataStructureFile("C:\\Temp\\Out");
     }
 }

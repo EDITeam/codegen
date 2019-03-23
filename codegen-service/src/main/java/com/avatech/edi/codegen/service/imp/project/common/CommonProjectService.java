@@ -37,7 +37,7 @@ public class CommonProjectService implements IProjectService {
     }
 
     private void createApplication(ProjectInitial projectInitial){
-        String controllerFilePath = projectInitial.getProjectFilePath() + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
+        String controllerFilePath = projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
         String resourceFilePath = String.format("%s/%s.application/src/main/resources",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(controllerFilePath);
         file.mkdirs();

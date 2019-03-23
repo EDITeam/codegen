@@ -27,7 +27,7 @@
              values(
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                      #${mapperItemLine.proName}
+                      ,#${mapperItemLine.proName}
                   </#list>
               </#if>
              )

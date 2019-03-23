@@ -14,7 +14,7 @@ public interface ${mapperObject.mapperObjName}Repository{
 
         void save${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty});
 
-        private List<${mapperItem.tableProperty?cap_first}> fetch${mapperItem.tableProperty?cap_first}s();
+        List<${mapperItem.tableProperty?cap_first}> fetch${mapperItem.tableProperty?cap_first}s();
     </#list>
 </#if>
 }
