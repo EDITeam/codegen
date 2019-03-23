@@ -6,6 +6,7 @@ import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.model.bo.TableLine;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.condegen.data.DataType;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,8 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
                 Table table = new Table();
               table.setTableName(element1.attributeValue("Name"));
               table.setTableDes(element1.attributeValue("Description"));
-              table.setTableProperty(element1.attributeValue("Type"));
+              String dataBaseType = DataType.getDataType(element1.attributeValue("Type"));
+              table.setTableProperty(dataBaseType);
               table.setTableType((1));
 
             tableList.add(table);
@@ -82,8 +84,9 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             for (Element field : fieldNodes ){
                 TableLine tableLine = new TableLine();
                 tableLine.setFieldName(field.attributeValue("Name"));
-                tableLine.setFieldType(field.attributeValue("Type"));
-                tableLine.setProDataType(field.attributeValue("DataType"));
+                 String dataType =  DataType.getDataType(field.attributeValue("Type"));
+                tableLine.setFieldType(dataType);
+                tableLine.setProDataType(field.attributeValue("FixedDataType"));
                 tableLine.setProDesc(field.attributeValue("Description"));
                 tableLine.setTableName(element1.attributeValue("Name"));
                 tableLine.setKey(false);
