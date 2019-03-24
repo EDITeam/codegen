@@ -22,7 +22,7 @@ public class HttpProjectService {
 
     public void createHttpProjectFile(BusinessObject businessObject, ProjectInitial projectInitial){
 
-        String controllerFilePath = projectInitial.getProjectFilePath() + String.format(ProjectData.SINGLE_BASE_CONTROLLER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
+        String controllerFilePath = projectInitial.getProjectFilePath()+ "/" + String.format(ProjectData.SINGLE_BASE_CONTROLLER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
         File file = new File(controllerFilePath);
         file.mkdirs();
         HashMap map = new HashMap();

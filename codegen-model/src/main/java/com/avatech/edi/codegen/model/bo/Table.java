@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Table {
 
+
     public Table(){
         this.tableLines = new ArrayList<>();
     }

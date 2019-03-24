@@ -23,7 +23,7 @@ public class ModelProjectServiceTest {
         projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
         projectInitial.setProjectType(Dictionary.Single_Model);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
-        projectInitial.setProjectFilePath("/Users/fanxing/Documents/dev/");
+        projectInitial.setProjectFilePath("D:\\EDI");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
 
         List<DomainModel> domainModelList = new ArrayList<>();

@@ -28,7 +28,6 @@ public class ControllerProjectService implements IProjectService {
      */
     @Override
     public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
-        httpProjectService = new HttpProjectService();
         for (DomainModel domainModel:domainModels) {
             httpProjectService.createHttpProjectFile(BusinessObject.createBusinessObject(domainModel,projectInitial),projectInitial);
         }
