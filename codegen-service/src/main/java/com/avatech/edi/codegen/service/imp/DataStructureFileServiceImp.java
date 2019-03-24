@@ -70,7 +70,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             table.setTableName(element1.attributeValue("Name"));
             table.setTableDes(element1.attributeValue("Description"));
             String dataBaseType = DataType.getDataType(element1.attributeValue("Type"));
-            table.setTableProperty(dataBaseType);
+            table.setTableProperty(element1.attributeValue("PropertyName"));
             table.setTableType((1));
             tableList.add(table);
 
