@@ -13,13 +13,13 @@ public class DataType {
             case "bott_Document":
                 return "JDBC";
             case "db_Numeric":
-                return "Integer";
+                return "INT";
             case "db_Alpha":
-                return "String";
+                return "STRING";
             case "db_Date":
-                return "Date";
+                return "DATE";
             case "db_Float":
-                return "Decimal";
+                return "DECIMAL";
             case "db_Memo":
                 return "Memo";
             default:
