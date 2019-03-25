@@ -1,4 +1,9 @@
-package com.avatech.edi.${businessObject.applicationName}.contorller;
+/**
+ * PLEASE KEEP THIS INFOMATION
+ * CREATE BY AVATECH EDI CODE TOOL
+ * AT ${.now?string["yyyy-MM-dd"]}
+ */
+package com.avatech.edi.${businessObject.applicationName}.api;
 
 import ${businessObject.bussinessObjectServicePackageName};
 import ${businessObject.bussinessObjectRepositoryPackageName};

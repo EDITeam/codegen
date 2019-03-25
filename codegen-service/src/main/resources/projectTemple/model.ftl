@@ -1,3 +1,8 @@
+/**
+ * PLEASE KEEP THIS INFOMATION
+ * CREATE BY AVATECH EDI CODE TOOL
+ * AT ${.now?string["yyyy-MM-dd"]}
+ */
 package ${table.packageName};
 
 public class ${table.tableProperty}{
@@ -9,36 +14,45 @@ public class ${table.tableProperty}{
      * ${tableLine.proDesc}
      */
    </#if>
-    private ${tableLine.proDataType} ${tableLine.proName};
+    private ${tableLine.proDataType} ${tableLine.proName?uncap_first};
 
 </#list>
 
 <#if table.businessObjectMaps?has_content>
     <#list table.businessObjectMaps as childTable>
-    private List<${childTable.childTableProName}> ${childTable.childTableProName}s;
+    private List<${childTable.childTableProName}> ${childTable.childTableProName?uncap_first}s;
 
     </#list>
 </#if>
 
 <#list table.tableLines as tableLine>
-    public ${tableLine.proDataType} get${tableLine.proName?cap_first}() {
-        return ${tableLine.proName};
+     /**
+     * 获取${tableLine.proDesc}
+     */
+    public ${tableLine.proDataType} get${tableLine.proName?uncap_first}() {
+        return ${tableLine.proName?uncap_first};
     }
 
-    public void set${tableLine.proName?cap_first}(${tableLine.proDataType} ${tableLine.proName}) {
-        this.${tableLine.proName} = ${tableLine.proName};
+    /**
+     * 设置${tableLine.proDesc}
+     */
+    public void set${tableLine.proName?cap_first}(${tableLine.proDataType?cap_first} ${tableLine.proName?uncap_first}) {
+        this.${tableLine.proName?uncap_first} = ${tableLine.proName?uncap_first};
     }
-
-    <#if table.businessObjectMaps?has_content>
-        <#list table.businessObjectMaps as childTable>
-    public List<${childTable.childTableProName}> get${childTable.childTableProName?cap_first}s() {
-        return ${childTable.childTableProName}s;
-    }
-
-    public void set${childTable.childTableProName?cap_first}s(List<${childTable.childTableProName}> ${childTable.childTableProName}s) {
-        this.${childTable.childTableProName}s = ${childTable.childTableProName}s;
-    }
-        </#list>
-    </#if>
 </#list>
+<#if table.businessObjectMaps?has_content>
+    <#list table.businessObjectMaps as childTable>
+
+    public List<${childTable.childTableProName}> get${childTable.childTableProName?uncap_first}s() {
+        if(${childTable.childTableProName?uncap_first}s == null){
+        ${childTable.childTableProName?uncap_first}s = new ArrayList<>();
+        }
+        return ${childTable.childTableProName?uncap_first}s;
+    }
+
+    public void set${childTable.childTableProName?cap_first}s(List<${childTable.childTableProName?cap_first}> ${childTable.childTableProName?uncap_first}s) {
+        this.${childTable.childTableProName?uncap_first}s = ${childTable.childTableProName?uncap_first}s;
+    }
+    </#list>
+</#if>
 }

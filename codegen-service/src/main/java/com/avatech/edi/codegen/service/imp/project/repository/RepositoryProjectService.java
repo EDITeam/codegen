@@ -36,8 +36,6 @@ public class RepositoryProjectService implements IProjectService {
      */
     @Override
     public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
-        mapperService = new MapperService();
-        mapperResourceService = new MapperResourceService();
         MapperObject mapperObject;
         for (DomainModel domainModel : domainModels) {
             mapperObject = getMapperObject(domainModel, projectInitial);
@@ -59,11 +57,14 @@ public class RepositoryProjectService implements IProjectService {
             File file = new File(mapperFilePath);
             file.mkdirs();
 
+            file = new File(mapperFilePath+"/imp");
+            file.mkdirs();
+
             // TODO 创建mapper类
             HashMap root = new HashMap();
             root.put("mapperObject", mapperObject);
             createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java", "repository.ftl");
-            createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "RepositoryImp.java", "repositoryimp.ftl");
+            createTmpleCode(root, mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java", "repositoryimp.ftl");
 
         } catch (Exception e) {
             throw new BusinessServiceException("20012", "mapper类型错误");

@@ -5,9 +5,12 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.condegen.common.StringUtils;
+import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.utility.StringUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -30,11 +33,22 @@ public class CommonProjectService implements IProjectService {
 
         // TODO 创建POM文件
 
-
+        createPOM(projectInitial);
         // TODO 创建类文件
         createApplication(projectInitial);
 
     }
+
+    private void createPOM(ProjectInitial projectInitial) {
+        if (projectInitial.getProjectType().equals(Dictionary.Single_Model)) {
+            File file = new File(projectInitial.getProjectFilePath() + "/"+projectInitial.getProjectName()+".application");
+            file.mkdirs();
+            HashMap map = new HashMap();
+            map.put("projectinfo", projectInitial);
+            createTmpleCode(map, projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.BASE_APPLICATION_URL,projectInitial.getProjectName())  + "/pom.xml", "pom.ftl");
+        }
+    }
+
 
     private void createApplication(ProjectInitial projectInitial){
         String controllerFilePath = projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
@@ -46,7 +60,7 @@ public class CommonProjectService implements IProjectService {
         HashMap map = new HashMap();
         map.put("projectInitial",projectInitial);
         map.put("applicationname","EDI");
-        createTmpleCode(map, controllerFilePath +"/" + projectInitial.getProjectName().toUpperCase()+ "Application.java","application.ftl");
+        createTmpleCode(map, controllerFilePath +"/" + StringUtil.capitalize(projectInitial.getProjectName()) + "Application.java","application.ftl");
         createTmpleCode(map,resourceFilePath +"/application.yml","resourceforapplication.ftl");
         //createTmpleCode(map,resourceFilePath +"/logback-spring.xml","resourceforlog.ftl");
     }

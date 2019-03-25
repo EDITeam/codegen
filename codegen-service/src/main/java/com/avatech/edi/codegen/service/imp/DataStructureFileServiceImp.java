@@ -39,7 +39,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         for (File item : dataFiles) {
             try {
                 StringWriter writer = new StringWriter();
-                String xmlStr = IOUtils.toString(item.toURI(),"GBK");
+                String xmlStr = IOUtils.toString(item.toURI(),"UTF-8");
                 domainModels.add(getModel(xmlStr));
             } catch (IOException e) {
                 throw new BusinessServiceException("2010",String.format("读取文件%s失败:%s",item,e.getCause()));
@@ -63,16 +63,15 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         Element element = doc.getRootElement();
         Attribute attribute = element.attribute("Name");
         domainModel.setModelName(attribute.getValue());
-        List<Table> tableList = new ArrayList<>();
+        //List<Table> tableList = new ArrayList<>();
         List<Element> nodes = doc.selectNodes("//Table");
         for (Element element1 : nodes) {
             Table table = new Table();
             table.setTableName(element1.attributeValue("Name"));
             table.setTableDes(element1.attributeValue("Description"));
-            String dataBaseType = DataType.getDataType(element1.attributeValue("Type"));
             table.setTableProperty(element1.attributeValue("PropertyName"));
             table.setTableType((1));
-            tableList.add(table);
+            domainModel.getTableList().add(table);
 
             List<TableLine> tableLineList = new ArrayList<>();
             List<Element> fieldNodes = element1.elements();
@@ -92,10 +91,11 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             table.setTableLines(tableLineList);
         }
 
-        List<Element> nodes1 = doc.selectNodes("//BusinessObject");
-        List<BusinessObjectMap> businessObjectMaps = new ArrayList<>();
-        for (Element element1 : nodes1) {
 
+        List<Element> nodes1 = doc.selectNodes("//BusinessObject");
+
+        String childTableName;
+        for (Element element1 : nodes1) {
             Element chid = element1.element("ChildTables");
             List<Element> childNodeList = chid.elements("ChildTable");
             for (Element childNode : childNodeList) {
@@ -103,13 +103,25 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
                 businessObjectMap.setObjectCode(element1.attributeValue("Code"));
                 businessObjectMap.setTableProName(element1.attributeValue("PropertyName"));
                 businessObjectMap.setTableName(element1.attributeValue("TableName"));
-                businessObjectMap.setChildTableNames(childNode.attributeValue("TableName"));
-                businessObjectMap.setChildTableProName(childNode.attributeValue("PropertyName"));
-                businessObjectMaps.add(businessObjectMap);
+                childTableName = childNode.attributeValue("TableName");
+                businessObjectMap.setChildTableNames(childTableName);
+                businessObjectMap.setChildTableProName(getChildTable(domainModel,childTableName).getTableProperty());
+                domainModel.getBusinessObjectMaps().add(businessObjectMap);
             }
         }
-        domainModel.setTableList(tableList);
-        domainModel.setBusinessObjectMaps(businessObjectMaps);
+
         return domainModel;
+    }
+
+    private Table getChildTable(DomainModel model,String tableName){
+        if(model == null || StringUtils.isEmpty(tableName)){
+            return null;
+        }
+        for (Table table:model.getTableList()) {
+            if(table.getTableName().equals(tableName)){
+                return table;
+            }
+        }
+        return null;
     }
 }

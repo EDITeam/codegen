@@ -87,7 +87,7 @@ public class ModelProjectService implements IProjectService {
                     new File(boPackage).mkdirs();
                     // TODO 获取BO模板
                     for (Table table : domain.getTableList()) {
-                        table.setPackageName(String.format("com.avatech.edi.%s.model.bo." + table.getTableProperty(), projectInitial.getProjectName()));
+                        table.setPackageName(String.format("com.avatech.edi.%s.model.bo." + domain.getModelName().toLowerCase(), projectInitial.getProjectName()));
                         root = new HashMap();
                         root.put("table",getTableMap(table,domain.getBusinessObjectMaps()));
                         //commonService.createTmpleCode(root,boPackage+"/"+table.getTableProperty()+".java","projectTemple");
