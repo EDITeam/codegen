@@ -29,6 +29,7 @@ public class MapperResourceService {
 
             // TODO 创建mapper类
             HashMap root = new HashMap();
+            mapperObject.setPackageName(mapperObject.getPackageName() + "."+mapperObject.getMapperObjName()+"Mapper");
             root.put("mapperObject",mapperObject);
             createTmpleCode(root,mapperFilePath+"/"+mapperObject.getMapperObjName()+"Mapper.xml","mapper");
         }catch (Exception e){

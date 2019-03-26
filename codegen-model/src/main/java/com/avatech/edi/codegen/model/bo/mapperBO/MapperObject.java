@@ -20,6 +20,10 @@ public class MapperObject {
      */
     private String mapperObjName;
 
+
+    private String mapperApplicationName;
+
+
     public String getFilePath() {
         return filePath;
     }
@@ -58,5 +62,13 @@ public class MapperObject {
 
     public void setMapperObjectItems(List<MapperObjectItem> mapperObjectItems) {
         this.mapperObjectItems = mapperObjectItems;
+    }
+
+    public String getMapperApplicationName() {
+        return mapperApplicationName;
+    }
+
+    public void setMapperApplicationName(String mapperApplicationName) {
+        this.mapperApplicationName = mapperApplicationName;
     }
 }

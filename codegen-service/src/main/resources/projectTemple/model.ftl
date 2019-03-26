@@ -4,7 +4,10 @@
  * AT ${.now?string["yyyy-MM-dd"]}
  */
 package ${table.packageName};
-
+<#if table.businessObjectMaps?has_content>
+import java.util.ArrayList;
+import java.util.List;
+</#if>
 public class ${table.tableProperty}{
 
 <#list table.tableLines as tableLine>
@@ -29,7 +32,7 @@ public class ${table.tableProperty}{
      /**
      * 获取${tableLine.proDesc}
      */
-    public ${tableLine.proDataType} get${tableLine.proName?uncap_first}() {
+    public ${tableLine.proDataType} get${tableLine.proName?cap_first}() {
         return ${tableLine.proName?uncap_first};
     }
 
@@ -45,7 +48,7 @@ public class ${table.tableProperty}{
 
     public List<${childTable.childTableProName}> get${childTable.childTableProName?uncap_first}s() {
         if(${childTable.childTableProName?uncap_first}s == null){
-        ${childTable.childTableProName?uncap_first}s = new ArrayList<>();
+            ${childTable.childTableProName?uncap_first}s = new ArrayList<>();
         }
         return ${childTable.childTableProName?uncap_first}s;
     }

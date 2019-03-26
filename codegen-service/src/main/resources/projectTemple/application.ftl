@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableScheduling
 @MapperScan(basePackages = "com.avatech.edi.${projectInitial.projectName?lower_case}.mapper")
 public class ${projectInitial.projectName?cap_first}Application {
 

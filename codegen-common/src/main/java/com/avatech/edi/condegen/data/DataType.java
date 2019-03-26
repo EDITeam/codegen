@@ -8,20 +8,16 @@ public class DataType {
            throw new  BaseException(dataType,"无效的数据类型");
        }
         switch (dataType) {
-            case "bott_DocumentLines":
-                return "JDBC";
-            case "bott_Document":
-                return "JDBC";
             case "db_Numeric":
-                return "INT";
+                return "INTEGER";
             case "db_Alpha":
-                return "STRING";
+                return "NVARCHAR";
             case "db_Date":
                 return "DATE";
             case "db_Float":
                 return "DECIMAL";
             case "db_Memo":
-                return "Memo";
+                return "NCLOB";
             default:
                 throw new  BaseException(dataType,"无效的数据类型");
         }

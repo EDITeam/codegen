@@ -10,7 +10,7 @@ package ${mapperObject.packageName}.imp;
 import ${mapperItem.boPackageName};
     </#list>
 </#if>
-import com.avatech.edi.productionorder.mapper.${mapperObject.mapperObjName}Mapper;
+import com.avatech.edi.${mapperObject.mapperApplicationName?lower_case}.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;

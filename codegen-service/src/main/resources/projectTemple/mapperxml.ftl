@@ -7,7 +7,7 @@
          <resultMap id="${mapperItem.tableProperty}Map" type="${mapperItem.boPackageName}">
             <#if mapperItem.tableLines?has_content>
                 <#list mapperItem.tableLines as mapperItemLine>
-                    <result column="${mapperItemLine.fieldName}" property="${mapperItemLine.proName}" jdbcType="${mapperItemLine.fieldType}"/>
+                    <result column="${mapperItemLine.fieldName}" property="${mapperItemLine.proName?uncap_first}" jdbcType="${mapperItemLine.fieldType}"/>
                 </#list>
             </#if>
          </resultMap>

@@ -22,8 +22,8 @@ public class ModelProjectServiceTest {
         projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
         projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
         projectInitial.setProjectType(Dictionary.Single_Model);
-        projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
-        projectInitial.setProjectFilePath("D:\\EDI");
+        projectInitial.setDataFilePath("/Users/fanxing/Documents/ava-work/edi-microservice/datastruct");
+        projectInitial.setProjectFilePath("/Users/fanxing/Documents/ava-work/edi-microservice/");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
 
         List<DomainModel> domainModelList = new ArrayList<>();

@@ -5,9 +5,9 @@
     <packaging>jar</packaging>
 
     <groupId>com.avatech.edi</groupId>
-    <artifactId>${projectinfo.projectName?lower_case}.application</artifactId>
+    <artifactId>${projectinfo.projectName?lower_case}.micservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>${projectinfo.projectName?lower_case}.application</name>
+    <name>${projectinfo.projectName?lower_case}.micservice</name>
     <description>project for ${projectinfo.projectName?lower_case}</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
