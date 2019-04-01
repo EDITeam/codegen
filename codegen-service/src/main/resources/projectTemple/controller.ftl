@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("v1/*")
 public class ${businessObject.bussinessObjectName}Controller {
 
+    private final Logger logger = LoggerFactory.getLogger(${businessObject.bussinessObjectName}Controller.class);
+
     @Autowired
     private ${businessObject.bussinessObjectName}Service ${businessObject.bussinessObjectName?uncap_first}Service;
 

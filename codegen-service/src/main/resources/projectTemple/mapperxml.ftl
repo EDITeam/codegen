@@ -21,13 +21,13 @@
              INSERT INTO "${mapperItem.tableName}" (
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                     "${mapperItemLine.fieldName}"<#if mapperItem?has_next>，</#if>
+                     "${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
                   </#list>
               </#if>
              values(
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                      #${mapperItemLine.proName}<#if mapperItem?has_next>，</#if>
+                      #${mapperItemLine.proName}<#if mapperItemLine?has_next>,</#if>
                   </#list>
               </#if>
              )
@@ -37,7 +37,7 @@
              SELECT
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                     T0."${mapperItemLine.fieldName}"<#if mapperItem?has_next>，</#if>
+                     T0."${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
                   </#list>
               </#if>
              from "${mapperItem.tableName}" T0

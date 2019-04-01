@@ -7,6 +7,7 @@ import com.avatech.edi.codegen.model.bo.mapperBO.MapperObject;
 import com.avatech.edi.codegen.model.bo.mapperBO.MapperObjectItem;
 import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperResourceService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperService;
 import com.avatech.edi.condegen.data.ProjectData;
@@ -30,6 +31,8 @@ public class RepositoryProjectService implements IProjectService {
     @Autowired
     private MapperService mapperService;
 
+    @Autowired
+    private CommonService commonService;
     /**
      * 创建仓储模块
      * @param domainModels
@@ -41,6 +44,7 @@ public class RepositoryProjectService implements IProjectService {
             mapperObject = getMapperObject(domainModel, projectInitial);
             mapperObject.setMapperApplicationName(projectInitial.getProjectName());
             mapperResourceService.createMapperResource(mapperObject);
+            mapperObject.setPackageName(String.format("com.avatech.edi.%s.mapper",projectInitial.getProjectName()));
             mapperService.createMapperProject(mapperObject);
             mapperObject.setFilePath(projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.SINGLE_BASE_REPOSITORY_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName()));
             mapperObject.setPackageName(String.format("com.avatech.edi.%s.repository",projectInitial.getProjectName()));
@@ -61,11 +65,10 @@ public class RepositoryProjectService implements IProjectService {
             file = new File(mapperFilePath+"/imp");
             file.mkdirs();
 
-            // TODO 创建mapper类
             HashMap root = new HashMap();
             root.put("mapperObject", mapperObject);
-            createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java", "repository.ftl");
-            createTmpleCode(root, mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java", "repositoryimp.ftl");
+            commonService.createTmpleCode(root, mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java", "repository.ftl");
+            commonService.createTmpleCode(root, mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java", "repositoryimp.ftl");
 
         } catch (Exception e) {
             throw new BusinessServiceException("20012", "mapper类型错误");
@@ -90,23 +93,4 @@ public class RepositoryProjectService implements IProjectService {
     }
 
 
-    private void createTmpleCode(HashMap map, String desFilePath, String templeCode){
-        Configuration configuration = new Configuration(Configuration.getVersion());
-        try{
-            configuration.setDirectoryForTemplateLoading(new File(this.getClass().getClassLoader().getResource("projectTemple").getPath()));
-            // 第五步：设置config的默认字符集。一般是utf-8
-            configuration.setDefaultEncoding("utf-8");
-            // 第六步：从config对象中获得模板对象。需要制定一个模板文件的名字。
-            Template template = configuration.getTemplate(templeCode);
-            // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
-            Writer out = new FileWriter(new File(desFilePath));
-            // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。
-            template.process(map, out);
-            // 第十步：关闭writer对象。
-            out.flush();
-            out.close();
-        }catch (Exception e){
-            throw new BusinessServiceException("2002",e.getMessage());
-        }
-    }
 }
