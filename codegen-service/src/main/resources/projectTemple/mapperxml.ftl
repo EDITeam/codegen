@@ -21,23 +21,23 @@
              INSERT INTO "${mapperItem.tableName}" (
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                     ,"${mapperItemLine.fieldName}"
+                     "${mapperItemLine.fieldName}"<#if mapperItem?has_next>，</#if>
                   </#list>
               </#if>
              values(
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                      ,#${mapperItemLine.proName}
+                      #${mapperItemLine.proName}<#if mapperItem?has_next>，</#if>
                   </#list>
               </#if>
              )
          </insert>
 
          <select id="search${mapperItem.tableProperty?cap_first}" resultMap="${mapperItem.tableProperty}Map">
-             SELECT  1
+             SELECT
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                     ,T0."${mapperItemLine.fieldName}"
+                     T0."${mapperItemLine.fieldName}"<#if mapperItem?has_next>，</#if>
                   </#list>
               </#if>
              from "${mapperItem.tableName}" T0
