@@ -83,6 +83,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
                 tableLine.setProDataType(field.attributeValue("FixedDataType"));
                 tableLine.setProDesc(field.attributeValue("Description"));
                 tableLine.setTableName(element1.attributeValue("Name"));
+                tableLine.setFieldSize(Integer.valueOf(field.attributeValue("EditSize")));
                 tableLine.setKey(false);
                 tableLine.setProName(field.attributeValue("PropertyName"));
                 tableLine.setTableProName(element1.attributeValue("PropertyName"));

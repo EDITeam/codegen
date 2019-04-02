@@ -45,6 +45,9 @@ public class CommonProjectService implements IProjectService {
     }
 
     private void createPOM(ProjectInitial projectInitial) {
+        /**
+         * 只有单模块在此生成POM文件，多模块在对应模块中生成POM文件
+         */
         if (projectInitial.getProjectType().equals(Dictionary.Single_Model)) {
             File file = new File(projectInitial.getProjectFilePath() + "/"+projectInitial.getProjectName()+".micservice");
             file.mkdirs();

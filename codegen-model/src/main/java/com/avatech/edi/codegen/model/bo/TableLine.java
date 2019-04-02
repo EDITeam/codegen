@@ -42,6 +42,11 @@ public class TableLine {
     private String proDataType;
 
     /**
+     * 字段长度
+     */
+    private Integer fieldSize;
+
+    /**
      * 是否主键
      */
     private boolean isKey;
@@ -111,5 +116,13 @@ public class TableLine {
 
     public void setKey(boolean key) {
         isKey = key;
+    }
+
+    public Integer getFieldSize() {
+        return fieldSize;
+    }
+
+    public void setFieldSize(Integer fieldSize) {
+        this.fieldSize = fieldSize;
     }
 }
