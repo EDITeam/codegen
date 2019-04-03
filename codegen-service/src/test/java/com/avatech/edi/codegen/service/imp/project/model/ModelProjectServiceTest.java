@@ -2,6 +2,7 @@ package com.avatech.edi.codegen.service.imp.project.model;
 
 import com.avatech.edi.codegen.model.bo.*;
 import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
+import com.avatech.edi.condegen.data.DBType;
 import com.avatech.edi.condegen.data.Dictionary;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class ModelProjectServiceTest {
     public void createModelProjectTest(){
         ProjectInitial projectInitial = new ProjectInitial();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
+        projectInitial.setDataBaseType(DBType.HANA);
         projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
         projectInitial.setProjectType(Dictionary.Single_Model);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/ava-work/edi-microservice/datastruct");

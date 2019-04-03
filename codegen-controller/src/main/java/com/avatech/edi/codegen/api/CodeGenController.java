@@ -7,6 +7,7 @@ import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.imp.DataStructureFileServiceImp;
 import com.avatech.edi.condegen.common.StringUtils;
+import com.avatech.edi.condegen.data.DBType;
 import com.avatech.edi.condegen.data.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class CodeGenController {
     {
         ProjectInitial projectInitial = new ProjectInitial();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
+        projectInitial.setDataBaseType(DBType.HANA);
         projectInitial.setOrmType(Dictionary.ORMTypes_MYBATIS);
         projectInitial.setProjectType(Dictionary.Single_Model);
         projectInitial.setDataFilePath("C:\\Temp\\Out");

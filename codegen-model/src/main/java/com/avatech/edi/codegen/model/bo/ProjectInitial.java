@@ -1,5 +1,7 @@
 package com.avatech.edi.codegen.model.bo;
 
+import com.avatech.edi.condegen.data.DBType;
+
 public class ProjectInitial {
 
     /**
@@ -57,13 +59,13 @@ public class ProjectInitial {
     /**
      * 数据库类型
      */
-    private Integer dataBaseType;
+    private DBType dataBaseType;
 
-    public Integer getDataBaseType() {
+    public DBType getDataBaseType() {
         return dataBaseType;
     }
 
-    public void setDataBaseType(Integer dataBaseType) {
+    public void setDataBaseType(DBType dataBaseType) {
         this.dataBaseType = dataBaseType;
     }
 

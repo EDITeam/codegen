@@ -63,7 +63,6 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         Element element = doc.getRootElement();
         Attribute attribute = element.attribute("Name");
         domainModel.setModelName(attribute.getValue());
-        //List<Table> tableList = new ArrayList<>();
         List<Element> nodes = doc.selectNodes("//Table");
         for (Element element1 : nodes) {
             Table table = new Table();

@@ -1,6 +1,7 @@
 package com.avatech.edi.codegen.service.imp.project.common;
 
 import com.avatech.edi.codegen.model.bo.*;
+import com.avatech.edi.condegen.data.DBType;
 import com.avatech.edi.condegen.data.Dictionary;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class CommonProjectServiceTest {
     public void createProject() {
         ProjectInitial projectInitial = new ProjectInitial();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(Dictionary.DATABASETypes_MSSQL);
+        projectInitial.setDataBaseType(DBType.HANA);
         projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
         projectInitial.setProjectType(Dictionary.Single_Model);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");

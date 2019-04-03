@@ -23,11 +23,11 @@
                   <#list mapperItem.tableLines as mapperItemLine>
                      "${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
                   </#list>
-              </#if>
+              </#if>)
              values(
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
-                      #$(r'{')${mapperItemLine.proName}$(r'}')<#if mapperItemLine?has_next>,</#if>
+                      #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}<#if mapperItemLine?has_next>,</#if>
                   </#list>
               </#if>
              )

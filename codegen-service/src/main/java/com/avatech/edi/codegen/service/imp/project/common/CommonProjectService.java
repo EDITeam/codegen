@@ -6,7 +6,10 @@ import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.service.IProjectService;
 import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
+import com.avatech.edi.codegen.service.imp.sql.DataBaseHandler;
+import com.avatech.edi.codegen.service.imp.sql.DataBaseHandlerFactory;
 import com.avatech.edi.condegen.common.StringUtils;
+import com.avatech.edi.condegen.data.DBType;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.Configuration;
@@ -42,6 +45,16 @@ public class CommonProjectService implements IProjectService {
         // TODO 创建类文件
         createApplication(projectInitial);
 
+        // TODO 创建sql文件
+        createDBSql(domainModels,projectInitial);
+
+    }
+
+    private void createDBSql(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+        if(projectInitial.getDataBaseType().equals(DBType.HANA)){
+            DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(DBType.HANA);
+            dataBaseHandler.createDBSqlScript(domainModels,projectInitial);
+        }
     }
 
     private void createPOM(ProjectInitial projectInitial) {
