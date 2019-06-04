@@ -8,6 +8,8 @@ package ${table.packageName};
 import java.util.ArrayList;
 import java.util.List;
 </#if>
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ${table.tableProperty}{
 
 <#list table.tableLines as tableLine>
@@ -17,6 +19,7 @@ public class ${table.tableProperty}{
      * ${tableLine.proDesc}
      */
    </#if>
+    @JsonProperty(value = "${tableLine.proName}")
     private ${tableLine.proDataType} ${tableLine.proName?uncap_first};
 
 </#list>
