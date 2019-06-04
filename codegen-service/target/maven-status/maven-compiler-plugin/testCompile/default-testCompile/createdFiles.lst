@@ -1,0 +1,5 @@
+com\avatech\edi\codegen\service\imp\project\repository\RepositoryProjectServiceTest.class
+com\avatech\edi\codegen\service\imp\project\common\CommonProjectServiceTest.class
+com\avatech\edi\codegen\service\imp\DataStructureFileServiceImpTest.class
+com\avatech\edi\codegen\service\imp\project\controller\ControllerProjectServiceTest.class
+com\avatech\edi\codegen\service\imp\project\model\ModelProjectServiceTest.class

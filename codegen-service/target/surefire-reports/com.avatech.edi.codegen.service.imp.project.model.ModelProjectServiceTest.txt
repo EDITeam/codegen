@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.avatech.edi.codegen.service.imp.project.model.ModelProjectServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.119 s <<< FAILURE! - in com.avatech.edi.codegen.service.imp.project.model.ModelProjectServiceTest
+createModelProjectTest(com.avatech.edi.codegen.service.imp.project.model.ModelProjectServiceTest)  Time elapsed: 0.115 s  <<< ERROR!
+com.avatech.edi.codegen.service.config.BusinessServiceException: 创建Model项目失败
+	at com.avatech.edi.codegen.service.imp.project.model.ModelProjectServiceTest.createModelProjectTest(ModelProjectServiceTest.java:74)
+

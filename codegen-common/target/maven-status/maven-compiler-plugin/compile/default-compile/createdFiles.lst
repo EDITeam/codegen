@@ -1,0 +1,6 @@
+com\avatech\edi\condegen\common\BaseException.class
+com\avatech\edi\condegen\data\DBType.class
+com\avatech\edi\condegen\data\DataType.class
+com\avatech\edi\condegen\data\ProjectData.class
+com\avatech\edi\condegen\common\StringUtils.class
+com\avatech\edi\condegen\data\Dictionary.class

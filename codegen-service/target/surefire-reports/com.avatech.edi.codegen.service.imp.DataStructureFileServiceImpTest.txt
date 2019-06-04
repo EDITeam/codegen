@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.avatech.edi.codegen.service.imp.DataStructureFileServiceImpTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! - in com.avatech.edi.codegen.service.imp.DataStructureFileServiceImpTest
+readerDataStructureFile(com.avatech.edi.codegen.service.imp.DataStructureFileServiceImpTest)  Time elapsed: 0.01 s  <<< ERROR!
+com.avatech.edi.codegen.service.config.BusinessServiceException: 无效的数据结构文件路径
+	at com.avatech.edi.codegen.service.imp.DataStructureFileServiceImpTest.readerDataStructureFile(DataStructureFileServiceImpTest.java:13)
+

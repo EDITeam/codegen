@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! - in com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectServiceTest
+createProject(com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectServiceTest.createProject(ControllerProjectServiceTest.java:70)
+

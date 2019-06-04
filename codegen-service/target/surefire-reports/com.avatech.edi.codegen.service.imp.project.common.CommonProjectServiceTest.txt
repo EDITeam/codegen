@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.avatech.edi.codegen.service.imp.project.common.CommonProjectServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in com.avatech.edi.codegen.service.imp.project.common.CommonProjectServiceTest
+createProject(com.avatech.edi.codegen.service.imp.project.common.CommonProjectServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.avatech.edi.codegen.service.imp.project.common.CommonProjectServiceTest.createProject(CommonProjectServiceTest.java:68)
+

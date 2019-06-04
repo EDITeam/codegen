@@ -1,0 +1,8 @@
+com\avatech\edi\codegen\model\bo\ProjectInitial.class
+com\avatech\edi\codegen\model\bo\Table.class
+com\avatech\edi\codegen\model\bo\BusinessObjectMap.class
+com\avatech\edi\codegen\model\bo\BusinessObject.class
+com\avatech\edi\codegen\model\bo\mapperBO\MapperObjectItem.class
+com\avatech\edi\codegen\model\bo\mapperBO\MapperObject.class
+com\avatech\edi\codegen\model\bo\TableLine.class
+com\avatech\edi\codegen\model\bo\DomainModel.class

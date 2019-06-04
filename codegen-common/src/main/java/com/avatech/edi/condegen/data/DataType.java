@@ -10,8 +10,9 @@ public class DataType {
         switch (dataType) {
             case "db_Numeric":
                 return "INTEGER";
+//               mapperXml的jdbcType改为VARCHAR，NVARCHAR获取sqlserver会数据转换错误
             case "db_Alpha":
-                return "NVARCHAR";
+                return "VARCHAR";
             case "db_Date":
                 return "DATE";
             case "db_Float":
