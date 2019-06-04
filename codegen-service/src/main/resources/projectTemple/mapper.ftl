@@ -21,7 +21,7 @@ public interface ${mapperObject.mapperObjName}Mapper{
 
     void insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty});
 
-    List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
+    List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}();
         </#list>
     </#if>
 }
