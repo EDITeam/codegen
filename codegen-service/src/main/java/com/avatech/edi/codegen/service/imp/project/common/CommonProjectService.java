@@ -1,26 +1,19 @@
 package com.avatech.edi.codegen.service.imp.project.common;
 
-import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
 import com.avatech.edi.codegen.service.IProjectService;
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.codegen.service.imp.sql.DataBaseHandler;
 import com.avatech.edi.codegen.service.imp.sql.DataBaseHandlerFactory;
-import com.avatech.edi.condegen.common.StringUtils;
 import com.avatech.edi.condegen.data.DBType;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.utility.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,7 +55,7 @@ public class CommonProjectService implements IProjectService {
          * 只有单模块在此生成POM文件，多模块在对应模块中生成POM文件
          */
         if (projectInitial.getProjectType().equals(Dictionary.Single_Model)) {
-            File file = new File(projectInitial.getProjectFilePath() + "/"+projectInitial.getProjectName()+".micservice");
+            File file = new File(projectInitial.getProjectFilePath() + "/"+projectInitial.getProjectName()+".microservice");
             file.mkdirs();
             HashMap map = new HashMap();
             map.put("projectinfo", projectInitial);
@@ -73,7 +66,7 @@ public class CommonProjectService implements IProjectService {
 
     private void createApplication(ProjectInitial projectInitial){
         String controllerFilePath = projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
-        String resourceFilePath = String.format("%s/%s.micservice/src/main/resources",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
+        String resourceFilePath = String.format("%s/%s.microservice/src/main/resources",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(controllerFilePath);
         file.mkdirs();
         file = new File(resourceFilePath);

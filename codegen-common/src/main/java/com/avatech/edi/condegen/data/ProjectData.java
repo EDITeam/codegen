@@ -4,7 +4,7 @@ public class ProjectData {
 
     public static final String BASE_PACKAGE_URL = "com.avatech";
 
-    public static final String BASE_APPLICATION_URL = "%s.micservice";
+    public static final String BASE_APPLICATION_URL = "%s.microservice";
 
     /***************************************模块文件路径*****************************************************/
 

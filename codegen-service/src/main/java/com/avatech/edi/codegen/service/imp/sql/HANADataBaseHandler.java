@@ -30,7 +30,7 @@ public class HANADataBaseHandler implements DataBaseHandler {
      */
     @Override
     public void createDBSqlScript(List<DomainModel> domainModels, ProjectInitial projectInitial) {
-        String resourceFilePath = String.format("%s/%s.micservice/src/main/resources/sql",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
+        String resourceFilePath = String.format("%s/%s.microservice/src/main/resources/sql",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(resourceFilePath);
         file.mkdirs();
         file = new File(resourceFilePath);
