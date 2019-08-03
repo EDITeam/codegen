@@ -5,9 +5,9 @@
     <packaging>jar</packaging>
 
     <groupId>com.avatech.edi</groupId>
-    <artifactId>${projectinfo.projectName?lower_case}.micservice</artifactId>
+    <artifactId>${projectinfo.projectName?lower_case}.microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>${projectinfo.projectName?lower_case}.micservice</name>
+    <name>${projectinfo.projectName?lower_case}.microservice</name>
     <description>project for ${projectinfo.projectName?lower_case}</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -42,12 +42,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
