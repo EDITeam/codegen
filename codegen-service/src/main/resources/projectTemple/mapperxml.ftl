@@ -33,7 +33,7 @@
              )
          </insert>
 
-         <select id="search${mapperItem.tableProperty?cap_first}" resultMap="${mapperItem.tableProperty}Map">
+         <select id="search${mapperItem.tableProperty?cap_first}s" resultMap="${mapperItem.tableProperty}Map">
              SELECT
               <#if mapperItem.tableLines?has_content>
                   <#list mapperItem.tableLines as mapperItemLine>
