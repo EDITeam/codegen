@@ -8,6 +8,7 @@ public class ProjectData {
 
     /***************************************模块文件路径*****************************************************/
 
+
     public static final String MULTIPLE_BASE_COMMON_PROJECT_URL = BASE_APPLICATION_URL + "/%s-common";
 
     public static final String SINGLE_BASE_COMMON_PROJECT_URL = BASE_APPLICATION_URL + "/src/main/java/com/avatech/edi/%s/common";

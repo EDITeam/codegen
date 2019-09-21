@@ -39,7 +39,6 @@ public class HANADataBaseHandler implements DataBaseHandler {
         for (DomainModel domainModel:domainModels){
             map.put("tables",domainModel.getTableList());
             commonService.createTmpleCode(map,resourceFilePath +"/"+domainModel.getModelName()+".sql","db_hana.ftl");
-
         }
 
     }

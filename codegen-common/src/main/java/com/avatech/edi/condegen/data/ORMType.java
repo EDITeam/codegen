@@ -1,21 +1,20 @@
 package com.avatech.edi.condegen.data;
 
-import lombok.Getter;
+/**
+ * @author Fancy
+ * @date 2019/9/21
+ */
+public enum ORMType {
 
-@Getter
-public enum DBType {
-
-    MSSQL(0,"MSSQL"),
-    HANA(1,"HANA"),
-    MYSQL(2,"MYSQL"),
-    ORACLE(3,"ORACLE"),
-    MATERIALDB(4,"MATERILDB");
+    MYBATIS(0,"MyBatis"),
+    JPA(1,"JPA")
+    ;
 
     private int key;
 
     private String name;
 
-     DBType(int key,String name){
+    ORMType(int key,String name){
         this.key = key;
         this.name = name;
     }
