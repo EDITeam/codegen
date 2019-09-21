@@ -2,17 +2,12 @@ package com.avatech.edi.codegen.service.imp.project.controller;
 
 import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.condegen.data.ProjectData;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.util.HashMap;
 
 /**
