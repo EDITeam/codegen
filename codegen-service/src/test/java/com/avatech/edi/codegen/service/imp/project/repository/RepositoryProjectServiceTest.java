@@ -1,24 +1,24 @@
 package com.avatech.edi.codegen.service.imp.project.repository;
 
 import com.avatech.edi.codegen.model.bo.*;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.Dictionary;
+import com.avatech.edi.condegen.data.ProjectType;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class RepositoryProjectServiceTest {
 
     @Test
     public void createProject() {
-        ProjectInitial projectInitial = new ProjectInitial();
+        ProjectStructure projectInitial = new ProjectStructure();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(DBType.HANA);
-        projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
-        projectInitial.setProjectType(Dictionary.Single_Model);
+        projectInitial.setDataBaseType(DataBaseType.HANA);
+        //projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
+        projectInitial.setProjectType(ProjectType.SBO_PROJECT);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
         projectInitial.setProjectFilePath("D:\\EDI");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
@@ -66,7 +66,7 @@ public class RepositoryProjectServiceTest {
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
 
         domainModelList.add(domainModel);
-        RepositoryProjectService repositoryProjectService = new RepositoryProjectService();
-        repositoryProjectService.createProject(domainModelList,projectInitial);
+        //RepositoryProjectService repositoryProjectService = new RepositoryProjectService();
+       // repositoryProjectService.createProject(domainModelList,projectInitial);
     }
 }

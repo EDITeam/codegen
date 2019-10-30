@@ -1,6 +1,6 @@
-package com.avatech.edi.codegen.model.bo.mapperBO;
+package com.avatech.edi.codegen.model.bo.mapper;
 
-import com.avatech.edi.codegen.model.bo.projectbo.ProjectStructure;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.Table;
 
 /**

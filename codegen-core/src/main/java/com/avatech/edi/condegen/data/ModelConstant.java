@@ -5,7 +5,7 @@ package com.avatech.edi.condegen.data;
  * @date 2019/10/30
  * 文件相关常量
  */
-public class FilePathConstant {
+public class ModelConstant {
 
     public static final String MODEL_SOURCES_BASE_PATH = "src.main.java";
 
@@ -21,6 +21,19 @@ public class FilePathConstant {
 
     public static final String FEIGNCLIENT_BASE_PACKAGE = "com.avatech.dahub.%s.feignclient";
 
+    public static final String CORE_BASE_PACKAGE = "com.avatech.dahub.%s.core";
 
+
+    public static final String API_MODEL_NAME = "%s_api";
+
+    public static final String DOMAIN_MODEL_NAME = "%s_model";
+
+    public static final String CORE_MODEL_NAME = "%s_core";
+
+    public static final String SERVICE_MODEL_NAME = "%s_service";
+
+    public static final String FEIGNCLIENT_MODEL_NAME = "%s_model";
+
+    public static final String STARTER_MODEL_NAME = "%s_starter";
 
 }

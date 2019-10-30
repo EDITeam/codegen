@@ -4,6 +4,7 @@ package com.avatech.edi.condegen.data;
  * @author Fancy
  * @date 2019/9/21
  */
+@Deprecated()
 public enum ORMType {
 
     MYBATIS(0,"MyBatis"),

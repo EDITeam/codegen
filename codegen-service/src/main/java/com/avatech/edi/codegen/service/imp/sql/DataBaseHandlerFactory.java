@@ -1,6 +1,6 @@
 package com.avatech.edi.codegen.service.imp.sql;
 
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.condegen.data.DataBaseType;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class DataBaseHandlerFactory implements ApplicationContextAware {
 
-    private static Map<DBType, DataBaseHandler> dataBaseHandlerMap;
+    private static Map<DataBaseType, DataBaseHandler> dataBaseHandlerMap;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -21,7 +21,7 @@ public class DataBaseHandlerFactory implements ApplicationContextAware {
         map.forEach((key, value) -> dataBaseHandlerMap.put(value.getDBType(), value));
     }
 
-    public static <T extends DataBaseHandler> T getDataBaseHandler(DBType code) {
+    public static <T extends DataBaseHandler> T getDataBaseHandler(DataBaseType code) {
         return (T)dataBaseHandlerMap.get(code);
     }
 

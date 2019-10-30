@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.model.bo.mapperBO;
+package com.avatech.edi.codegen.model.bo.mapper;
 
 import java.util.ArrayList;
 import java.util.List;

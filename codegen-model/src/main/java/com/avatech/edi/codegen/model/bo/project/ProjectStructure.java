@@ -1,7 +1,8 @@
-package com.avatech.edi.codegen.model.bo.projectbo;
+package com.avatech.edi.codegen.model.bo.project;
 
 import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.ProjectType;
+import com.avatech.edi.condegen.data.ServiceProtocolType;
 
 /**
  * 项目结构
@@ -14,14 +15,14 @@ public class ProjectStructure {
     private String projectName;
 
     /**
-     * 项目类型 单模块、多模块
+     * 项目类型
      */
     private ProjectType projectType;
 
     /**
      * 服务协议
      */
-    private Integer serviceProtocol;
+    private ServiceProtocolType serviceProtocol;
 
     /**
      * 序列化格式
@@ -44,8 +45,59 @@ public class ProjectStructure {
     private String projectFilePath;
 
 
+    public String getProjectName() {
+        return projectName;
+    }
 
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
+    public ProjectType getProjectType() {
+        return projectType;
+    }
 
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+    }
 
+    public ServiceProtocolType getServiceProtocol() {
+        return serviceProtocol;
+    }
+
+    public void setServiceProtocol(ServiceProtocolType serviceProtocol) {
+        this.serviceProtocol = serviceProtocol;
+    }
+
+    public Integer getSerializaFormat() {
+        return serializaFormat;
+    }
+
+    public void setSerializaFormat(Integer serializaFormat) {
+        this.serializaFormat = serializaFormat;
+    }
+
+    public DataBaseType getDataBaseType() {
+        return dataBaseType;
+    }
+
+    public void setDataBaseType(DataBaseType dataBaseType) {
+        this.dataBaseType = dataBaseType;
+    }
+
+    public String getDataFilePath() {
+        return dataFilePath;
+    }
+
+    public void setDataFilePath(String dataFilePath) {
+        this.dataFilePath = dataFilePath;
+    }
+
+    public String getProjectFilePath() {
+        return projectFilePath;
+    }
+
+    public void setProjectFilePath(String projectFilePath) {
+        this.projectFilePath = projectFilePath;
+    }
 }

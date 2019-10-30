@@ -1,12 +1,14 @@
 package com.avatech.edi.codegen.model.bo;
 
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessObject {
 
 
-    public static BusinessObject createBusinessObject(DomainModel model,ProjectInitial projectInitial){
+    public static BusinessObject createBusinessObject(DomainModel model,ProjectStructure projectInitial){
         BusinessObject businessObject = new BusinessObject();
         businessObject.setApplicationName(projectInitial.getProjectName());
         businessObject.setBussinessObjectName(model.getModelName());

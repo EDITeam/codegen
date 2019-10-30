@@ -2,8 +2,8 @@ package com.avatech.edi.codegen.service.imp.project.controller;
 
 import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.service.IProjectService;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class ControllerProjectService implements IProjectService {
      * @param projectInitial
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         for (DomainModel domainModel:domainModels) {
             httpProjectService.createHttpProjectFile(BusinessObject.createBusinessObject(domainModel,projectInitial),projectInitial);
         }

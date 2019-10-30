@@ -1,24 +1,23 @@
 package com.avatech.edi.codegen.service.imp.project.controller;
 
 import com.avatech.edi.codegen.model.bo.*;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.Dictionary;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class ControllerProjectServiceTest {
 
     @Test
     public void createProject() {
-        ProjectInitial projectInitial = new ProjectInitial();
+        ProjectStructure projectInitial = new ProjectStructure();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(DBType.HANA);
-        projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
-        projectInitial.setProjectType(Dictionary.Single_Model);
+        projectInitial.setDataBaseType(DataBaseType.HANA);
+
+        //projectInitial.setProjectType(Dictionary.DATABASETypes_HANA);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/dev/datastruct");
         projectInitial.setProjectFilePath("/Users/fanxing/Documents/dev/");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
@@ -66,7 +65,7 @@ public class ControllerProjectServiceTest {
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
 
         domainModelList.add(domainModel);
-        ControllerProjectService controllerProjectService = new ControllerProjectService();
-        controllerProjectService.createProject(domainModelList,projectInitial);
+        //ControllerProjectService controllerProjectService = new ControllerProjectService();
+        //controllerProjectService.createProject(domainModelList,projectInitial);
     }
 }

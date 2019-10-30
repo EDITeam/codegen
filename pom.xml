@@ -4,10 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>codegen-controller</module>
+        <module>codegen-api</module>
         <module>codegen-service</module>
         <module>codegen-model</module>
-        <module>codegen-common</module>
+        <module>codegen-core</module>
+        <module>codegen-starter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -57,6 +58,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>

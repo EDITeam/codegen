@@ -1,8 +1,8 @@
 package com.avatech.edi.codegen.service.imp.project.repositorybusinessone;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.service.IProjectService;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class RepositoryBusinessOneProjectServcie implements IProjectService {
      * @param domainModels
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
 
     }
 }

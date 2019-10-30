@@ -1,6 +1,6 @@
 package com.avatech.edi.condegen.data;
 
-import com.avatech.edi.condegen.common.BaseException;
+import com.avatech.edi.condegen.exception.BaseException;
 
 public class DataType {
     public static String getDataType(String dataType) {

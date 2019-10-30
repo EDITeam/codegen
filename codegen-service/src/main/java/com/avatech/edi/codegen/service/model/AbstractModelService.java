@@ -1,12 +1,23 @@
-package com.avatech.edi.codegen.service.imp.project;
+package com.avatech.edi.codegen.service.model;
+
+import com.avatech.edi.codegen.model.bo.DomainModel;
+import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
+
+import java.util.List;
 
 /**
  * @author Fancy
  * @date 2019/10/30
  */
-public abstract class AbstractProjectService {
+public abstract class AbstractModelService {
 
-    public abstract void createFile();
+    /**
+     * 创建模块文件
+     */
+    public abstract void createModelFile(List<DomainModel> domainModels,BaseModelParameter modelParameter);
 
-    public abstract void createPOM();
+    /**
+     * 创建POM文件
+     */
+    public abstract void createPOM(BaseModelParameter modelParameter);
 }

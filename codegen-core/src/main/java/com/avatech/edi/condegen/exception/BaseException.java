@@ -1,4 +1,4 @@
-package com.avatech.edi.condegen.common;
+package com.avatech.edi.condegen.exception;
 
 public class BaseException extends RuntimeException {
 

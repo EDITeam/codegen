@@ -1,8 +1,8 @@
-package com.avatech.edi.codegen.service.imp;
+package com.avatech.edi.codegen.service.project;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
-import com.avatech.edi.codegen.service.IProjectService;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.common.CommonProjectService;
 import com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectService;
 import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+//@Service
 public class ProjectService implements IProjectService{
 
     @Autowired
@@ -40,18 +40,20 @@ public class ProjectService implements IProjectService{
     /**
      * 创建项目模板
      * @param domainModels
-     * @param projectInitial
+     * @param projectStructure
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
-        commonProjectService.createProject(domainModels,projectInitial);
-        modelProjectService.createProject(domainModels,projectInitial);
-        repositoryProjectService.createProject(domainModels,projectInitial);
-        repositoryBusinessOneProjectServcie.createProject(domainModels,projectInitial);
-        serviceProjectService.createProject(domainModels,projectInitial);
-        controllerProjectService.createProject(domainModels,projectInitial);
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectStructure) {
 
-        if(projectInitial.getProjectType().equals(Dictionary.Single_Model)){
+        
+        commonProjectService.createProject(domainModels,projectStructure);
+        modelProjectService.createProject(domainModels,projectStructure);
+        repositoryProjectService.createProject(domainModels,projectStructure);
+        repositoryBusinessOneProjectServcie.createProject(domainModels,projectStructure);
+        serviceProjectService.createProject(domainModels,projectStructure);
+        controllerProjectService.createProject(domainModels,projectStructure);
+
+        if(projectStructure.getProjectType().equals(Dictionary.Single_Model)){
 
         }
     }

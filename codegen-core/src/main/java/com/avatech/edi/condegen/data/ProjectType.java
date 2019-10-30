@@ -1,13 +1,34 @@
 package com.avatech.edi.condegen.data;
 
+import lombok.Getter;
+
 /**
  * @author Fancy
  * @date 2019/9/21
+ * 项目类型
  */
+@Getter
 public enum ProjectType {
 
-    MUTIL_MODUE(0,"MutilModel"),
-    SIGNAL_MODLE(1,"SignalModel")
+    /**
+     * Dahub 应用类项目
+     */
+    DAHUB_APPLICATION(0,"Dahub-Application"),
+
+    /**
+     * Dahub 服务类项目
+     */
+    DAHUB_SERVICE(1,"Dahub-Service"),
+
+    /**
+     * 简单服务项目
+     */
+    SIMPLE_SERVICE(2,"SimpleService"),
+
+    /**
+     *  B1服务项目
+     */
+    SBO_PROJECT(3,"SBOProject")
     ;
 
     private int key;
@@ -17,5 +38,13 @@ public enum ProjectType {
     ProjectType(int key,String name){
         this.key = key;
         this.name = name;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public String getName() {
+        return name;
     }
 }
