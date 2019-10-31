@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.avatech.edi</groupId>
-            <artifactId>codegen-common</artifactId>
+            <artifactId>codegen-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

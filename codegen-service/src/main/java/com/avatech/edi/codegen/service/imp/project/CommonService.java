@@ -1,6 +1,5 @@
 package com.avatech.edi.codegen.service.imp.project;
 
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.springframework.stereotype.Component;
@@ -30,7 +29,7 @@ public class CommonService {
             out.flush();
             out.close();
         }catch (Exception e){
-            throw new BusinessServiceException("2002",e.getMessage());
+            //throw new BusinessServiceException("2002",e.getMessage());
         }
     }
 }

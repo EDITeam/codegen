@@ -1,24 +1,19 @@
 package com.avatech.edi.codegen.service.imp.project.repository;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.Table;
-import com.avatech.edi.codegen.model.bo.mapperBO.MapperObject;
-import com.avatech.edi.codegen.model.bo.mapperBO.MapperObjectItem;
-import com.avatech.edi.codegen.service.IProjectService;
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.codegen.model.bo.mapper.MapperObject;
+import com.avatech.edi.codegen.model.bo.mapper.MapperObjectItem;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperResourceService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperService;
 import com.avatech.edi.condegen.data.ProjectData;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +33,7 @@ public class RepositoryProjectService implements IProjectService {
      * @param domainModels
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         MapperObject mapperObject;
         for (DomainModel domainModel : domainModels) {
             mapperObject = getMapperObject(domainModel, projectInitial);
@@ -71,7 +66,7 @@ public class RepositoryProjectService implements IProjectService {
             commonService.createTmpleCode(root, mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java", "repositoryimp.ftl");
 
         } catch (Exception e) {
-            throw new BusinessServiceException("20012", "mapper类型错误");
+            //throw new BusinessServiceException("20012", "mapper类型错误");
         }
     }
 
@@ -79,7 +74,7 @@ public class RepositoryProjectService implements IProjectService {
      * 获取mapperObject信息
      * @return
      */
-    private MapperObject getMapperObject(DomainModel domainModel,ProjectInitial projectInitial){
+    private MapperObject getMapperObject(DomainModel domainModel,ProjectStructure projectInitial){
         MapperObject mapperObject = new MapperObject();
         mapperObject.setFilePath( projectInitial.getProjectFilePath() +"/" + String.format(ProjectData.SINGLE_BASE_MAPPER_PROJECT_URL,projectInitial.getProjectName(), projectInitial.getProjectName()));
         mapperObject.setPackageName(String.format("com.avatech.edi.%s.mapper",projectInitial.getProjectName()));

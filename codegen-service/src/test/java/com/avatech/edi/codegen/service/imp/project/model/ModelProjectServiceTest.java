@@ -1,14 +1,11 @@
 package com.avatech.edi.codegen.service.imp.project.model;
 
 import com.avatech.edi.codegen.model.bo.*;
-import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.Dictionary;
+import com.avatech.edi.condegen.data.ProjectType;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +15,10 @@ public class ModelProjectServiceTest {
 
     @Test
     public void createModelProjectTest(){
-        ProjectInitial projectInitial = new ProjectInitial();
+        ProjectStructure projectInitial = new ProjectStructure();
         projectInitial.setProjectName("ava");
-        projectInitial.setDataBaseType(DBType.HANA);
-        projectInitial.setOrmType(Dictionary.ORMTypes_JPA);
-        projectInitial.setProjectType(Dictionary.Single_Model);
+        projectInitial.setDataBaseType(DataBaseType.HANA);
+      //  projectInitial.setProjectType(ProjectType.SBO_PROJECT);
         projectInitial.setDataFilePath("/Users/fanxing/Documents/ava-work/edi-microservice/datastruct");
         projectInitial.setProjectFilePath("/Users/fanxing/Documents/ava-work/edi-microservice/");
         projectInitial.setSerializaFormat(Dictionary.SerializaTypes_JSON);
@@ -70,8 +66,8 @@ public class ModelProjectServiceTest {
         domainModel.getBusinessObjectMaps().add(businessObjectMap);
         domainModelList.add(domainModel);
 
-        ModelProjectService modelProjectService = new ModelProjectService();
-        modelProjectService.createProject(domainModelList,projectInitial);
+        //ModelProjectService modelProjectService = new ModelProjectService();
+        //modelProjectService.createProject(domainModelList,projectInitial);
 
     }
 

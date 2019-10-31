@@ -1,14 +1,14 @@
 package com.avatech.edi.codegen.service.imp.sql;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.condegen.data.DataBaseType;
 
 import java.util.List;
 
 public interface DataBaseHandler {
 
-    DBType getDBType();
+    DataBaseType getDBType();
 
-    void createDBSqlScript(List<DomainModel> domainModels, ProjectInitial projectInitial);
+    void createDBSqlScript(List<DomainModel> domainModels, ProjectStructure projectInitial);
 }

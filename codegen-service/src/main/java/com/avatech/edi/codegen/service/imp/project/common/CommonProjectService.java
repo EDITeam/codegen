@@ -1,12 +1,12 @@
 package com.avatech.edi.codegen.service.imp.project.common;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
-import com.avatech.edi.codegen.service.IProjectService;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.codegen.service.imp.sql.DataBaseHandler;
 import com.avatech.edi.codegen.service.imp.sql.DataBaseHandlerFactory;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
 import freemarker.template.utility.StringUtil;
@@ -28,7 +28,7 @@ public class CommonProjectService implements IProjectService {
      * @param domainModels
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         // TODO 创建文件夹
 
 
@@ -43,14 +43,14 @@ public class CommonProjectService implements IProjectService {
 
     }
 
-    private void createDBSql(List<DomainModel> domainModels, ProjectInitial projectInitial) {
-        if(projectInitial.getDataBaseType().equals(DBType.HANA)){
-            DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(DBType.HANA);
+    private void createDBSql(List<DomainModel> domainModels, ProjectStructure projectInitial) {
+        if(projectInitial.getDataBaseType().equals(DataBaseType.HANA)){
+            DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(DataBaseType.HANA);
             dataBaseHandler.createDBSqlScript(domainModels,projectInitial);
         }
     }
 
-    private void createPOM(ProjectInitial projectInitial) {
+    private void createPOM(ProjectStructure projectInitial) {
         /**
          * 只有单模块在此生成POM文件，多模块在对应模块中生成POM文件
          */
@@ -64,7 +64,7 @@ public class CommonProjectService implements IProjectService {
     }
 
 
-    private void createApplication(ProjectInitial projectInitial){
+    private void createApplication(ProjectStructure projectInitial){
         String controllerFilePath = projectInitial.getProjectFilePath() + "/" + String.format(ProjectData.APPLICATION_URL,projectInitial.getProjectName(), projectInitial.getProjectName());
         String resourceFilePath = String.format("%s/%s.microservice/src/main/resources",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(controllerFilePath);

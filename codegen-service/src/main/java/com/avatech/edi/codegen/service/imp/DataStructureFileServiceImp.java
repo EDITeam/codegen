@@ -5,16 +5,16 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.model.bo.TableLine;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
 import com.avatech.edi.condegen.data.DataType;
+import com.avatech.edi.condegen.exception.BusinessServiceException;
+import org.apache.commons.io.IOUtils;
 import org.dom4j.*;
-import org.dom4j.io.SAXReader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.apache.commons.io.IOUtils;
 
-import java.io.*;
-import java.net.URL;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 

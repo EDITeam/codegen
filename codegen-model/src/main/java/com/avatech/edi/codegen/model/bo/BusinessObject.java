@@ -1,12 +1,16 @@
 package com.avatech.edi.codegen.model.bo;
 
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
+import com.avatech.edi.condegen.data.ModelConstant;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessObject {
 
 
-    public static BusinessObject createBusinessObject(DomainModel model,ProjectInitial projectInitial){
+    public static BusinessObject createBusinessObject(DomainModel model,ProjectStructure projectInitial){
         BusinessObject businessObject = new BusinessObject();
         businessObject.setApplicationName(projectInitial.getProjectName());
         businessObject.setBussinessObjectName(model.getModelName());
@@ -15,6 +19,21 @@ public class BusinessObject {
         for (Table table:model.getTableList()) {
             businessObject.getBussinessObjectModelPackageName().add(String.format("com.avatech.edi.%s.model.bo.%s.%s"
                     ,projectInitial.getProjectName()
+                    ,model.getModelName().toLowerCase()
+                    ,table.getTableProperty()));
+        }
+        return businessObject;
+    }
+
+    public static BusinessObject createBusinessObject(DomainModel model, BaseModelParameter modelParameter){
+        BusinessObject businessObject = new BusinessObject();
+        businessObject.setApplicationName(modelParameter.getProjectNamePrefix());
+        businessObject.setBussinessObjectName(model.getModelName());
+        businessObject.setBussinessObjectRepositoryPackageName(String.format(ModelConstant.REPOSITORY_BASE_PACKAGE,modelParameter.getProjectNamePrefix().toLowerCase()).concat(".").concat(model.getModelName().concat("Repository")));
+        businessObject.setBussinessObjectServicePackageName(String.format(ModelConstant.SERVICE_BASE_PACKAGE,modelParameter.getProjectNamePrefix().toLowerCase()).concat(".").concat(model.getModelName().concat("Service")));
+        for (Table table:model.getTableList()) {
+            businessObject.getBussinessObjectModelPackageName().add(String.format("com.avatech.edi.%s.model.bo.%s.%s"
+                    ,modelParameter.getProjectNamePrefix()
                     ,model.getModelName().toLowerCase()
                     ,table.getTableProperty()));
         }

@@ -1,13 +1,12 @@
 package com.avatech.edi.codegen.service.imp.sql;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
-import com.avatech.edi.condegen.data.DBType;
+import com.avatech.edi.condegen.data.DataBaseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.print.Doc;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +18,8 @@ public class HANADataBaseHandler implements DataBaseHandler {
     private CommonService commonService;
 
     @Override
-    public DBType getDBType() {
-        return DBType.HANA;
+    public DataBaseType getDBType() {
+        return DataBaseType.HANA;
     }
 
     /**
@@ -29,7 +28,7 @@ public class HANADataBaseHandler implements DataBaseHandler {
      * @param projectInitial
      */
     @Override
-    public void createDBSqlScript(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createDBSqlScript(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         String resourceFilePath = String.format("%s/%s.microservice/src/main/resources/sql",projectInitial.getProjectFilePath(),projectInitial.getProjectName());
         File file = new File(resourceFilePath);
         file.mkdirs();

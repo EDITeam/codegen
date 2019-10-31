@@ -2,22 +2,18 @@ package com.avatech.edi.codegen.service.imp.project.model;
 
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
-import com.avatech.edi.codegen.model.bo.ProjectInitial;
+import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.Table;
-import com.avatech.edi.codegen.service.IProjectService;
-import com.avatech.edi.codegen.service.config.BusinessServiceException;
+import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.condegen.common.StringUtils;
 import com.avatech.edi.condegen.data.Dictionary;
 import com.avatech.edi.condegen.data.ProjectData;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
+import com.avatech.edi.condegen.exception.BusinessServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +29,7 @@ public class ModelProjectService implements IProjectService {
      * @param domainModels
      */
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         try {
             if(projectInitial.getProjectType() == null){
                 throw new BusinessServiceException("2001", "配置错误：无效的项目类型");
@@ -62,7 +58,7 @@ public class ModelProjectService implements IProjectService {
      * @param domainModels
      * @param projectInitial
      */
-    private void createSingleProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    private void createSingleProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         try {
             // TODO 创建文件夹
             String boPackage;
@@ -107,7 +103,7 @@ public class ModelProjectService implements IProjectService {
      * @param domainModels
      * @param projectInitial
      */
-    private void createMutileProject(List<DomainModel> domainModels, ProjectInitial projectInitial) {
+    private void createMutileProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         try {
             // TODO 创建文件夹
             // 如果文件夹路径不存在，则新建文件夹
