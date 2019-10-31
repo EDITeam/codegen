@@ -9,6 +9,8 @@ public class ModelConstant {
 
     public static final String MODEL_SOURCES_BASE_PATH = "src.main.java";
 
+    public static final String MODEL_RESOURCES_BASE_PATH = "src.main.resources";
+
     public static final String MODEL_TESTS_BASE_PATH = "src.test.java";
 
     public static final String API_BASE_PACKAGE = "com.avatech.dahub.%s.api.v1";
@@ -23,6 +25,7 @@ public class ModelConstant {
 
     public static final String CORE_BASE_PACKAGE = "com.avatech.dahub.%s.core";
 
+    public static final String REPOSITORY_BASE_PACKAGE = "com.avatech.dahub.%s.repository";
 
     public static final String API_MODEL_NAME = "%s_api";
 
@@ -35,5 +38,7 @@ public class ModelConstant {
     public static final String FEIGNCLIENT_MODEL_NAME = "%s_model";
 
     public static final String STARTER_MODEL_NAME = "%s_starter";
+
+    public static final String REPOSITORY_MODEL_NAME = "%s_repository";
 
 }

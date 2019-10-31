@@ -4,6 +4,9 @@ import com.avatech.edi.condegen.data.DataBaseType;
 import com.avatech.edi.condegen.data.ProjectType;
 import com.avatech.edi.condegen.data.ServiceProtocolType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 项目结构
  */
@@ -44,6 +47,7 @@ public class ProjectStructure {
      */
     private String projectFilePath;
 
+    private List<String> modelNames;
 
     public String getProjectName() {
         return projectName;
@@ -99,5 +103,16 @@ public class ProjectStructure {
 
     public void setProjectFilePath(String projectFilePath) {
         this.projectFilePath = projectFilePath;
+    }
+
+    public List<String> getModelNames() {
+        if(modelNames == null){
+            modelNames = new ArrayList<>();
+        }
+        return modelNames;
+    }
+
+    public void setModelNames(List<String> modelNames) {
+        this.modelNames = modelNames;
     }
 }

@@ -5,11 +5,11 @@ import com.avatech.edi.condegen.data.ModelEnum;
 
 /**
  * @author Fancy
- * @date 2019/10/30
+ * @date 2019/10/31
  */
-public class DomainModelParameter extends BaseModelParameter {
+public class RepositoryModelParameter extends BaseModelParameter {
 
-    public DomainModelParameter(ProjectStructure projectStructure) {
-        super(projectStructure, ModelEnum.MODEL);
+    public RepositoryModelParameter(ProjectStructure projectStructure) {
+        super(projectStructure, ModelEnum.REPOSITORY);
     }
 }

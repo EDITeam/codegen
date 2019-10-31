@@ -19,9 +19,8 @@ import java.util.List;
  * @date 2019/10/30
  */
 
-@RestController
+@RestController("edi/v1/*")
 public class CodeGenV1Api {
-
 
     @Autowired
     @Qualifier("projectFacotryService")
@@ -29,7 +28,6 @@ public class CodeGenV1Api {
 
     @Autowired
     private IDataStructureFileService dataStructureFileService;
-
 
     @GetMapping("/projectinfo")
     public @ResponseBody ProjectStructure getProjectInfo()

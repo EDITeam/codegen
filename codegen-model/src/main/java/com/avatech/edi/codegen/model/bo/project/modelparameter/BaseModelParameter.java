@@ -17,24 +17,40 @@ public class BaseModelParameter extends BaseProjectParameter {
     public BaseModelParameter(ProjectStructure projectStructure, ModelEnum modelEnum){
         super(projectStructure);
         init(projectStructure,modelEnum);
+
     }
 
+    /**
+     * 模块名称
+     */
+    private String modelName;
 
     /**
      * 模块基础包
+     * com.avatech.dahub.${appname}.${modelname}
      */
     private String modelBasePakage;
 
     /**
      * 模块sources基础路径
+     *
      */
     private String sourcesBasePath;
 
     /**
      * 模块tests基础路径
+     *
      */
     private String testsBasePath;
 
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
 
     public String getModelBasePakage() {
         return modelBasePakage;
@@ -62,32 +78,36 @@ public class BaseModelParameter extends BaseProjectParameter {
 
     private void init(ProjectStructure projectStructure, ModelEnum modelEnum) {
 
-        String modelName = String.format(getModelName(modelEnum), projectStructure.getProjectName().toLowerCase());
+        String modelName = String.format(getModelName(modelEnum), getProjectName().toLowerCase());
+        setModelName(modelName);
+
         String modelPath = projectStructure.getProjectFilePath()
                 + File.separator
-                + projectStructure.getProjectName().toLowerCase()
+                + this.getProjectName().toLowerCase()
                 + File.separator
-                + modelName;
+                + this.modelName;
+        // 设置模块路径
+        setRootPath(modelPath);
+
         String modelBasePakage = String.format(getModelPackage(modelEnum), projectStructure.getProjectName().toLowerCase());
         String souceBasePath = getRootPath()
                 + File.separator
                 + ModelConstant.MODEL_SOURCES_BASE_PATH
-                + File.separator + getModelBasePakage();
+                + File.separator + modelBasePakage;
         String testsBasePath = getRootPath()
                 + File.separator
                 + ModelConstant.MODEL_TESTS_BASE_PATH
                 + File.separator
-                + getModelBasePakage();
+                + modelBasePakage;
 
-        // 设置模块路径
-        setRootPath(modelPath);
+
         // 设置基础包名称
         setModelBasePakage(modelBasePakage);
 
         // 设置文件路径
-
         setSourcesBasePath(souceBasePath.replace('.',File.separatorChar));
         setTestsBasePath(testsBasePath.replace('.',File.separatorChar));
+
     }
 
     private String getModelName(ModelEnum modelEnum){
@@ -104,6 +124,8 @@ public class BaseModelParameter extends BaseProjectParameter {
                 return ModelConstant.STARTER_MODEL_NAME;
             case API:
                 return ModelConstant.API_MODEL_NAME;
+            case REPOSITORY:
+                return ModelConstant.REPOSITORY_MODEL_NAME;
             default:
                 throw new BusinessServiceException("1", "not exists model name");
         }
@@ -123,6 +145,8 @@ public class BaseModelParameter extends BaseProjectParameter {
                 return ModelConstant.STARTER_BASE_PACKAGE;
             case API:
                 return ModelConstant.API_BASE_PACKAGE;
+            case REPOSITORY:
+                return ModelConstant.REPOSITORY_BASE_PACKAGE;
             default:
                 throw new BusinessServiceException("1", "not exists model name");
         }

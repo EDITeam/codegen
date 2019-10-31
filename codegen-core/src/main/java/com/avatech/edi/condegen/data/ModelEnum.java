@@ -37,7 +37,12 @@ public enum ModelEnum {
     /**
      *  client 模块
      */
-    CLIENT(5,"client")
+    CLIENT(5,"client"),
+
+    /**
+     *  repository 模块
+     */
+    REPOSITORY(6,"repository")
     ;
 
     private int key;
