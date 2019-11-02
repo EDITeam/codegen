@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/default.css}" rel="stylesheet"/>
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <meta charset="UTF-8"/>
+    <title>Java项目生成</title>
+</head>
+<style>
+    .col-center-block {
+        float: none;
+        display: block;
+        margin: 0 auto;
+        width: auto;
+    }
+</style>
+<body>
+<div class="col-center-block">
+    <legend>
+        <strong>EDI Java代码生成</strong>
+    </legend>
+    <hr>
+
+    <form th:action="@{/project/{action}(action=${action})}" method="post" class="form-horizontal">
+        <!--<input type="hidden" name="id" th:value="${book.id}"/>-->
+
+        <div class="form-group form-inline">
+            <label for="projectName" class="col-sm-2 control-label">项目名称:</label>
+            <input type="text" id="projectName" class="form-control" name="projectName" th:value="${project.projectName}"
+                   th:field="*{project.projectName}"/>
+            &nbsp;&nbsp;
+            <small id="projectNameHelp" class="form-text text-muted">直接输入项目名称，无需加后缀'_service'或者'_application'</small>
+        </div>
+
+
+        <div class="form-group form-inline">
+            <label for="projectType" class="col-sm-2 control-label">项目类型:</label>
+            <select class="form-control" data-style="btn-info" id="projectType" th:filed="*{project.projectType}">
+                <option th:each="item:${projecttype}" th:value="${item.key}" th:text="${item.name}"
+                        th:selected="${null !=project and null !=project.projectType and project.projectType==item.key} ?true:false"></option>
+            </option>
+            </select>
+            &nbsp;&nbsp;
+            <small id="projectTypeHelp" class="form-text text-muted">Dahub为dahub平台项目，包含服务注册中心</small>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="serviceProtocol" class="col-sm-2 control-label">服务协议:</label>
+            <select class="form-control" data-style="btn-info" id="serviceProtocol" th:value="*{project.serviceProtocol}">
+                <option value="HTTP" th:value="${project.serviceProtocol}"  selected="selected">HTTP</option>
+                <option value="SOAP" th:value="${project.serviceProtocol}">SOAP</option>
+                <option value="RPC" th:value="${project.serviceProtocol}">RPC</option>
+            </select>
+            &nbsp;&nbsp;
+            <small id="serviceProtocolHelp" class="form-text text-muted">暂只支持http</small>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="dataBaseType" class="col-sm-2 control-label">数据库类型:</label>
+            <select class="form-control" data-style="btn-info" id="dataBaseType" th:value="${project.dataBaseType}">
+                <option>MariaDB</option>
+                <option>HANA</option>
+                <option>MSSQL</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="dataFilePath" class="col-sm-2 control-label">数据结构文件目录:</label>
+            <input class="form-control" type="text" id="dataFilePath" name="dataFilePath" th:value="${project.dataFilePath}"/>
+            &nbsp;&nbsp;
+            <small id="dataFilePathHelp" class="form-text text-muted">只选到文件夹级别，非文件</small>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="projectFilePath" class="col-sm-2 control-label">项目文件存放目录:</label>
+            <input class="form-control" type="text" id="projectFilePath" name="projectFilePath" th:value="${project.projectFilePath}"/>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="btn btn-primary" type="submit" value="创建项目"/>&nbsp;&nbsp;
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
+
+

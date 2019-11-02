@@ -13,22 +13,22 @@ public enum ProjectType {
     /**
      * Dahub 应用类项目
      */
-    DAHUB_APPLICATION(0,"Dahub-Application"),
+    DAHUB_APPLICATION(0,"DAHUB_APPLICATION"),
 
     /**
      * Dahub 服务类项目
      */
-    DAHUB_SERVICE(1,"Dahub-Service"),
+    DAHUB_SERVICE(1,"DAHUB_SERVICE"),
 
     /**
      * 简单服务项目
      */
-    SIMPLE_SERVICE(2,"SimpleService"),
+    SIMPLE_SERVICE(2,"SIMPLE_SERVICE"),
 
     /**
      *  B1服务项目
      */
-    SBO_PROJECT(3,"SBOProject")
+    SBO_PROJECT(3,"SBO_PROJECT")
     ;
 
     private int key;
