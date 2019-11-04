@@ -5,8 +5,9 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.model.bo.TableLine;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
-import com.avatech.edi.condegen.data.DataType;
-import com.avatech.edi.condegen.exception.BusinessServiceException;
+import com.avatech.edi.codegen.data.DataType;
+import com.avatech.edi.codegen.exception.BusinessServiceException;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.*;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,8 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         if (!file.exists()) {
             throw new BusinessServiceException("2005", "无效的数据结构文件路径");
         }
-        File[] dataFiles = file.listFiles();
+        //File[] dataFiles = file.listFiles();
+        List<File> dataFiles =  (List)FileUtils.listFiles(file,null,true);
         List<DomainModel> domainModels = new ArrayList<>();
 
         for (File item : dataFiles) {
@@ -44,7 +46,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             } catch (IOException e) {
                 throw new BusinessServiceException("2010",String.format("读取文件%s失败:%s",item,e.getCause()));
             } catch (DocumentException e) {
-                e.printStackTrace();
+                throw new BusinessServiceException("2010",String.format("读取文件%s失败:%s",item,e.getCause()));
             }
         }
         return domainModels;

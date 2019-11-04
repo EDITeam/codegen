@@ -5,8 +5,7 @@ import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.*;
 import com.avatech.edi.codegen.service.TemplateService;
 import com.avatech.edi.codegen.service.model.*;
-import com.avatech.edi.condegen.data.ServiceProtocolType;
-import net.bytebuddy.asm.Advice;
+import com.avatech.edi.codegen.data.ServiceProtocolType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

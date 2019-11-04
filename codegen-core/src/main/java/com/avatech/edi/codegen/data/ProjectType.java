@@ -1,4 +1,4 @@
-package com.avatech.edi.condegen.data;
+package com.avatech.edi.codegen.data;
 
 import lombok.Getter;
 
@@ -30,6 +30,9 @@ public enum ProjectType {
      */
     SBO_PROJECT(3,"SBO_PROJECT")
     ;
+
+
+    public static final ProjectType[] ALL = { DAHUB_APPLICATION, DAHUB_SERVICE ,SIMPLE_SERVICE,SBO_PROJECT};
 
     private int key;
 

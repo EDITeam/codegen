@@ -3,7 +3,7 @@ package com.avatech.edi.codegen.service.imp.project.controller;
 import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
-import com.avatech.edi.condegen.data.ProjectData;
+import com.avatech.edi.codegen.data.ProjectData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

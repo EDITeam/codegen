@@ -1,4 +1,4 @@
-package com.avatech.edi.condegen.data;
+package com.avatech.edi.codegen.data;
 
 import lombok.Getter;
 
@@ -12,8 +12,9 @@ public enum DataBaseType {
     HANA(1,"HANA"),
     MYSQL(2,"MYSQL"),
     ORACLE(3,"ORACLE"),
-    MATERIALDB(4,"MARIADB"),
-    POSTGRESQL(5,"POSTGRESQL");
+    POSTGRESQL(4,"POSTGRESQL");
+
+    public static final DataBaseType[] ALL = { MSSQL, HANA ,MYSQL,POSTGRESQL};
 
     private int key;
 

@@ -4,10 +4,10 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.project.IProjectService;
-import com.avatech.edi.condegen.common.StringUtils;
-import com.avatech.edi.condegen.data.DataBaseType;
-import com.avatech.edi.condegen.data.Dictionary;
-import com.avatech.edi.condegen.data.ProjectType;
+import com.avatech.edi.codegen.common.StringUtils;
+import com.avatech.edi.codegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.Dictionary;
+import com.avatech.edi.codegen.data.ProjectType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -62,5 +62,7 @@ public class CodeGenV1Api {
             return e.getMessage();
         }
     }
+
+    private void fileDownload(){}
 
 }

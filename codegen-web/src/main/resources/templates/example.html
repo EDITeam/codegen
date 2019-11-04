@@ -1,51 +1,14 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>表单控件――下拉选择框select元</title>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet"
-          href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet"
-          href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>文件夹上传</title>
 </head>
 <body>
-<form role="form">
-    <!-- 单选 -->
-    <div class="form-group">
-        <select name="" id="" class="form-control">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-        </select>
-    </div>
-
-    <!-- 多选 -->
-    <div class="form-group">
-        <select multiple="multiple" name="" id="" class="form-control">
-            <option value="">a</option>
-            <option value="">b</option>
-            <option value="">c</option>
-            <option value="">d</option>
-            <option value="">e</option>
-        </select>
-    </div>
+<form action="/uploadFolder" method="post" enctype="multipart/form-data">
+    <!-- html5支持选择文件夹上传 -->
+    <input type="file" name="folder" multiple webkitdirectory>
+    <button type="submit">上传</button>
 </form>
-
-
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
 </body>
-</html>

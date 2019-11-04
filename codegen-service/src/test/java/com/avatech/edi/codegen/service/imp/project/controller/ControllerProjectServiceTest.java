@@ -2,8 +2,8 @@ package com.avatech.edi.codegen.service.imp.project.controller;
 
 import com.avatech.edi.codegen.model.bo.*;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
-import com.avatech.edi.condegen.data.DataBaseType;
-import com.avatech.edi.condegen.data.Dictionary;
+import com.avatech.edi.codegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.Dictionary;
 import org.junit.Test;
 
 import java.util.ArrayList;

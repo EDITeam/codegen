@@ -1,8 +1,9 @@
 package com.avatech.edi.codegen.model.bo.project;
 
-import com.avatech.edi.condegen.data.DataBaseType;
-import com.avatech.edi.condegen.data.ProjectType;
-import com.avatech.edi.condegen.data.ServiceProtocolType;
+import com.avatech.edi.codegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.ProjectType;
+import com.avatech.edi.codegen.data.ServiceProtocolType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class ProjectStructure {
      */
     private String projectFilePath;
 
+    @JsonIgnore
     private List<String> modelNames;
 
     public String getProjectName() {
