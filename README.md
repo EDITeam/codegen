@@ -3,10 +3,10 @@
 ### 相关环境与框架
 
 ```java
-	jdk 1.8
-	spring boot 2.1.1
-	freemarker
-	thymeleaf
+jdk 1.8
+spring boot 2.1.1
+freemarker
+thymeleaf
 ```
 
 ### 项目简介
@@ -27,7 +27,9 @@ codegen-web| web UI层
 
 启动后，在浏览器中输入：`http://localhost:8080/project/`
 
-[](../img/index.jpg)
+![](img/index.jpg)
+
+*创建项目前需先上传数据结构文件*
 
 
 
