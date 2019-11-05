@@ -4,7 +4,6 @@ import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
 import com.avatech.edi.codegen.service.TemplateService;
-import com.avatech.edi.condegen.data.ProjectData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

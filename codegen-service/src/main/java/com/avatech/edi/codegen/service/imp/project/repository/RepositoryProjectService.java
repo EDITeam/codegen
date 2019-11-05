@@ -9,7 +9,7 @@ import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperResourceService;
 import com.avatech.edi.codegen.service.imp.project.mapper.MapperService;
-import com.avatech.edi.condegen.data.ProjectData;
+import com.avatech.edi.codegen.data.ProjectData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,7 @@
-package com.avatech.edi.condegen.exception;
+package com.avatech.edi.codegen.exception;
 
-/**
- * @author Fancy
- * @date 2019/10/30
- */
-public class BusinessServiceException extends BaseException {
+public class BaseException extends RuntimeException {
+
     private String code;
 
     private String message;
@@ -26,13 +23,13 @@ public class BusinessServiceException extends BaseException {
         this.message = message;
     }
 
-    public BusinessServiceException() {
-        super();
+    public BaseException() {
     }
 
-    public BusinessServiceException(String code,String message){
+    public BaseException(String code,String message){
         super();
         this.code = code;
         this.message = message;
     }
 }
+

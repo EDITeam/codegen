@@ -1,2 +1,10 @@
 server:
   port: 8080
+## 关闭缓存，修改文件后，刷新页面就可以看到
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5

@@ -1,4 +1,4 @@
-package com.avatech.edi.condegen.data;
+package com.avatech.edi.codegen.data;
 
 public class ProjectData {
 

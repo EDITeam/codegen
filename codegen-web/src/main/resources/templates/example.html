@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文件夹上传</title>
+</head>
+<body>
+<form action="/uploadFolder" method="post" enctype="multipart/form-data">
+    <!-- html5支持选择文件夹上传 -->
+    <input type="file" name="folder" multiple webkitdirectory>
+    <button type="submit">上传</button>
+</form>
+</body>

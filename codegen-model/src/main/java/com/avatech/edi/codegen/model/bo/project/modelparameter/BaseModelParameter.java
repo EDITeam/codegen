@@ -2,9 +2,9 @@ package com.avatech.edi.codegen.model.bo.project.modelparameter;
 
 import com.avatech.edi.codegen.model.bo.project.BaseProjectParameter;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
-import com.avatech.edi.condegen.data.ModelConstant;
-import com.avatech.edi.condegen.data.ModelEnum;
-import com.avatech.edi.condegen.exception.BusinessServiceException;
+import com.avatech.edi.codegen.data.ModelConstant;
+import com.avatech.edi.codegen.data.ModelEnum;
+import com.avatech.edi.codegen.exception.BusinessServiceException;
 
 import java.io.File;
 

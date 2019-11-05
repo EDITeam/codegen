@@ -1,6 +1,6 @@
 package com.avatech.edi.codegen.service.imp.sql;
 
-import com.avatech.edi.condegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.DataBaseType;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

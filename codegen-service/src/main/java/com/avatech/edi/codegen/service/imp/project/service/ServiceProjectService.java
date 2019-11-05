@@ -5,8 +5,8 @@ import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.mapper.MapperObject;
 import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
-import com.avatech.edi.condegen.data.Dictionary;
-import com.avatech.edi.condegen.data.ProjectData;
+import com.avatech.edi.codegen.data.Dictionary;
+import com.avatech.edi.codegen.data.ProjectData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

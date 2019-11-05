@@ -17,6 +17,11 @@
             <artifactId>codegen-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.avatech.edi</groupId>
+            <artifactId>codegen-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 
@@ -40,7 +45,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.avatech.edi.codegen.CodeGenApplication</mainClass>
+                    <mainClass>com.avatech.edi.codegen.starter.CodeGenApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -51,6 +56,13 @@
                 <includes>
                     <include>**/*.jar</include>
                 </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.html</include>
+                </includes>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
