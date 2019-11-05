@@ -27,6 +27,7 @@
         <strong>EDI Java代码生成</strong>
     </legend>
 
+    <hr/>
 
     <form id = "fileUploadForm" th:action="@{/project/{action}(action=${action})}"  method="post" class="form-horizontal">
         <!--<input type="hidden" name="id" th:value="${book.id}"/>-->
@@ -67,22 +68,16 @@
         </div>
 
         <div class="form-group form-inline">
-            <label for="dataFileChoosePath" class="col-sm-2 control-label">数据结构文件目录:</label>
+            <label for="dataFileChoosePath" class="col-sm-2 control-label">数据结构文件:</label>
             <input class="form-control" type="file" id="dataFileChoosePath" webkitdirectory directory />
             &nbsp;&nbsp;
+            <input class="btn btn-primary" onclick="uploadFile()" value="上传文件"/>&nbsp;&nbsp;
             <small type="file" id="dataFilePathHelp" class="form-text text-muted">只选到文件夹级别，非文件</small>
             <input type="hidden" id = "dataFilePath" name="dataFilePath" >
         </div>
 
-        <div class="form-group form-inline">
-            <label for="projectFilePath" class="col-sm-2 control-label">项目文件存放目录:</label>
-            <input class="form-control" type="text" id="projectFilePath" name="projectFilePath" th:value="${project.projectFilePath}"/>
-        </div>
-
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <input class="btn btn-primary" onclick="uploadFile()" value="上传文件"/>&nbsp;&nbsp;
-            </div>
+
             <div class="col-sm-offset-2 col-sm-10">
                 <input class="btn btn-primary" type="submit" value="创建项目"/>&nbsp;&nbsp;
             </div>
@@ -97,7 +92,6 @@
 </html>
 <script>
     function uploadFile(){
-
         var formData = new FormData();
         var files = $('#dataFileChoosePath')[0].files;
 

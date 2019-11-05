@@ -30,11 +30,11 @@ public class FileUploadV1Api {
         if (files == null || files.length == 0) {
             return;
         }
-        if (basePath.endsWith("/")) {
+        if (basePath.endsWith(File.separator)) {
             basePath = basePath.substring(0, basePath.length() - 1);
         }
         for (MultipartFile file : files) {
-            String filePath = basePath + "/" + file.getOriginalFilename();
+            String filePath = basePath + File.separator + file.getOriginalFilename();
             makeDir(filePath);
             File dest = new File(filePath);
             try {
@@ -46,7 +46,7 @@ public class FileUploadV1Api {
     }
 
     private void makeDir(String filePath) {
-        if (filePath.lastIndexOf('/') > 0) {
+        if (filePath.lastIndexOf(File.separator) > 0) {
             String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
             File dir = new File(dirPath);
             if (!dir.exists()) {

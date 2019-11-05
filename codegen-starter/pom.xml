@@ -45,7 +45,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.avatech.edi.codegen.CodeGenApplication</mainClass>
+                    <mainClass>com.avatech.edi.codegen.starter.CodeGenApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

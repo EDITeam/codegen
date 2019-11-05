@@ -1,29 +1,35 @@
 # java 后端服务代码生成器
 
-项目运行后在浏览器输入：http://localhost:8080/projectinfo，获取到响应json消息：
+### 相关环境与框架
 
-```json
-{
-	"projectName": "ava",
-	"projectType": "0",
-	"serviceProtocol": "null",
-	"serializaFormat": "0",
-	"dataBaseType": "1",
-	"ormType": "1",
-	"dataFilePath": "C:\\Temp\\Out",
-	"projectFilePath": "C:\\Temp\\In"
-}
+```java
+	jdk 1.8
+	spring boot 2.1.1
+	freemarker
+	thymeleaf
 ```
 
-说明：
+### 项目简介
 
-|字段名称|简介
-|--------|----
-|projectName|项目名称
-|projectType|项目类型（0：单模块；1：多模块）
-|serviceProtocel|服务协议（0：http协议；1：SOAP协议）
-|serializaFormat|序列化格式（0：json；1：xml）
-|dataBaseType|数据库类型（0：MSSQL；1：HANA；2：MYSQL；4：ORACLE;）
-|ormType|orm框架（0：JPA；1：Mybatis）
-|dataFilePath|数据结构目录|
-|projectFilePath|项目创建后存放目录
+模块名称|简介
+-------|----
+codegen-api| api接口，提供restful风格api供外部/前端调用
+codegen-core| 核心模块，主要包括常量，配置，工具类等
+codegen-model| 领域模块层
+codegen-service|业务逻辑层
+codegen-starter|启动项目
+codegen-web| web UI层
+
+
+### 启动运行
+
+先在父项目中执行`install`命令，然后进入启动模块，执行`package`命令。
+
+启动后，在浏览器中输入：`http://localhost:8080/project/`
+
+[](../img/index.jpg)
+
+
+
+
+

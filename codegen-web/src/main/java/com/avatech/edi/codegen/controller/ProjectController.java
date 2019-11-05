@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +69,7 @@ public class ProjectController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createProject(ModelMap map
+    public String createProject(ModelMap map
             , ProjectStructure projectStructure
             ,HttpServletRequest request
             , HttpServletResponse response){
@@ -86,7 +83,7 @@ public class ProjectController {
             String projectId = projectStructure.getDataFilePath();
 
             //设置数据结构路径
-            String filePath = "E:/upload/" + projectStructure.getDataFilePath();
+            String filePath = FileSettings.DATASTRUCTURE_FILE_PATH + projectStructure.getDataFilePath();
             projectStructure.setDataFilePath(filePath);
 
             //设置项目生成后存放路径
@@ -111,7 +108,7 @@ public class ProjectController {
             }
         }
         map.put("project", projectStructure);
-        //return "create_project";
+        return "create_project";
     }
 
     private void downLoadFile(HttpServletRequest request, HttpServletResponse response,String fileFullPath) {
@@ -120,6 +117,7 @@ public class ProjectController {
         FileInputStream fis = null;
         try {
             File file = new File(fileFullPath);
+
             fis = new FileInputStream(file);
             response.setHeader("Content-Disposition", "attachment; filename="+file.getName());
             IOUtils.copy(fis,response.getOutputStream());
