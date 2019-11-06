@@ -60,7 +60,9 @@ public class FileUploadV1Api {
             String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
             File dir = new File(dirPath);
             if (!dir.exists()) {
-                dir.mkdirs();
+                if(dir.mkdirs()){
+                    throw new BusinessServiceException("5000","文件夹创建失败");
+                }
             }
             filePath =  dir.getAbsolutePath();
             return filePath;
