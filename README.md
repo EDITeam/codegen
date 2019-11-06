@@ -27,7 +27,7 @@ codegen-web| web UI层
 
 启动后，在浏览器中输入：`http://localhost:8080/project/`
 
-![](img/index.jpg)
+![](./img/index.jpg)
 
 *创建项目前需先上传数据结构文件*
 
