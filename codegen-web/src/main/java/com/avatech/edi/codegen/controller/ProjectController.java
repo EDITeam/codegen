@@ -83,7 +83,7 @@ public class ProjectController {
             String projectId = projectStructure.getDataFilePath();
 
             //设置数据结构路径
-            String filePath = FileSettings.DATASTRUCTURE_FILE_PATH + projectStructure.getDataFilePath();
+            String filePath = FileSettings.DATASTRUCTURE_FILE_PATH  + "/" + projectStructure.getDataFilePath();
             projectStructure.setDataFilePath(filePath);
 
             //设置项目生成后存放路径

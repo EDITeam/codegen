@@ -1,6 +1,7 @@
 package com.avatech.edi.codegen.api.v1;
 
 import com.avatech.edi.codegen.data.FileSettings;
+import com.avatech.edi.codegen.exception.BusinessServiceException;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,8 @@ public class FileUploadV1Api {
         }
         for (MultipartFile file : files) {
             String filePath = basePath + File.separator + file.getOriginalFilename();
-            makeDir(filePath);
+            String fullFilePath =  makeDir(filePath);
+            filePath = fullFilePath + File.separator + getFileName(file.getOriginalFilename());
             File dest = new File(filePath);
             try {
                 file.transferTo(dest);
@@ -45,13 +47,24 @@ public class FileUploadV1Api {
         }
     }
 
-    private void makeDir(String filePath) {
-        if (filePath.lastIndexOf(File.separator) > 0) {
+    private String getFileName(String filePath){
+        if (filePath.lastIndexOf('/') > 0) {
+            String fileName = filePath.substring(filePath.lastIndexOf('/'),filePath.length());
+            return fileName;
+        }
+        return filePath;
+    }
+
+    private String makeDir(String filePath) {
+        if (filePath.lastIndexOf('/') > 0) {
             String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
             File dir = new File(dirPath);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
+            filePath =  dir.getAbsolutePath();
+            return filePath;
         }
+        throw new BusinessServiceException("5001","文件夹创建失败");
     }
 }
