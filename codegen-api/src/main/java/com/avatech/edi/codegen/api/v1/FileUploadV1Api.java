@@ -3,6 +3,8 @@ package com.avatech.edi.codegen.api.v1;
 import com.avatech.edi.codegen.data.FileSettings;
 import com.avatech.edi.codegen.exception.BusinessServiceException;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,8 @@ import java.util.UUID;
  */
 @RestController
 public class FileUploadV1Api {
+
+    private final Logger logger = LoggerFactory.getLogger(FileUploadV1Api.class);
 
     @RequestMapping(value = "/uploadFolder", method = RequestMethod.POST)
     public String uploadDataStructureFile(MultipartFile[] folder){
@@ -42,7 +46,7 @@ public class FileUploadV1Api {
             try {
                 file.transferTo(dest);
             } catch (IllegalStateException | IOException e) {
-                e.printStackTrace();
+                logger.error("save datastruce file faild",e);
             }
         }
     }
@@ -59,8 +63,9 @@ public class FileUploadV1Api {
         if (filePath.lastIndexOf('/') > 0) {
             String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
             File dir = new File(dirPath);
+            //dir.setWritable(true,false);
             if (!dir.exists()) {
-                if(dir.mkdirs()){
+                if(!dir.mkdirs()){
                     throw new BusinessServiceException("5000","文件夹创建失败");
                 }
             }
