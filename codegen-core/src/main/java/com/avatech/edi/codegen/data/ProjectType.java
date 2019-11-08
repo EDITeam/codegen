@@ -13,12 +13,12 @@ public enum ProjectType {
     /**
      * Dahub 应用类项目
      */
-    DAHUB_APPLICATION(0,"DAHUB_APPLICATION"),
+    DAHUPT_APPLICATION(0,"DAHUPT_APPLICATION"),
 
     /**
      * Dahub 服务类项目
      */
-    DAHUB_SERVICE(1,"DAHUB_SERVICE"),
+    DAHUPT_SERVICE(1,"DAHUPT_SERVICE"),
 
     /**
      * 简单服务项目
@@ -32,7 +32,7 @@ public enum ProjectType {
     ;
 
 
-    public static final ProjectType[] ALL = { DAHUB_APPLICATION, DAHUB_SERVICE ,SIMPLE_SERVICE,SBO_PROJECT};
+    public static final ProjectType[] ALL = { DAHUPT_APPLICATION, DAHUPT_SERVICE ,SIMPLE_SERVICE,SBO_PROJECT};
 
     private int key;
 
