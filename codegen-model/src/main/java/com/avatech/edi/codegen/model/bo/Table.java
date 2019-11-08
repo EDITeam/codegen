@@ -24,6 +24,11 @@ public class Table {
     private String tableName;
 
     /**
+     * 对应的视图名称
+     */
+    private String viewName;
+
+    /**
      * 表描述
      */
     private String tableDes;
@@ -99,5 +104,13 @@ public class Table {
 
     public void setBusinessObjectMaps(List<BusinessObjectMap> businessObjectMaps) {
         this.businessObjectMaps = businessObjectMaps;
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
     }
 }

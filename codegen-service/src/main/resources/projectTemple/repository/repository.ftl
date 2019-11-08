@@ -10,7 +10,6 @@ package ${mapperObject.packageName};
 import ${mapperItem.boPackageName};
     </#list>
 </#if>
-import org.springframework.stereotype.Component;
 import java.util.List;
 
 public interface ${mapperObject.mapperObjName}Repository{

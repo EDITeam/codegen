@@ -42,7 +42,7 @@ public class ServiceModelService extends AbstractModelService{
                 mapperObject = new MapperObject();
                 mapperObject.setFilePath(modelParameter.getSourcesBasePath());
                 mapperObject.setMapperObjName(domainModel.getModelName());
-                mapperObject.setPackageName(String.format(ModelConstant.SERVICE_BASE_PACKAGE,modelParameter.getModelName()));
+                mapperObject.setPackageName(String.format(ModelConstant.PROJECT_BASE_PACKAGE,modelParameter.getProjectNamePrefix()));
                 root.put("mapperObject", mapperObject);
                 templateService.createTmpleFile(root
                         , modelParameter.getSourcesBasePath()

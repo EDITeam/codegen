@@ -82,7 +82,7 @@ public class RepositoryModelService extends AbstractModelService{
         templateService.createTmpleFile(root
                 ,mapperFilePath+"/"+mapperObject.getMapperObjName()+"Mapper.java"
                 ,"repository"
-                ,"mapper.ftl");
+                ,"mapperwithview.ftl");
     }
 
     private void createMapperResource(MapperObject mapperObject){
@@ -98,7 +98,7 @@ public class RepositoryModelService extends AbstractModelService{
         templateService.createTmpleFile(root
                 ,mapperFilePath+"/"+mapperObject.getMapperObjName()+"Mapper.xml"
                 ,"repository"
-                ,"mapperxml.ftl");
+                ,"mapperxmlwithview.ftl");
 
     }
 

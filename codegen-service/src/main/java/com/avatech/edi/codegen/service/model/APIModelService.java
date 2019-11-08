@@ -36,10 +36,6 @@ public class APIModelService extends AbstractModelService {
             super.createSourcesFile(domainModels,modelParameter);
 
             for (DomainModel domainModel:domainModels) {
-
-//                String apiFullFilePath = modelParameter.getProjectFilePath()+ "/" + String.format(ProjectData.SINGLE_BASE_CONTROLLER_PROJECT_URL,modelParameter.getProjectName(), modelParameter.getProjectName());
-////                File file = new File(apiFullFilePath);
-////                file.mkdirs();
                 BusinessObject businessObject = BusinessObject.createBusinessObject(domainModel,modelParameter);
                 HashMap map = new HashMap();
                 map.put("businessObject",businessObject);

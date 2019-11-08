@@ -13,19 +13,21 @@ public class ModelConstant {
 
     public static final String MODEL_TESTS_BASE_PATH = "src.test.java";
 
-    public static final String API_BASE_PACKAGE = "com.avatech.dahub.%s.api.v1";
+    public static final String PROJECT_BASE_PACKAGE = "com.avatech.dahupt.%s";
 
-    public static final String MODEL_BASE_PACKAGE = "com.avatech.dahub.%s.model";
+    public static final String API_BASE_PACKAGE = "com.avatech.dahupt.%s.api.v1";
 
-    public static final String SERVICE_BASE_PACKAGE = "com.avatech.dahub.%s.service";
+    public static final String MODEL_BASE_PACKAGE = "com.avatech.dahupt.%s.model";
 
-    public static final String STARTER_BASE_PACKAGE = "com.avatech.dahub.%s.starter";
+    public static final String SERVICE_BASE_PACKAGE = "com.avatech.dahupt.%s.service";
 
-    public static final String FEIGNCLIENT_BASE_PACKAGE = "com.avatech.dahub.%s.feignclient";
+    public static final String STARTER_BASE_PACKAGE = "com.avatech.dahupt.%s.starter";
 
-    public static final String CORE_BASE_PACKAGE = "com.avatech.dahub.%s.core";
+    public static final String FEIGNCLIENT_BASE_PACKAGE = "com.avatech.dahupt.%s.feignclient";
 
-    public static final String REPOSITORY_BASE_PACKAGE = "com.avatech.dahub.%s.repository";
+    public static final String CORE_BASE_PACKAGE = "com.avatech.dahupt.%s.core";
+
+    public static final String REPOSITORY_BASE_PACKAGE = "com.avatech.dahupt.%s.repository";
 
     public static final String API_MODEL_NAME = "%s_api";
 
