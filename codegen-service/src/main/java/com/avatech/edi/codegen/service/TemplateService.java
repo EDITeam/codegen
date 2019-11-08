@@ -2,6 +2,8 @@ package com.avatech.edi.codegen.service;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -15,6 +17,7 @@ import java.util.HashMap;
  */
 @Component
 public class TemplateService {
+    private static final Logger logger = LoggerFactory.getLogger(TemplateService.class);
 
     public void createTmpleFile(HashMap map, String desFilePath,String templateFile, String templateCode){
         Configuration configuration = new Configuration(Configuration.getVersion());
@@ -26,13 +29,14 @@ public class TemplateService {
             Template template = configuration.getTemplate(templateCode);
             // 第八步：创建一个Writer对象，指定生成的文件保存的路径及文件名。
             Writer out = new FileWriter(new File(desFilePath));
+            logger.info("template file created path :{}",desFilePath);
             // 第九步：调用模板对象的process方法生成静态文件。需要两个参数数据集和writer对象。
             template.process(map, out);
             // 第十步：关闭writer对象。
             out.flush();
             out.close();
         }catch (Exception e){
-            //throw new BusinessServiceException("2002",e.getMessage());
+            logger.error("create template file error:",e);
         }
     }
 }
