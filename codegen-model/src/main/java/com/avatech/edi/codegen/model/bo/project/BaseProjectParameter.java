@@ -42,7 +42,7 @@ public class BaseProjectParameter {
 
     private String getProjectNameSuffix(ProjectStructure projectStructure) {
         switch (projectStructure.getProjectType()) {
-            case DAHUB_APPLICATION:
+            case DAHUPT_APPLICATION:
                 return "_application";
             default:
                 return "_service";

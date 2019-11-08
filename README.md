@@ -29,7 +29,27 @@ codegen-web| web UI层
 
 ![](./img/index.jpg)
 
-*创建项目前需先上传数据结构文件*
++ 1、*创建项目前需先上传数据结构文件*
+
++ 2、上传完成后输入项目名称，选择项目类型，然后点击`创建项目`
+
+### 项目类型说明
+
++ DAHUPT_APPLICATION
+
+Dahupt应用类型服务，应用场景类型服务
+
++ DAHUPT_SERVICE
+
+Dahupt基础服务单元
+
++ SBO_PROJECT
+
+SBO相关项目，设计DI操作
+
++ SIMPLE_SERVICE
+
+简单服务，存粹的CURD类型服务
 
 
 

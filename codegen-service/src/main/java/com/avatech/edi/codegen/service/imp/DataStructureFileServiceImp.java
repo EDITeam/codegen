@@ -10,6 +10,8 @@ import com.avatech.edi.codegen.exception.BusinessServiceException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -25,6 +27,7 @@ import java.util.List;
 @Service
 public class DataStructureFileServiceImp implements IDataStructureFileService {
 
+    private static final Logger logger = LoggerFactory.getLogger(DataStructureFileServiceImp.class);
     @Override
     public List<DomainModel> readerDataStructureFile(String filePath) {
         if (StringUtils.isEmpty(filePath)) {
@@ -36,6 +39,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         }
         //File[] dataFiles = file.listFiles();
         List<File> dataFiles =  (List)FileUtils.listFiles(file,null,true);
+        logger.info("file count {}",dataFiles.size());
         List<DomainModel> domainModels = new ArrayList<>();
 
         for (File item : dataFiles) {

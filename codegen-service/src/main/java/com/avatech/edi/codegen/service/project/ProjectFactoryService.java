@@ -31,9 +31,9 @@ public class ProjectFactoryService implements IProjectService{
     @Override
     public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         switch (projectInitial.getProjectType()){
-            case DAHUB_APPLICATION:
+            case DAHUPT_APPLICATION:
                 dahubApplicationProjectBuilder.createProject(domainModels,projectInitial);
-            case DAHUB_SERVICE:
+            case DAHUPT_SERVICE:
                 dahubServiceProjectBuilder.createProject(domainModels,projectInitial);
             case SBO_PROJECT:
                  sboProjectBuilder.createProject(domainModels,projectInitial);
