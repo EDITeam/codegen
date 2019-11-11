@@ -58,7 +58,6 @@ public class StarterModelService extends AbstractModelService  {
                     ,"starter"
                     ,"resource_log.ftl");
 
-
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }

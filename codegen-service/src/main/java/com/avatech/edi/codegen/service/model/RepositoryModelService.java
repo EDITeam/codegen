@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.exception.BusinessServiceException;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.model.bo.mapper.MapperObject;
@@ -49,7 +50,7 @@ public class RepositoryModelService extends AbstractModelService{
                 createMapper(mapperObject);
                 mapperObject.setFilePath(modelParameter.getSourcesBasePath());
                 mapperObject.setPackageName(modelParameter.getModelBasePakage());
-                createRepository(mapperObject);
+                createRepository(domainModel,mapperObject);
             }
 
 
@@ -125,7 +126,7 @@ public class RepositoryModelService extends AbstractModelService{
     /**
      * 创建仓库层
      */
-    private void createRepository(MapperObject mapperObject) {
+    private void createRepository(DomainModel domainModel,MapperObject mapperObject) {
         try {
             // TODO 创建文件夹
             String mapperFilePath = mapperObject.getFilePath();
@@ -137,6 +138,7 @@ public class RepositoryModelService extends AbstractModelService{
 
             HashMap root = new HashMap();
             root.put("mapperObject", mapperObject);
+            root.put("modelObject",domainModel);
             templateService.createTmpleFile(root
                     , mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java"
                     ,"repository"
@@ -145,9 +147,9 @@ public class RepositoryModelService extends AbstractModelService{
                     , mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java"
                     ,"repository"
                     , "repositoryimp.ftl");
-
         } catch (Exception e) {
-            //throw new BusinessServiceException("20012", "mapper类型错误");
+            logger.error("create repository layer error:",e);
+            throw new BusinessServiceException("20012", "mapper类型错误");
         }
     }
 

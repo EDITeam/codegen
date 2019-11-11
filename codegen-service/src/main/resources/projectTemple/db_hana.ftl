@@ -12,5 +12,13 @@
                 </#list>
             </#if>
         );
+        CREATE VIEW ${tables.viewName} AS SELECT
+        <#if tables.tableLines?has_content>
+            <#list tables.tableLines as tableLines>
+            "${tableLines.fieldName}" <#if tableLines?has_next>,</#if>
+            </#list>
+            FROM ${tables.tableName};
+        </#if>
     </#list>
+
 </#if>

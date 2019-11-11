@@ -13,12 +13,28 @@ import ${mapperItem.boPackageName};
 import java.util.List;
 
 public interface ${mapperObject.mapperObjName}Repository{
+
+
 <#if mapperObject.mapperObjectItems?has_content>
-    <#list mapperObject.mapperObjectItems as mapperItem>
 
-    void save${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty});
+    /**
+    * 保存
+    **/
+    void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 
-    List<${mapperItem.tableProperty?cap_first}> fetch${mapperItem.tableProperty?cap_first}s();
-    </#list>
+    /**
+    * 查询
+    **/
+    List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s();
+
+    /**
+    * 更新
+    **/
+    void update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
+
+    /**
+    * 删除
+    **/
+    void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first})
 </#if>
 }

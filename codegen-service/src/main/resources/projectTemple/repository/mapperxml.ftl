@@ -42,6 +42,23 @@
               </#if>
              from "${mapperItem.tableName}" T0
          </select>
+
+         <update id="update${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
+             UPDATE "${mapperItem.tableName}" set
+             <#if mapperItem.tableLines?has_content>
+                 <#list mapperItem.tableLines as mapperItemLine>
+                     "${mapperItemLine.fieldName}" =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"} <#if mapperItemLine?has_next>,</#if>
+                 </#list>
+             </#if>
+            WHERE "Id" = #{Id};
+         </update>
+
+         <update id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
+             UPDATE "${mapperItem.tableName}" set
+                "IsCanceled" = 'Y'
+             WHERE "Id" = #{Id};
+         </update>
+
          </#list>
      </#if>
 

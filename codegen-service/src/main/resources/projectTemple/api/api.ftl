@@ -39,8 +39,38 @@ public class ${businessObject.bussinessObjectName}V1API {
 
     @PostMapping("${businessObject.bussinessObjectName?lower_case}")
     public @ResponseBody Result add${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
-        return null;
+        try{
+            ${businessObject.bussinessObjectName?uncap_first}Repository.add${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
+            return Result.ok();
+        }catch(BaseException e){
+            return Result.error(e.getCode,e.getMessage);
+        }catch(Exception e){
+            return Result.error("1","inner error");
+        }
+    }
+
+    @PutMapping("${businessObject.bussinessObjectName?lower_case}")
+    public @ResponseBody Result update${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
+        try{
+            ${businessObject.bussinessObjectName?uncap_first}Repository.update${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
+            return Result.ok();
+        }catch(BaseException e){
+            return Result.error(e.getCode,e.getMessage);
+        }catch(Exception e){
+            return Result.error("1","inner error");
+        }
     }
 
 
+    @DeleteMapping("${businessObject.bussinessObjectName?lower_case}")
+    public @ResponseBody Result update${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
+        try{
+            ${businessObject.bussinessObjectName?uncap_first}Repository.delete${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
+            return Result.ok();
+        }catch(BaseException e){
+            return Result.error(e.getCode,e.getMessage);
+        }catch(Exception e){
+            return Result.error("1","inner error");
+        }
+    }
 }

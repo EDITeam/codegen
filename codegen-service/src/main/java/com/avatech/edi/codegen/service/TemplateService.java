@@ -58,7 +58,7 @@ public class TemplateService {
             out.flush();
             out.close();
         }catch (Exception e){
-           // logger.error("create template file error:",e);
+           logger.error("create template file error:",e);
         }
     }
 }

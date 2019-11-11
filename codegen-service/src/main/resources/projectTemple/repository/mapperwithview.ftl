@@ -19,11 +19,15 @@ public interface ${mapperObject.mapperObjName}Mapper{
 <#if mapperObject.mapperObjectItems?has_content>
     <#list mapperObject.mapperObjectItems as mapperItem>
 
-    void insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty});
+    void insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
 
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
 
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView();
+
+    void update${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+
+    void delete${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
     </#list>
 </#if>
 }
