@@ -49,7 +49,7 @@ public class ${table.tableProperty}{
 <#if table.businessObjectMaps?has_content>
     <#list table.businessObjectMaps as childTable>
 
-    public List<${childTable.childTableProName}> get${childTable.childTableProName?uncap_first}s() {
+    public List<${childTable.childTableProName?cap_first}> get${childTable.childTableProName?cap_first}s() {
         if(${childTable.childTableProName?uncap_first}s == null){
             ${childTable.childTableProName?uncap_first}s = new ArrayList<>();
         }

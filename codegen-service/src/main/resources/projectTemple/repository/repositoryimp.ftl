@@ -10,8 +10,10 @@ package ${mapperObject.packageName}.imp;
 import ${mapperItem.boPackageName};
     </#list>
 </#if>
-import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.mapper.${mapperObject.mapperObjName}Mapper;
+import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
+    @Override
     public void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
         <#if modelObject.tableList?has_content>
@@ -48,6 +51,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         </#if>
     }
 
+    @Override
     public List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(){
         List<${modelObject.modelName?cap_first}> ${modelObject.modelName?uncap_first}s = new ArrayList();
         ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}s();
@@ -75,6 +79,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         return ${modelObject.modelName?uncap_first}s;
     }
 
+    @Override
     public void update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         ${mapperObject.mapperObjName?uncap_first}Mapper.update${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first})
     <#--找子表-->
@@ -99,8 +104,9 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         </#if>
     }
 
+    @Override
     public void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
-        ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}s(${modelObject.modelName?uncap_first});
+        ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
     }
     </#if>
 }

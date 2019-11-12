@@ -3,7 +3,7 @@
 * CREATE BY AVATECH EDI CODE TOOL
 * AT ${.now?string["yyyy-MM-dd"]}
 */
-package com.avatech.edi.dahub.${projectName?lower_case}.starter;
+package com.avatech.dahub.${projectName?lower_case}.starter;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

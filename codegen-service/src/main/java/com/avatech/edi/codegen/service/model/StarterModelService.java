@@ -41,7 +41,7 @@ public class StarterModelService extends AbstractModelService  {
             map.put("projectName",modelParameter.getProjectNamePrefix());
             map.put("applicationname","EDI");
             templateService.createTmpleFile(map
-                    , modelParameter.getSourcesBasePath().concat(File.separator).concat("Application.java")
+                    , modelParameter.getSourcesBasePath().concat(File.separator).concat(modelParameter.getProjectNamePrefix().toUpperCase()).concat("Application.java")
                     ,"starter"
                     ,"application_starter.ftl");
             String resourceFile = modelParameter.getRootPath()

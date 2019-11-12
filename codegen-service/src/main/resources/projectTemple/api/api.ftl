@@ -40,7 +40,7 @@ public class ${businessObject.bussinessObjectName}V1API {
     @PostMapping("${businessObject.bussinessObjectName?lower_case}")
     public @ResponseBody Result add${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
         try{
-            ${businessObject.bussinessObjectName?uncap_first}Repository.add${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
+            ${businessObject.bussinessObjectName?uncap_first}Repository.save${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
             return Result.ok();
         }catch(BaseException e){
             return Result.error(e.getCode,e.getMessage);
