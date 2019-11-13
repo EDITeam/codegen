@@ -1,8 +1,3 @@
-/**
- * PLEASE KEEP THIS INFOMATION
- * CREATE BY AVATECH EDI CODE TOOL
- * AT ${.now?string["yyyy-MM-dd"]}
- */
 package ${mapperObject.packageName};
 
 <#if mapperObject.mapperObjectItems?has_content>
@@ -12,6 +7,11 @@ import ${mapperItem.boPackageName};
 </#if>
 import java.util.List;
 
+/**
+* PLEASE KEEP THIS INFOMATION
+* CREATE BY AVATECH EDI CODE TOOL
+* AT ${.now?string["yyyy-MM-dd"]}
+*/
 public interface ${mapperObject.mapperObjName}Repository{
 
 
@@ -35,6 +35,6 @@ public interface ${mapperObject.mapperObjName}Repository{
     /**
     * 删除
     **/
-    void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first})
+    void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 </#if>
 }

@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+* PLEASE KEEP THIS INFOMATION
+* CREATE BY AVATECH EDI CODE TOOL
+* AT ${.now?string["yyyy-MM-dd"]}
+*/
+
 @Service
 public class ${mapperObject.mapperObjName}Service{
 <#if mapperObject.mapperObjectItems?has_content>

@@ -1,8 +1,3 @@
-/**
- * PLEASE KEEP THIS INFOMATION
- * CREATE BY AVATECH EDI CODE TOOL
- * AT ${.now?string["yyyy-MM-dd"]}
- */
 package ${mapperObject.packageName};
 
 
@@ -14,6 +9,11 @@ import ${mapperItem.boPackageName};
 import org.springframework.stereotype.Component;
 import java.util.List;
 
+/**
+* PLEASE KEEP THIS INFOMATION
+* CREATE BY AVATECH EDI CODE TOOL
+* AT ${.now?string["yyyy-MM-dd"]}
+*/
 @Component
 public interface ${mapperObject.mapperObjName}Mapper{
 <#if mapperObject.mapperObjectItems?has_content>

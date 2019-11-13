@@ -1,8 +1,3 @@
-/**
- * PLEASE KEEP THIS INFOMATION
- * CREATE BY AVATECH EDI CODE TOOL
- * AT ${.now?string["yyyy-MM-dd"]}
- */
 package com.avatech.dahub.${businessObject.applicationName}.api;
 
 import ${businessObject.bussinessObjectServicePackageName};
@@ -17,7 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+* PLEASE KEEP THIS INFOMATION
+* CREATE BY AVATECH EDI CODE TOOL
+* AT ${.now?string["yyyy-MM-dd"]}
+*/
 @RestController
 @RequestMapping("v1/*")
 public class ${businessObject.bussinessObjectName}V1API {

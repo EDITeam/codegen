@@ -2,7 +2,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration  scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
-    <property name="logback.logdir" value="/serviceLog/bluestar"/>
+    <property name="logback.logdir" value="/serviceLog/${projectName}"/>
     <property name="logback.appname" value="${projectName}"/>
 
     <!--输出到控制台-->

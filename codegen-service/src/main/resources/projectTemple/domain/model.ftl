@@ -1,8 +1,3 @@
-/**
- * PLEASE KEEP THIS INFOMATION
- * CREATE BY AVATECH EDI CODE TOOL
- * AT ${.now?string["yyyy-MM-dd"]}
- */
 package ${table.packageName};
 <#if table.businessObjectMaps?has_content>
 import java.util.ArrayList;
@@ -10,8 +5,13 @@ import java.util.List;
 import java.util.Date;
 import java.math.BigDecimal;
 
+/**
+* PLEASE KEEP THIS INFOMATION
+* CREATE BY AVATECH EDI CODE TOOL
+* AT ${.now?string["yyyy-MM-dd"]}
+*/
 </#if>
-public class ${table.tableProperty}{
+public class ${table.tableProperty} {
 
 <#list table.tableLines as tableLine>
 
