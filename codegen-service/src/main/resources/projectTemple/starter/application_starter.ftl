@@ -1,4 +1,4 @@
-package com.avatech.dahub.${projectName?lower_case}.starter;
+package com.avatech.dahupt.${projectName?lower_case}.starter;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -13,10 +13,10 @@ import org.springframework.web.client.RestTemplate;
 */
 @SpringBootApplication
 @MapperScan(basePackages = "com.avatech.edi.dahub.${projectName?lower_case}.repository.mapper")
-public class ${projectName?cap_first}Application {
+public class ${projectName?upper_case}Application {
 
     public static void main(String[] args) {
-         SpringApplication.run(${projectName?cap_first}Application.class, args);
+         SpringApplication.run(${projectName?upper_case}Application.class, args);
     }
 
 }

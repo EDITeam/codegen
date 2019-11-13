@@ -1,5 +1,7 @@
 package com.avatech.edi.codegen.model.bo;
 
+import com.avatech.edi.codegen.data.TableType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class Table {
     /**
      * 表类型
      */
-    private Integer tableType;
+    private TableType tableType;
 
     private List<TableLine> tableLines;
 
@@ -76,11 +78,11 @@ public class Table {
         this.tableProperty = tableProperty;
     }
 
-    public Integer getTableType() {
+    public TableType getTableType() {
         return tableType;
     }
 
-    public void setTableType(Integer tableType) {
+    public void setTableType(TableType tableType) {
         this.tableType = tableType;
     }
 

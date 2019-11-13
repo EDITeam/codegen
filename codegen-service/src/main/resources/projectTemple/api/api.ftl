@@ -1,16 +1,15 @@
-package com.avatech.dahub.${businessObject.applicationName}.api;
+package com.avatech.dahupt.${projectName}.api.v1;
 
-import ${businessObject.bussinessObjectServicePackageName};
-import ${businessObject.bussinessObjectRepositoryPackageName};
-<#if businessObject.bussinessObjectModelPackageName?has_content>
- <#list businessObject.bussinessObjectModelPackageName as modelName>
-import ${modelName};
- </#list>
-</#if>
+import com.avatech.dahupt.${projectName}.service.${domainModel.modelName}Service;
+import com.avatech.dahupt.${projectName}.repository.${domainModel.modelName}Repository;
+import com.avatech.dahupt.${projectName}.model.bo.${domainModel.modelName?lower_case}.${domainModel.modelName};
+import com.avatech.edi.common.exception.BaseException;
+import com.avatech.edi.model.dto.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -19,57 +18,57 @@ import org.springframework.web.bind.annotation.*;
 */
 @RestController
 @RequestMapping("v1/*")
-public class ${businessObject.bussinessObjectName}V1API {
+public class ${domainModel.modelName}V1API {
 
-    private final Logger logger = LoggerFactory.getLogger(${businessObject.bussinessObjectName}V1API.class);
-
-    @Autowired
-    private ${businessObject.bussinessObjectName}Service ${businessObject.bussinessObjectName?uncap_first}Service;
+    private final Logger logger = LoggerFactory.getLogger(${domainModel.modelName}V1API.class);
 
     @Autowired
-    private ${businessObject.bussinessObjectName}Repository ${businessObject.bussinessObjectName?uncap_first}Repository;
+    private ${domainModel.modelName}Service ${domainModel.modelName}Service;
+
+    @Autowired
+    private ${domainModel.modelName}Repository ${domainModel.modelName}Repository;
 
 
-    @GetMapping("${businessObject.bussinessObjectName?lower_case}")
-    public ${businessObject.bussinessObjectName} get${businessObject.bussinessObjectName}(){
+    @GetMapping("${domainModel.modelName}")
+    public ${domainModel.modelName} get${domainModel.modelName}(){
         return  null;
     }
 
 
-    @PostMapping("${businessObject.bussinessObjectName?lower_case}")
-    public @ResponseBody Result add${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
+    @PostMapping("${domainModel.modelName}")
+    public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${businessObject.bussinessObjectName?uncap_first}Repository.save${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
-            return Result.ok();
+            ${domainModel.modelName}Repository.save${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            return (new Result()).ok();
         }catch(BaseException e){
-            return Result.error(e.getCode,e.getMessage);
+            return (new Result()).error(e.getCode(),e.getMessage());
         }catch(Exception e){
-            return Result.error("1","inner error");
+            return (new Result()).error("1","inner error");
         }
     }
 
-    @PutMapping("${businessObject.bussinessObjectName?lower_case}")
-    public @ResponseBody Result update${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
+    @PutMapping("${domainModel.modelName}")
+    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${businessObject.bussinessObjectName?uncap_first}Repository.update${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
-            return Result.ok();
+            ${domainModel.modelName}Repository.update${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            return (new Result()).ok();
         }catch(BaseException e){
-            return Result.error(e.getCode,e.getMessage);
+            return (new Result()).error(e.getCode(),e.getMessage());
         }catch(Exception e){
-            return Result.error("1","inner error");
+            return (new Result()).error("1","inner error");
         }
     }
 
 
-    @DeleteMapping("${businessObject.bussinessObjectName?lower_case}")
-    public @ResponseBody Result update${businessObject.bussinessObjectName}(@RequestBody ${businessObject.bussinessObjectName} ${businessObject.bussinessObjectName?uncap_first}){
+    @DeleteMapping("${domainModel.modelName}")
+    public @ResponseBody Result delete${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${businessObject.bussinessObjectName?uncap_first}Repository.delete${businessObject.bussinessObjectName}(${businessObject.bussinessObjectName?uncap_first});
-            return Result.ok();
+            ${domainModel.modelName}Repository.delete${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            return (new Result()).ok();
         }catch(BaseException e){
-            return Result.error(e.getCode,e.getMessage);
+            return (new Result()).error(e.getCode(),e.getMessage());
         }catch(Exception e){
-            return Result.error("1","inner error");
+            return (new Result()).error("1","inner error");
         }
     }
 }

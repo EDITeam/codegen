@@ -1,6 +1,5 @@
 package com.avatech.edi.codegen.service.model;
 
-import com.avatech.edi.codegen.model.bo.BusinessObject;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
 import com.avatech.edi.codegen.service.TemplateService;
@@ -36,11 +35,11 @@ public class APIModelService extends AbstractModelService {
             super.createSourcesFile(domainModels,modelParameter);
 
             for (DomainModel domainModel:domainModels) {
-                BusinessObject businessObject = BusinessObject.createBusinessObject(domainModel,modelParameter);
                 HashMap map = new HashMap();
-                map.put("businessObject",businessObject);
+                map.put("domainModel",domainModel);
+                map.put("projectName",modelParameter.getProjectNamePrefix());
                 templateService.createTmpleFile(map
-                        , modelParameter.getSourcesBasePath().concat(File.separator).concat(businessObject.getBussinessObjectName().concat("V1API.java"))
+                        , modelParameter.getSourcesBasePath().concat(File.separator).concat(domainModel.getModelName().concat("V1API.java"))
                         ,"api"
                         ,"api.ftl");
 

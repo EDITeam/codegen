@@ -5,10 +5,12 @@ package ${mapperObject.packageName}.service;
 import ${mapperItem.boPackageName};
     </#list>
 </#if>
+import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_case}.${mapperObject.mapperObjName};
 import ${mapperObject.packageName}.repository.${mapperObject.mapperObjName}Repository;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import com.avatech.edi.common.exception.BaseException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -17,8 +19,47 @@ import java.util.List;
 */
 
 @Service
-public class ${mapperObject.mapperObjName}Service{
-<#if mapperObject.mapperObjectItems?has_content>
+public class ${mapperObject.mapperObjName}Service extends AbastractTransactionService<${mapperObject.mapperObjName}> {
 
-</#if>
+    @Autowired
+    private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
+
+    @Transactional
+    @Override
+    public void save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+        try {
+            ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+            if (true) {
+                super.save(${mapperObject.mapperObjName?uncap_first});
+            }
+        } catch (BaseException e) {
+
+        }
+    }
+
+    @Transactional
+    @Override
+    public void update(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+        try {
+            ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
+            if (true) {
+                super.update(${mapperObject.mapperObjName?uncap_first});
+            }
+        } catch (BaseException e) {
+
+        }
+    }
+
+    @Transactional
+    @Override
+    public void delete(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+        try {
+            ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+            if (true) {
+                super.delete(${mapperObject.mapperObjName?uncap_first});
+            }
+        } catch (BaseException e) {
+
+        }
+    }
 }

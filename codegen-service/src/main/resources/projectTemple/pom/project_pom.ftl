@@ -17,7 +17,7 @@
         <version>2.2.0.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.avatech.dahub</groupId>
+    <groupId>com.avatech.dahupt</groupId>
     <artifactId>${projectInfo.projectName}</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>${projectInfo.projectName}</name>
@@ -40,6 +40,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

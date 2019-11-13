@@ -7,6 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import com.avatech.edi.common.exception.DBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -72,11 +73,11 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                             <#if boMap.tableName == tableMap.childTableName>
                 for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
                     List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}s();
-                    ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s.addAll(${boMap.childTableProName?uncap_first}s);
+                    ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }
                             </#if>
                         </#list>
-                ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s.addAll(${tableMap.childTableProName?uncap_first}s);
+                ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s().addAll(${tableMap.childTableProName?uncap_first}s);
                     </#list>
                 </#if>
                 </#list>

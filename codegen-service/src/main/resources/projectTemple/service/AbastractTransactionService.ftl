@@ -1,4 +1,4 @@
-package com.avatech.dahupt.ava.service;
+package ${mapperObject.packageName}.service;
 
 import com.avatech.edi.model.bo.IBusinessObject;
 
@@ -21,7 +21,7 @@ public class AbastractTransactionService<T extends IBusinessObject> {
         this.callTransaction(bo,"U");
     }
 
-    public void detelet(T bo){
+    public void delete(T bo){
         this.callTransaction(bo,"D");
     }
 

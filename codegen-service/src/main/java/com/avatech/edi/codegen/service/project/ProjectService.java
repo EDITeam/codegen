@@ -3,7 +3,6 @@ package com.avatech.edi.codegen.service.project;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.imp.project.common.CommonProjectService;
-import com.avatech.edi.codegen.service.imp.project.controller.ControllerProjectService;
 import com.avatech.edi.codegen.service.imp.project.model.ModelProjectService;
 import com.avatech.edi.codegen.service.imp.project.repository.RepositoryProjectService;
 import com.avatech.edi.codegen.service.imp.project.repositorybusinessone.RepositoryBusinessOneProjectServcie;
@@ -31,8 +30,6 @@ public class ProjectService implements IProjectService{
     @Autowired
     private ServiceProjectService serviceProjectService;
 
-    @Autowired
-    private ControllerProjectService controllerProjectService;
 
 
     /**
@@ -49,7 +46,7 @@ public class ProjectService implements IProjectService{
         repositoryProjectService.createProject(domainModels,projectStructure);
         repositoryBusinessOneProjectServcie.createProject(domainModels,projectStructure);
         serviceProjectService.createProject(domainModels,projectStructure);
-        controllerProjectService.createProject(domainModels,projectStructure);
+        //controllerProjectService.createProject(domainModels,projectStructure);
 
         if(projectStructure.getProjectType().equals(Dictionary.Single_Model)){
 
