@@ -10,6 +10,11 @@ import java.util.List;
  */
 public class Table {
 
+    public static String getViewName(String tableName){
+        String prefixTableName = tableName.substring(0,tableName.lastIndexOf("_"));
+        String suffixTableName = tableName.substring(tableName.lastIndexOf("_"),tableName.length());
+        return prefixTableName+"_VIEW"+suffixTableName;
+    }
 
     public Table(){
         this.tableLines = new ArrayList<>();
@@ -115,4 +120,6 @@ public class Table {
     public void setViewName(String viewName) {
         this.viewName = viewName;
     }
+
+
 }

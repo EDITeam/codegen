@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 * AT ${.now?string["yyyy-MM-dd"]}
 */
 @RestController
-@RequestMapping("v1/*")
+@RequestMapping("/${projectName?lower_case}/v1/*")
 public class ${domainModel.modelName}V1API {
 
     private final Logger logger = LoggerFactory.getLogger(${domainModel.modelName}V1API.class);
@@ -28,17 +28,21 @@ public class ${domainModel.modelName}V1API {
     @Autowired
     private ${domainModel.modelName}Repository ${domainModel.modelName}Repository;
 
-
-    @GetMapping("${domainModel.modelName}")
-    public ${domainModel.modelName} get${domainModel.modelName}(){
-        return  null;
+    @GetMapping("${domainModel.modelName?lower_case}")
+    public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}(){
+        try{
+            return ${domainModel.modelName}Repository.fetch${domainModel.modelName}s();
+        }catch(BaseException e){
+            return (new Result()).error(e.getCode(),e.getMessage());
+        }catch(Exception e){
+            return (new Result()).error("1","inner error");
+        }
     }
 
-
-    @PostMapping("${domainModel.modelName}")
+    @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${domainModel.modelName}Repository.save${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            ${domainModel.modelName}Service.save(${domainModel.modelName?uncap_first});
             return (new Result()).ok();
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
@@ -47,10 +51,10 @@ public class ${domainModel.modelName}V1API {
         }
     }
 
-    @PutMapping("${domainModel.modelName}")
+    @PutMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${domainModel.modelName}Repository.update${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            ${domainModel.modelName}Service.update(${domainModel.modelName?uncap_first});
             return (new Result()).ok();
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
@@ -59,11 +63,10 @@ public class ${domainModel.modelName}V1API {
         }
     }
 
-
-    @DeleteMapping("${domainModel.modelName}")
+    @DeleteMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result delete${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${domainModel.modelName}Repository.delete${domainModel.modelName}(${domainModel.modelName?uncap_first});
+            ${domainModel.modelName}Service.delete(${domainModel.modelName?uncap_first});
             return (new Result()).ok();
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());

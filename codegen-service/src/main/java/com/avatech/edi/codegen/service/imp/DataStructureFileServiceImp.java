@@ -75,6 +75,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         for (Element element1 : nodes) {
             Table table = new Table();
             table.setTableName(element1.attributeValue("Name"));
+            table.setViewName(Table.getViewName(table.getTableName()));
             table.setTableDes(element1.attributeValue("Description"));
             table.setTableProperty(element1.attributeValue("PropertyName"));
 

@@ -1,4 +1,4 @@
-package com.avatech.edi.codegen.service.imp.sql;
+package com.avatech.edi.codegen.service.sql;
 
 import com.avatech.edi.codegen.data.DataBaseType;
 import org.springframework.beans.BeansException;

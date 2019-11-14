@@ -27,7 +27,9 @@ public interface ${mapperObject.mapperObjName}Mapper{
 
     void update${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
 
+    <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
     void delete${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+    </#if>
     </#list>
 </#if>
 }

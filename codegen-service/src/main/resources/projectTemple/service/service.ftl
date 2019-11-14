@@ -27,39 +27,27 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
     @Transactional
     @Override
     public void save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
-        try {
-            ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
-            if (true) {
-                super.save(${mapperObject.mapperObjName?uncap_first});
-            }
-        } catch (BaseException e) {
-
+        ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+        if (true) {
+            super.save(${mapperObject.mapperObjName?uncap_first});
         }
     }
 
     @Transactional
     @Override
     public void update(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
-        try {
-            ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
-            if (true) {
-                super.update(${mapperObject.mapperObjName?uncap_first});
-            }
-        } catch (BaseException e) {
-
+        ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
+        if (true) {
+            super.update(${mapperObject.mapperObjName?uncap_first});
         }
     }
 
     @Transactional
     @Override
     public void delete(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
-        try {
-            ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
-            if (true) {
-                super.delete(${mapperObject.mapperObjName?uncap_first});
-            }
-        } catch (BaseException e) {
-
+        ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+        if (true) {
+            super.delete(${mapperObject.mapperObjName?uncap_first});
         }
     }
 }

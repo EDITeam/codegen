@@ -53,6 +53,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                 </#list>
             </#if>
         }catch(Exception e){
+            logger.error("save ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
         }
     }
@@ -85,6 +86,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
             </#if>
             return ${modelObject.modelName?uncap_first}s;
         }catch(Exception e){
+            logger.error("fetch ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
         }
     }
@@ -114,6 +116,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                 </#list>
             </#if>
         }catch(Exception e){
+            logger.error("update ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
         }
     }
@@ -123,6 +126,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         try{
             ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
         }catch(Exception e){
+            logger.error("delete ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
         }
     }

@@ -12,7 +12,8 @@ import org.springframework.web.client.RestTemplate;
 * AT ${.now?string["yyyy-MM-dd"]}
 */
 @SpringBootApplication
-@MapperScan(basePackages = "com.avatech.edi.dahub.${projectName?lower_case}.repository.mapper")
+@ComponentScan("com.avatech.dahupt.${projectName?lower_case}")
+@MapperScan(basePackages = "com.avatech.dahupt.${projectName?lower_case}.repository.mapper")
 public class ${projectName?upper_case}Application {
 
     public static void main(String[] args) {

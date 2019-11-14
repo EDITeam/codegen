@@ -4,6 +4,7 @@ import com.avatech.edi.model.bo.${parentClass};
 import com.avatech.edi.common.data.EmYesOrNo;
 import java.util.Date;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 <#if table.tableType == "bott_MasterData" || table.tableType == "bott_Document">
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,19 @@ import java.util.List;
 public class ${table.tableProperty} extends ${parentClass} implements I${table.tableProperty}{
 
 <#if table.tableType == "bott_MasterData" || table.tableType == "bott_Document">
+
     private final String OBJECT_CODE = "";
 
     /**
     * 业务对象编码
     **/
+    @JsonIgnore
     private String objectCode;
 
     /**
     * 是否删除
     **/
+    @JsonIgnore
     private EmYesOrNo isDelete;
 </#if>
 <#list table.tableLines as tableLine>
@@ -43,7 +47,6 @@ public class ${table.tableProperty} extends ${parentClass} implements I${table.t
 <#if table.businessObjectMaps?has_content>
     <#list table.businessObjectMaps as childTable>
     private List<${childTable.childTableProName}> ${childTable.childTableProName?uncap_first}s;
-
     </#list>
 </#if>
 

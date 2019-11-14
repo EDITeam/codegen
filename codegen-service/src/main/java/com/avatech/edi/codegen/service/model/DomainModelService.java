@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.data.TableType;
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
@@ -8,6 +9,8 @@ import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParamete
 import com.avatech.edi.codegen.service.TemplateService;
 import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.data.ModelConstant;
+import com.avatech.edi.codegen.service.sql.DataBaseHandler;
+import com.avatech.edi.codegen.service.sql.DataBaseHandlerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +87,10 @@ public class DomainModelService  extends AbstractModelService {
     }
 
 
+    public void createSqlResourcesFile(List<DomainModel> domainModels,BaseModelParameter modelParameter){
+        DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(modelParameter.getProjectStructure().getDataBaseType());
+        dataBaseHandler.createDBSqlScript(domainModels,modelParameter);
+    }
 
     private Table getTableMap(Table table, List<BusinessObjectMap> businessObjectMaps){
         if(businessObjectMaps == null || businessObjectMaps.size() ==0){
