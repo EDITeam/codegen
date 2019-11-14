@@ -21,13 +21,11 @@ public class ${table.tableProperty}{
      */
    </#if>
     private ${tableLine.proDataType} ${tableLine.proName?uncap_first};
-
 </#list>
 
 <#if table.businessObjectMaps?has_content>
     <#list table.businessObjectMaps as childTable>
     private List<${childTable.childTableProName}> ${childTable.childTableProName?uncap_first}s;
-
     </#list>
 </#if>
 

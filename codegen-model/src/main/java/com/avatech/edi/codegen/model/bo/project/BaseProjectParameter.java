@@ -19,6 +19,8 @@ public class BaseProjectParameter {
 
     private String projectName;
 
+    private ProjectStructure projectStructure;
+
     public String getRootPath() {
         return rootPath;
     }
@@ -33,6 +35,14 @@ public class BaseProjectParameter {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public ProjectStructure getProjectStructure() {
+        return projectStructure;
+    }
+
+    public void setProjectStructure(ProjectStructure projectStructure) {
+        this.projectStructure = projectStructure;
     }
 
     private void init(ProjectStructure projectStructure){

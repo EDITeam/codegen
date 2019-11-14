@@ -11,5 +11,6 @@ public class StarterModelParameter  extends BaseModelParameter {
 
     public StarterModelParameter(ProjectStructure projectStructure) {
         super(projectStructure, ModelEnum.STARTER);
+        this.setProjectStructure(projectStructure);
     }
 }
