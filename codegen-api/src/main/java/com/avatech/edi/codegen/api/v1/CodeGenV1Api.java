@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(("/edi/v1/*"))
+@RequestMapping("/edi/v1/*")
 public class CodeGenV1Api {
 
     @Autowired

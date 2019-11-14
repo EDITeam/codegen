@@ -12,6 +12,7 @@ public class MapperObjectItem extends Table {
     public static MapperObjectItem createMapperObjectItem(Table table, ProjectStructure projectInitial) {
         MapperObjectItem mapperObjectItem = new MapperObjectItem();
         mapperObjectItem.setTableName(table.getTableName());
+        mapperObjectItem.setViewName(getViewName(table.getTableName()));
         mapperObjectItem.setBoPackageName(table.getPackageName());
         mapperObjectItem.setBusinessObjectMaps(table.getBusinessObjectMaps());
         mapperObjectItem.setTableType(table.getTableType());
@@ -25,6 +26,7 @@ public class MapperObjectItem extends Table {
     public static MapperObjectItem createMapperObjectItem(Table table, BaseModelParameter modelParameter) {
         MapperObjectItem mapperObjectItem = new MapperObjectItem();
         mapperObjectItem.setTableName(table.getTableName());
+        mapperObjectItem.setViewName(getViewName(table.getTableName()));
         mapperObjectItem.setBoPackageName(table.getPackageName());
         mapperObjectItem.setBusinessObjectMaps(table.getBusinessObjectMaps());
         mapperObjectItem.setTableType(table.getTableType());
@@ -44,6 +46,7 @@ public class MapperObjectItem extends Table {
     public void setBoPackageName(String boPackageName) {
         this.boPackageName = boPackageName;
     }
+
 
 
 }

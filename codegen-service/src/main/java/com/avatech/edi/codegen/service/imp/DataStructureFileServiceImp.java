@@ -1,5 +1,7 @@
 package com.avatech.edi.codegen.service.imp;
 
+import com.avatech.edi.codegen.data.TableType;
+import com.avatech.edi.codegen.exception.BaseException;
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
@@ -73,9 +75,11 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         for (Element element1 : nodes) {
             Table table = new Table();
             table.setTableName(element1.attributeValue("Name"));
+            table.setViewName(Table.getViewName(table.getTableName()));
             table.setTableDes(element1.attributeValue("Description"));
             table.setTableProperty(element1.attributeValue("PropertyName"));
-            table.setTableType((1));
+
+            table.setTableType(getTableType(element1.attributeValue("Type")));
             domainModel.getTableList().add(table);
 
             List<TableLine> tableLineList = new ArrayList<>();
@@ -129,5 +133,16 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             }
         }
         return null;
+    }
+
+    private TableType getTableType(String tableType){
+        switch (tableType){
+            case "bott_NoObject":return TableType.bott_NoObject;
+            case "bott_Document":return TableType.bott_Document;
+            case "bott_DocumentLines":return TableType.bott_DocumentLines;
+            case "bott_MasterData":return TableType.bott_MasterData;
+            case "bott_MasterDataLines":return TableType.bott_MasterDataLines;
+            default:throw new BaseException("401","invalid table type");
+        }
     }
 }

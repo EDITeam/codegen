@@ -1,5 +1,7 @@
 package com.avatech.edi.codegen.model.bo;
 
+import com.avatech.edi.codegen.data.TableType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,11 @@ import java.util.List;
  */
 public class Table {
 
+    public static String getViewName(String tableName){
+        String prefixTableName = tableName.substring(0,tableName.lastIndexOf("_"));
+        String suffixTableName = tableName.substring(tableName.lastIndexOf("_"),tableName.length());
+        return prefixTableName+"_VIEW"+suffixTableName;
+    }
 
     public Table(){
         this.tableLines = new ArrayList<>();
@@ -24,6 +31,11 @@ public class Table {
     private String tableName;
 
     /**
+     * 对应的视图名称
+     */
+    private String viewName;
+
+    /**
      * 表描述
      */
     private String tableDes;
@@ -33,7 +45,7 @@ public class Table {
     /**
      * 表类型
      */
-    private Integer tableType;
+    private TableType tableType;
 
     private List<TableLine> tableLines;
 
@@ -71,11 +83,11 @@ public class Table {
         this.tableProperty = tableProperty;
     }
 
-    public Integer getTableType() {
+    public TableType getTableType() {
         return tableType;
     }
 
-    public void setTableType(Integer tableType) {
+    public void setTableType(TableType tableType) {
         this.tableType = tableType;
     }
 
@@ -100,4 +112,14 @@ public class Table {
     public void setBusinessObjectMaps(List<BusinessObjectMap> businessObjectMaps) {
         this.businessObjectMaps = businessObjectMaps;
     }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
+    }
+
+
 }

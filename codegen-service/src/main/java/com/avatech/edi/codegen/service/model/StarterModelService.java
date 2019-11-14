@@ -40,8 +40,9 @@ public class StarterModelService extends AbstractModelService  {
             HashMap map = new HashMap();
             map.put("projectName",modelParameter.getProjectNamePrefix());
             map.put("applicationname","EDI");
+            map.put("projectInfo",modelParameter.getProjectStructure());
             templateService.createTmpleFile(map
-                    , modelParameter.getSourcesBasePath().concat(File.separator).concat("Application.java")
+                    , modelParameter.getSourcesBasePath().concat(File.separator).concat(modelParameter.getProjectNamePrefix().toUpperCase()).concat("Application.java")
                     ,"starter"
                     ,"application_starter.ftl");
             String resourceFile = modelParameter.getRootPath()
@@ -57,7 +58,6 @@ public class StarterModelService extends AbstractModelService  {
                     ,resourceFile.concat(File.separator).concat("logback-spring.xml")
                     ,"starter"
                     ,"resource_log.ftl");
-
 
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);

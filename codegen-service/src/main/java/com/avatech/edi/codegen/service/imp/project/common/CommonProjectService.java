@@ -4,8 +4,8 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.project.IProjectService;
 import com.avatech.edi.codegen.service.imp.project.CommonService;
-import com.avatech.edi.codegen.service.imp.sql.DataBaseHandler;
-import com.avatech.edi.codegen.service.imp.sql.DataBaseHandlerFactory;
+import com.avatech.edi.codegen.service.sql.DataBaseHandler;
+import com.avatech.edi.codegen.service.sql.DataBaseHandlerFactory;
 import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.data.Dictionary;
 import com.avatech.edi.codegen.data.ProjectData;
@@ -45,8 +45,7 @@ public class CommonProjectService implements IProjectService {
 
     private void createDBSql(List<DomainModel> domainModels, ProjectStructure projectInitial) {
         if(projectInitial.getDataBaseType().equals(DataBaseType.HANA)){
-            DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(DataBaseType.HANA);
-            dataBaseHandler.createDBSqlScript(domainModels,projectInitial);
+
         }
     }
 

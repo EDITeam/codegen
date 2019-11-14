@@ -1,5 +1,7 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.TableType;
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
@@ -7,6 +9,8 @@ import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParamete
 import com.avatech.edi.codegen.service.TemplateService;
 import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.data.ModelConstant;
+import com.avatech.edi.codegen.service.sql.DataBaseHandler;
+import com.avatech.edi.codegen.service.sql.DataBaseHandlerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +59,15 @@ public class DomainModelService  extends AbstractModelService {
                         table.setPackageName(String.format(ModelConstant.MODEL_BASE_PACKAGE.concat(".").concat("bo").concat(".")+ domain.getModelName().toLowerCase(), modelParameter.getProjectNamePrefix()));
                         root = new HashMap();
                         root.put("table",getTableMap(table,domain.getBusinessObjectMaps()));
+                        root.put("parentClass",getParentClass(table.getTableType()));
                         templateService.createTmpleFile(root
                                 ,boPackage+"/"+table.getTableProperty()+".java"
                                 ,"domain"
                                 ,"model.ftl");
+                        templateService.createTmpleFile(root
+                                ,boPackage+"/I"+table.getTableProperty()+".java"
+                                ,"domain"
+                                ,"modelinterface.ftl");
                     }
                 }
             }
@@ -78,6 +87,10 @@ public class DomainModelService  extends AbstractModelService {
     }
 
 
+    public void createSqlResourcesFile(List<DomainModel> domainModels,BaseModelParameter modelParameter){
+        DataBaseHandler dataBaseHandler = DataBaseHandlerFactory.getDataBaseHandler(modelParameter.getProjectStructure().getDataBaseType());
+        dataBaseHandler.createDBSqlScript(domainModels,modelParameter);
+    }
 
     private Table getTableMap(Table table, List<BusinessObjectMap> businessObjectMaps){
         if(businessObjectMaps == null || businessObjectMaps.size() ==0){
@@ -89,5 +102,16 @@ public class DomainModelService  extends AbstractModelService {
             }
         }
         return table;
+    }
+
+    private String getParentClass(TableType tableType){
+        switch (tableType){
+            case bott_NoObject:return "SimpleObject";
+            case bott_Document:return "BODocument";
+            case bott_DocumentLines:return "BODocumentLine";
+            case bott_MasterData:return "BOMasterData";
+            case bott_MasterDataLines:return "BOMasterDataLine";
+            default:return "SimpleObject";
+        }
     }
 }

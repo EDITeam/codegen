@@ -60,11 +60,12 @@ public class SBOProjectBuilder implements IProjectService {
 
         }
 
-
         modelParameter = new DomainModelParameter(projectStructure);
         domainModelService.createPOM(modelParameter);
         domainModelService.createSourcesFile(domainModels,modelParameter);
         domainModelService.createTestsFile(domainModels,modelParameter);
+        modelParameter.setProjectStructure(projectStructure);
+        domainModelService.createSqlResourcesFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
         modelParameter = new ServiceModelParameter(projectStructure);
@@ -88,6 +89,8 @@ public class SBOProjectBuilder implements IProjectService {
         //调整项目名称
         projectStructure.setProjectName(modelParameter.getProjectName());
         createProjectPOM(projectStructure);
+
+
     }
 
     private void createProjectPOM(ProjectStructure projectStructure) {
