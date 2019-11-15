@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -30,13 +30,7 @@ public class ${domainModel.modelName}V1API {
 
     @GetMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}(){
-        try{
-            return ${domainModel.modelName}Repository.fetch${domainModel.modelName}s();
-        }catch(BaseException e){
-            return (new Result()).error(e.getCode(),e.getMessage());
-        }catch(Exception e){
-            return (new Result()).error("1","inner error");
-        }
+        return ${domainModel.modelName}Repository.fetch${domainModel.modelName}s();
     }
 
     @PostMapping("${domainModel.modelName?lower_case}")

@@ -7,6 +7,11 @@
     <#list tables as tables>
     CREATE TABLE ${tables.tableName}(
         <#if tables.tableLines?has_content>
+                "Id" bigint,
+            <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData">
+                "IsDelete" char(1) default N'N',
+                "ObjectCode" varchar(60),
+            </#if>
             <#list tables.tableLines as tableLines>
                 <#if tableLines.fieldType == "NVARCHAR" ||tableLines.fieldType == "VARCHAR"||tableLines.fieldType == "NCHAR" ||tableLines.fieldType == "CHAR">
                 "${tableLines.fieldName}" ${tableLines.fieldType}(${tableLines.fieldSize}) <#if tableLines?has_next>,</#if>
@@ -19,6 +24,11 @@
         </#if>
     );
     CREATE VIEW ${tables.viewName} AS SELECT
+            "Id" ,
+        <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData">
+            "IsDelete" ,
+            "ObjectCode" ,
+        </#if>
         <#if tables.tableLines?has_content>
             <#list tables.tableLines as tableLines>
             "${tableLines.fieldName}" <#if tableLines?has_next>,</#if>

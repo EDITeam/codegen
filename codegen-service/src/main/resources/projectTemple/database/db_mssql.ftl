@@ -25,10 +25,10 @@ CREATE TABLE ${tables.tableName}(
 );
 CREATE VIEW ${tables.viewName} AS SELECT
 <#if tables.tableLines?has_content>
-    "Id" bigint,
+    "Id" ,
     <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData">
-    "IsDelete" char(1) default N'N',
-    "ObjectCode" varchar(60),
+    "IsDelete" ,
+    "ObjectCode",
      </#if>
     <#list tables.tableLines as tableLines>
     "${tableLines.fieldName}" <#if tableLines?has_next>,</#if>

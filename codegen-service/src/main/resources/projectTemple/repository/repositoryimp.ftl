@@ -7,6 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,20 +31,27 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     @Override
     public void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
+            Long id = snowflakeIdWorker.nextId();
+            ${modelObject.modelName?uncap_first}.setId(id);
+            ${modelObject.modelName?uncap_first}.setIsDelete(EmYesOrNo.NO);
             ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
+                ${tableMap.childTableProName?uncap_first}.setId(id);
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
                 for (${boMap.childTableProName?cap_first} ${boMap.childTableProName?uncap_first} : ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s()){
-                ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
+                    ${boMap.childTableProName?uncap_first}.setId(id);
+                    ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
                 }
                     </#if>
                 </#list>
