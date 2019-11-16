@@ -22,7 +22,7 @@ public class AbastractTransactionService<T extends IBusinessObject> {
     private void callTransaction(T bo,String operationType){
         try {
             HashMap<String,Object> transactionParam = new HashMap<>();
-            transactionParam.put("object_type",bo.getObjectCode());
+            transactionParam.put("object_code",bo.getObjectCode());
             transactionParam.put("transaction_type",operationType);
             transactionParam.put("table_name","");
             transactionParam.put("cols_val_tab_del",bo.getId());

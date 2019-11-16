@@ -70,18 +70,18 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     public List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(){
         try{
             List<${modelObject.modelName?cap_first}> ${modelObject.modelName?uncap_first}s = new ArrayList();
-            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}s();
+            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}sByView();
             <#if modelObject.tableList?has_content && modelObject.tableList?size gt 1>
             for(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}:${modelObject.modelName?uncap_first}s){
                 <#list modelObject.tableList as table>
                 <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                     <#list table.businessObjectMaps as tableMap>
-                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}s();
+                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView();
                      <#--查找孙子表-->
                         <#list modelObject.businessObjectMaps as boMap>
                             <#if boMap.tableName == tableMap.childTableName>
                 for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
-                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}s();
+                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView();
                     ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }
                             </#if>
