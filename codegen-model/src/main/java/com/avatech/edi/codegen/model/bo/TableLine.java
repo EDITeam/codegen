@@ -27,6 +27,11 @@ public class TableLine {
     private String proDesc;
 
     /**
+     * json属性
+     */
+    private String jsonProperty;
+
+    /**
      * 字段类型
      */
     private String fieldType;
@@ -124,5 +129,13 @@ public class TableLine {
 
     public void setFieldSize(Integer fieldSize) {
         this.fieldSize = fieldSize;
+    }
+
+    public String getJsonProperty() {
+        return jsonProperty;
+    }
+
+    public void setJsonProperty(String jsonProperty) {
+        this.jsonProperty = jsonProperty;
     }
 }
