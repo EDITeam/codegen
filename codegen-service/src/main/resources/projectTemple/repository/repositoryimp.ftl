@@ -9,6 +9,7 @@ import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repos
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
+import com.avatech.edi.common.data.EmYesOrNo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
