@@ -61,10 +61,10 @@ public class SBOProjectBuilder implements IProjectService {
         }
 
         modelParameter = new DomainModelParameter(projectStructure);
+        modelParameter.setProjectStructure(projectStructure);
         domainModelService.createPOM(modelParameter);
         domainModelService.createSourcesFile(domainModels,modelParameter);
         domainModelService.createTestsFile(domainModels,modelParameter);
-        modelParameter.setProjectStructure(projectStructure);
         domainModelService.createSqlResourcesFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 

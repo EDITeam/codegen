@@ -11,6 +11,7 @@ import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.data.ModelConstant;
 import com.avatech.edi.codegen.service.sql.DataBaseHandler;
 import com.avatech.edi.codegen.service.sql.DataBaseHandlerFactory;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class DomainModelService  extends AbstractModelService {
     @Override
     public void createSourcesFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
-            super.createSourcesFile(domainModels,modelParameter);
+            super.createSourcesFile(domainModels, modelParameter);
             String boPackage;
 
             // TODO 创建类文件
@@ -56,24 +57,41 @@ public class DomainModelService  extends AbstractModelService {
                     new File(boPackage).mkdirs();
                     // TODO 获取BO模板
                     for (Table table : domain.getTableList()) {
-                        table.setPackageName(String.format(ModelConstant.MODEL_BASE_PACKAGE.concat(".").concat("bo").concat(".")+ domain.getModelName().toLowerCase(), modelParameter.getProjectNamePrefix()));
+                        table.setPackageName(String.format(ModelConstant.MODEL_BASE_PACKAGE.concat(".").concat("bo").concat(".") + domain.getModelName().toLowerCase(), modelParameter.getProjectNamePrefix()));
                         root = new HashMap();
-                        root.put("table",getTableMap(table,domain.getBusinessObjectMaps()));
-                        root.put("parentClass",getParentClass(table.getTableType()));
+                        root.put("table", getTableMap(table, domain.getBusinessObjectMaps()));
+                        root.put("parentClass", getParentClass(table.getTableType()));
                         templateService.createTmpleFile(root
-                                ,boPackage+"/"+table.getTableProperty()+".java"
-                                ,"domain"
-                                ,"model.ftl");
+                                , boPackage + "/" + table.getTableProperty() + ".java"
+                                , "domain"
+                                , "model.ftl");
                         templateService.createTmpleFile(root
-                                ,boPackage+"/I"+table.getTableProperty()+".java"
-                                ,"domain"
-                                ,"modelinterface.ftl");
+                                , boPackage + "/I" + table.getTableProperty() + ".java"
+                                , "domain"
+                                , "modelinterface.ftl");
                     }
                 }
             }
 
+            //拷贝数据结构文件
+            String destFilePath = modelParameter.getRootPath()
+                    + "/"
+                    + ModelConstant.MODEL_RESOURCES_BASE_PATH.replace('.', '/')
+                    + "/"
+                    + "datastruce";
+
+            new File(destFilePath).mkdirs();
+
+            File sourceFile = new File(modelParameter.getProjectStructure().getDataFilePath());
+            List<File> dataFiles = (List) FileUtils.listFiles(sourceFile, null, true);
+            for (File fileItem : dataFiles) {
+                File destFile = new File(destFilePath + "/"+fileItem.getName());
+                FileUtils.copyFile(fileItem, destFile);
+            }
+
+
         } catch (IOException e) {
-            logger.error("创建资源文件异常:",e);
+            logger.error("创建资源文件异常:", e);
         }
     }
 
