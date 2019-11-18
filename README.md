@@ -55,7 +55,7 @@ SBO相关项目，设计DI操作
 
 下载项目完成解压后，即可得到类似下图的多模块项目结构。
 
-![](./img/project structure.jpg)
+![](./img/project_structure.jpg)
 
 待项目maven依赖下载完成后，需完成以下操作：
 
