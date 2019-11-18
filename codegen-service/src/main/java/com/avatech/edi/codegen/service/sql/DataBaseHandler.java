@@ -32,13 +32,24 @@ public abstract class DataBaseHandler {
         File file = new File(sqlResourceFilePath);
         file.mkdirs();
         HashMap map = new HashMap();
+        // create transaction sql
+        map.put("projectInfo",baseModelParameter.getProjectStructure());
+        templateService.createTmpleFile(map
+                ,sqlResourceFilePath +"/"+"AVA_SP_TRANSACTION_NOTICE.sql"
+                ,"repository"
+                ,"transaction_sql.ftl");
+
+        // create table and view
         for (DomainModel domainModel:domainModels){
+            map.clear();
             map.put("tables",domainModel.getTableList());
             templateService.createTmpleFile(map
                     ,sqlResourceFilePath +"/"+domainModel.getModelName()+".sql"
                     ,"database"
                     ,getTemplateFile(this.getDBType()));
         }
+
+
     }
 
     private String getTemplateFile(DataBaseType dataBaseType){

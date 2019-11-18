@@ -30,6 +30,20 @@
         </#if>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>edi.maven</id>
+            <name>EDI Maven Repository</name>
+            <url>http://47.92.196.35:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
     <#if projectInfo.projectType == "DAHUB_APPLICATION" || projectInfo.projectType == "DAHUB_SERVICE">
         <dependency>

@@ -17,7 +17,7 @@ spring:
     password: XX
     driver-class-name: com.sap.db.jdbc.Driver
 </#if>
-<#if projectInfo.dataBaseType == "MSSQL">
+<#if projectInfo.dataBaseType == "MYSQL">
 spring:
   datasource:
     url: "jdbc:mysql://127.0.0.1:3306/XXX?useUnicode=true&characterEncoding=utf-8"

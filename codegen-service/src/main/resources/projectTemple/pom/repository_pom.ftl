@@ -11,7 +11,6 @@
 
     <artifactId>${modelInfo.modelName}</artifactId>
 
-
     <dependencies>
         <dependency>
             <groupId>com.avatech.dahupt</groupId>
@@ -19,4 +18,15 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

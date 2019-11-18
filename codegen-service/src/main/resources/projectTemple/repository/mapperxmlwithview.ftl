@@ -48,7 +48,6 @@
                      T0."Id",
                 <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
                      T0."ObjectCode",
-                     T0."IsDelete",
                 </#if>
                 <#list mapperItem.tableLines as mapperItemLine>
                     T0."${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
@@ -61,7 +60,6 @@
             SELECT  T0."Id",
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
                     T0."ObjectCode",
-                    T0."IsDelete",
             </#if>
             <#if mapperItem.tableLines?has_content>
                 <#list mapperItem.tableLines as mapperItemLine>
@@ -78,13 +76,13 @@
                     "${mapperItemLine.fieldName}" =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"} <#if mapperItemLine?has_next>,</#if>
                 </#list>
             </#if>
-            WHERE "Id" = #${r"{"}Id${r"}"};
+            WHERE "Id" = #${r"{"}id${r"}"};
         </update>
         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
         <update id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
             UPDATE "${mapperItem.tableName}" set
             "IsDelete" = 'Y'
-            WHERE "Id" = #${r"{"}Id${r"}"};
+            WHERE "Id" = #${r"{"}id${r"}"};
         </update>
         </#if>
     </#list>

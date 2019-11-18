@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.avatech.edi</groupId>
             <artifactId>edi-freamwork-model</artifactId>
-            <version>1.01.100_alpha</version>
+            <version>1.0.0.01_alpha</version>
         </dependency>
     </dependencies>
 

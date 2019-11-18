@@ -7,7 +7,9 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
+import com.avatech.edi.common.data.EmYesOrNo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,20 +32,27 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     @Override
     public void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
+            Long id = snowflakeIdWorker.nextId();
+            ${modelObject.modelName?uncap_first}.setId(id);
+            ${modelObject.modelName?uncap_first}.setIsDelete(EmYesOrNo.NO);
             ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
+                ${tableMap.childTableProName?uncap_first}.setId(id);
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
                 for (${boMap.childTableProName?cap_first} ${boMap.childTableProName?uncap_first} : ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s()){
-                ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
+                    ${boMap.childTableProName?uncap_first}.setId(id);
+                    ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
                 }
                     </#if>
                 </#list>
@@ -62,18 +71,18 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     public List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(){
         try{
             List<${modelObject.modelName?cap_first}> ${modelObject.modelName?uncap_first}s = new ArrayList();
-            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}s();
+            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}sByView();
             <#if modelObject.tableList?has_content && modelObject.tableList?size gt 1>
             for(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}:${modelObject.modelName?uncap_first}s){
                 <#list modelObject.tableList as table>
                 <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                     <#list table.businessObjectMaps as tableMap>
-                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}s();
+                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView();
                      <#--查找孙子表-->
                         <#list modelObject.businessObjectMaps as boMap>
                             <#if boMap.tableName == tableMap.childTableName>
                 for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
-                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}s();
+                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView();
                     ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }
                             </#if>

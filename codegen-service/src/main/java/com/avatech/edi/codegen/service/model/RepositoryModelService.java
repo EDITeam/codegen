@@ -34,12 +34,10 @@ public class RepositoryModelService extends AbstractModelService{
         super("repository_pom.ftl");
     }
 
-
     @Override
     public void createSourcesFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createSourcesFile(domainModels,modelParameter);
-
             MapperObject mapperObject;
 
             for (DomainModel domainModel : domainModels) {
@@ -50,16 +48,27 @@ public class RepositoryModelService extends AbstractModelService{
                 createMapper(mapperObject);
                 mapperObject.setFilePath(modelParameter.getSourcesBasePath());
                 mapperObject.setPackageName(modelParameter.getModelBasePakage());
-                createRepository(domainModel,mapperObject);
+                createRepository(domainModel, mapperObject);
             }
 
-
-
-            // repository
-
+            createTransactionMapper(modelParameter);
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }
+    }
+
+    private void createTransactionMapper(BaseModelParameter modelParameter) {
+        String filePath = modelParameter.getSourcesBasePath().concat(File.separator).concat("mapper");
+        HashMap root = new HashMap();
+        root.put("projectName",modelParameter.getProjectNamePrefix());
+        templateService.createTmpleFile(root
+                ,filePath+"/TransactionNoticeMapper.java"
+                ,"repository"
+                ,"transaction_mapper.ftl");
+        templateService.createTmpleFile(root
+                ,filePath+"/TransactionNoticeMapper.xml"
+                ,"repository"
+                ,"transaction_xml.ftl");
     }
 
     @Override
