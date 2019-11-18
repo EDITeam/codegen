@@ -5,6 +5,7 @@ import com.avatech.edi.common.data.EmYesOrNo;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 <#if table.tableType == "bott_MasterData" || table.tableType == "bott_Document">
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class ${table.tableProperty} extends ${parentClass} implements I${table.t
      * ${tableLine.proDesc}
      */
    </#if>
+    @JsonProperty("${tableLine.jsonProperty?lower_case}")
     private ${tableLine.proDataType} ${tableLine.proName?uncap_first};
 
 </#list>
