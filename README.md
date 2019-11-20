@@ -63,6 +63,26 @@ SBO相关项目，设计DI操作
 
 + 修改`starter`模块下的数据库相关配置
 
+### 接口文档
+
+[接口文档管理平台](http://47.92.196.35:4999/web/#/)
+
+项目创建后，在`api_doc`目录下会创建如下图所示的接口文档相关文件(后缀为api的表示接口文档信息，shell脚本主要将本目录下所有的api文件同步至接口管理平台)。
+![](./img/api_doc.jpg)
+
+***注意：参数注释只有四列，并以空格分隔，所以各列的内容不要有空格。***
+
+shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_key`和`api_token`一致。
+![](./img/api_key.jpg)
+
+![](./img/project_api_key.jpg)
+
+双击脚本执行。
+![](./img/api_shell.jpg)
+
+![](./img/api_result.jpg)
+
+
 ### 项目功能计划
 
 + 支持dahupt_application服务项目创建

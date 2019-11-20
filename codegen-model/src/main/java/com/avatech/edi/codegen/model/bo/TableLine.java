@@ -56,6 +56,11 @@ public class TableLine {
      */
     private boolean isKey;
 
+    /**
+     * 是否必须字段
+     */
+    private boolean isRequired;
+
 
 
     public void setTableName(String tableName) {
@@ -137,5 +142,13 @@ public class TableLine {
 
     public void setJsonProperty(String jsonProperty) {
         this.jsonProperty = jsonProperty;
+    }
+
+    public boolean isRequired() {
+        return isRequired;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
     }
 }

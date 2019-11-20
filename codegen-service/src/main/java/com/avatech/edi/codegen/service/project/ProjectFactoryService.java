@@ -1,11 +1,18 @@
 package com.avatech.edi.codegen.service.project;
 
+import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.model.bo.project.modelparameter.*;
+import com.avatech.edi.codegen.model.vo.APIDocVO;
+import com.avatech.edi.codegen.service.TemplateService;
+import com.avatech.edi.codegen.service.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,17 +35,128 @@ public class ProjectFactoryService implements IProjectService{
     @Autowired
     private DahubServiceProjectBuilder dahubServiceProjectBuilder;
 
+    @Autowired
+    private APIModelService apiModelService;
+
+    @Autowired
+    private CoreModelService coreModelService;
+
+    @Autowired
+    private DomainModelService domainModelService;
+
+    @Autowired
+    private StarterModelService starterModelService;
+
+    @Autowired
+    private ServiceModelService serviceModelService;
+
+    @Autowired
+    private RepositoryModelService repositoryModelService;
+
+    @Autowired
+    private TemplateService templateService;
+
+
+    private void createProjectPOM(ProjectStructure projectStructure) {
+        String pomFullFilePath = projectStructure.getProjectFilePath()
+                .concat(File.separator)
+                .concat(projectStructure.getProjectName())
+                .concat(File.separator);
+        File file = new File(pomFullFilePath);
+        file.mkdirs();
+        HashMap map = new HashMap();
+        map.put("projectInfo", projectStructure);
+        templateService.createTmpleFile(map,pomFullFilePath.concat("pom.xml"),"pom","project_pom.ftl");
+
+    }
+
+    private void createBaseFile(List<DomainModel> domainModels, ProjectStructure projectStructure){
+        BaseModelParameter modelParameter = new CoreModelParameter(projectStructure);
+        coreModelService.createPOM(modelParameter);
+        coreModelService.createSourcesFile(domainModels,modelParameter);
+        coreModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
+
+        if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.HTTP)){
+            modelParameter = new APIModelParameter(projectStructure);
+            apiModelService.createPOM(modelParameter);
+            apiModelService.createSourcesFile(domainModels,modelParameter);
+            apiModelService.createTestsFile(domainModels,modelParameter);
+            projectStructure.getModelNames().add(modelParameter.getModelName());
+        }else if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.SOAP)){
+
+        }
+
+        modelParameter = new DomainModelParameter(projectStructure);
+        modelParameter.setProjectStructure(projectStructure);
+        domainModelService.createPOM(modelParameter);
+        domainModelService.createSourcesFile(domainModels,modelParameter);
+        domainModelService.createTestsFile(domainModels,modelParameter);
+        domainModelService.createSqlResourcesFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
+
+        modelParameter = new ServiceModelParameter(projectStructure);
+        serviceModelService.createPOM(modelParameter);
+        serviceModelService.createSourcesFile(domainModels,modelParameter);
+        serviceModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
+
+        modelParameter = new StarterModelParameter(projectStructure);
+        starterModelService.createPOM(modelParameter);
+        starterModelService.createSourcesFile(domainModels,modelParameter);
+        starterModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
+
+        modelParameter = new RepositoryModelParameter(projectStructure);
+        repositoryModelService.createPOM(modelParameter);
+        repositoryModelService.createSourcesFile(domainModels,modelParameter);
+        repositoryModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
+
+        //调整项目名称
+        projectStructure.setProjectName(modelParameter.getProjectName());
+        createProjectPOM(projectStructure);
+
+        modelParameter.setProjectStructure(projectStructure);
+        createAPIDoc(domainModels,modelParameter);
+    }
+
+    private void createAPIDoc(List<DomainModel> domainModels,BaseModelParameter modelParameter) {
+        String filePath = modelParameter.getProjectStructure().getProjectFilePath()
+                .concat(File.separator)
+                .concat(modelParameter.getProjectName())
+                .concat(File.separator)
+                .concat("api_doc")
+                .concat(File.separator);
+
+         new File(filePath).mkdirs();
+
+        for (DomainModel model:domainModels) {
+            APIDocVO apiDocVO = APIDocVO.createAPIDocVO(model,modelParameter.getProjectNamePrefix());
+            HashMap map = new HashMap();
+            map.put("apiDocVO", apiDocVO);
+            templateService.createTmpleFile(map,filePath.concat(model.getModelName()).concat(".api"),"apidoc","api_doc.ftl");
+        }
+
+        HashMap map = new HashMap();
+        map.put("projectName", modelParameter.getProjectName());
+        templateService.createTmpleFile(map,filePath.concat("showdoc_api").concat(".sh"),"shell","showdoc_shell.ftl");
+
+    }
+
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
-        switch (projectInitial.getProjectType()){
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectStructure) {
+        createBaseFile(domainModels, projectStructure);
+
+        switch (projectStructure.getProjectType()) {
             case DAHUPT_APPLICATION:
-                dahubApplicationProjectBuilder.createProject(domainModels,projectInitial);
+                dahubApplicationProjectBuilder.createProject(domainModels, projectStructure);
             case DAHUPT_SERVICE:
-                dahubServiceProjectBuilder.createProject(domainModels,projectInitial);
+                dahubServiceProjectBuilder.createProject(domainModels, projectStructure);
             case SBO_PROJECT:
-                 sboProjectBuilder.createProject(domainModels,projectInitial);
+                sboProjectBuilder.createProject(domainModels, projectStructure);
             case SIMPLE_SERVICE:
-                simpleProjectBuilder.createProject(domainModels,projectInitial);
+                simpleProjectBuilder.createProject(domainModels, projectStructure);
         }
     }
 }

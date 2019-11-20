@@ -93,7 +93,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
                 tableLine.setProDesc(field.attributeValue("Description"));
                 tableLine.setTableName(element1.attributeValue("Name"));
                 tableLine.setJsonProperty(StringUtils.isEmpty(field.attributeValue("JsonProperty"))?
-                        field.attributeValue("Name"):field.attributeValue("JsonProperty"));
+                        field.attributeValue("Name").toLowerCase():field.attributeValue("JsonProperty"));
                 tableLine.setFieldSize(Integer.valueOf(field.attributeValue("EditSize")));
                 tableLine.setKey(false);
                 tableLine.setProName(field.attributeValue("PropertyName"));

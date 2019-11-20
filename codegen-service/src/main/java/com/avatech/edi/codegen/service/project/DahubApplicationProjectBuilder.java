@@ -2,8 +2,9 @@ package com.avatech.edi.codegen.service.project;
 
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
+import com.avatech.edi.codegen.service.TemplateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,9 +16,11 @@ import java.util.List;
 @Component
 public class DahubApplicationProjectBuilder implements IProjectService {
 
+    @Autowired
+    private TemplateService templateService;
 
     @Override
-    public void createProject(List<DomainModel> domainModels, ProjectStructure projectInitial) {
-
+    public void createProject(List<DomainModel> domainModels, ProjectStructure projectStructure) {
     }
+
 }
