@@ -126,6 +126,10 @@ public class BaseModelParameter extends BaseProjectParameter {
                 return ModelConstant.API_MODEL_NAME;
             case REPOSITORY:
                 return ModelConstant.REPOSITORY_MODEL_NAME;
+            case PROVIDER:
+                return ModelConstant.PROVIDER_MODEL_NAME;
+            case CONSUMER:
+                return ModelConstant.CONSUMER_MODEL_NAME;
             default:
                 throw new BusinessServiceException("1", "not exists model name");
         }
@@ -147,6 +151,10 @@ public class BaseModelParameter extends BaseProjectParameter {
                 return ModelConstant.API_BASE_PACKAGE;
             case REPOSITORY:
                 return ModelConstant.REPOSITORY_BASE_PACKAGE;
+            case PROVIDER:
+                return ModelConstant.PROVIDER_BASE_PACKAGE;
+            case CONSUMER:
+                return ModelConstant.CONSUMER_BASE_PACKAGE;
             default:
                 throw new BusinessServiceException("1", "not exists model name");
         }

@@ -29,6 +29,10 @@ public class ModelConstant {
 
     public static final String REPOSITORY_BASE_PACKAGE = "com.avatech.dahupt.%s.repository";
 
+    public static final String PROVIDER_BASE_PACKAGE = "com.avatech.dahupt.%s.provider";
+
+    public static final String CONSUMER_BASE_PACKAGE = "com.avatech.dahupt.%s.consumer";
+
     public static final String API_MODEL_NAME = "%s_api";
 
     public static final String DOMAIN_MODEL_NAME = "%s_model";
@@ -42,5 +46,13 @@ public class ModelConstant {
     public static final String STARTER_MODEL_NAME = "%s_starter";
 
     public static final String REPOSITORY_MODEL_NAME = "%s_repository";
+
+    public static final String CLIENT_MODEL_NAME = "%s_feignclient";
+
+    public static final String PROVIDER_MODEL_NAME = "%s_provider";
+
+    public static final String CONSUMER_MODEL_NAME = "%s_consumer";
+
+
 
 }

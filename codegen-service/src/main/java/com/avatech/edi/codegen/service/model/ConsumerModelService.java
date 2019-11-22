@@ -6,22 +6,20 @@ import com.avatech.edi.codegen.service.TemplateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
  * @author Fancy
- * @date 2019/10/30
+ * @date 2019/11/22
  */
-@Component
-public class ClientModelService extends AbstractModelService  {
+public class ConsumerModelService extends AbstractModelService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ClientModelService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConsumerModelService.class);
 
-    public ClientModelService() {
-        super("feignclient_pom.ftl");
+    public ConsumerModelService() {
+        super("consumer_pom.ftl");
     }
 
     @Autowired
@@ -44,5 +42,4 @@ public class ClientModelService extends AbstractModelService  {
             logger.error("创建资源文件异常:",e);
         }
     }
-
 }

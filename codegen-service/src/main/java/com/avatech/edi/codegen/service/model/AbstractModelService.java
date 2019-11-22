@@ -34,6 +34,7 @@ public abstract class AbstractModelService {
         file.mkdirs();
         HashMap map = new HashMap();
         map.put("modelInfo", modelParameter);
+        map.put("projectInfo",modelParameter.getProjectStructure());
         templateService.createTmpleFile(map,pomFullFilePath.concat("pom.xml"),"pom",pomTemplateName);
     }
 

@@ -18,7 +18,7 @@
                 <#elseif tableLines.fieldType == "DECIMAL" || tableLines.fieldType == "DOUBLE">
                 `${tableLines.fieldName}` ${tableLines.fieldType}(19,2) <#if tableLines?has_next>,</#if>
                 <#else >
-                "${tableLines.fieldName}" ${tableLines.fieldType} <#if tableLines?has_next>,</#if>
+                `${tableLines.fieldName}` ${tableLines.fieldType} <#if tableLines?has_next>,</#if>
                 </#if>
             </#list>
         </#if>

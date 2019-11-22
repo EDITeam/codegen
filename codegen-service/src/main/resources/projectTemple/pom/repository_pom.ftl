@@ -17,6 +17,37 @@
             <artifactId>${modelInfo.projectName}_model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+    <#if projectInfo.dataBaseType == "MSSQL">
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+        </dependency>
+    </#if>
+    <#if projectInfo.dataBaseType == "HANA">
+        <dependency>
+            <groupId>com.sap.cloud.db.jdbc</groupId>
+            <artifactId>ngdbc</artifactId>
+            <!--<version>2.3.48</version>-->
+        </dependency>
+    </#if>
+    <#if projectInfo.dataBaseType == "MSSQL">
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    </#if>
+    <#if projectInfo.dataBaseType == "POSTGRESQL">
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <!--<scope>runtime</scope>-->
+        </dependency>
+    </#if>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.1</version>
+        </dependency>
     </dependencies>
 
     <build>
