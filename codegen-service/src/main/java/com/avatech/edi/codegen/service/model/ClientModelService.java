@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,6 +33,21 @@ public class ClientModelService extends AbstractModelService  {
     public void createSourcesFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createSourcesFile(domainModels,modelParameter);
+
+            for (DomainModel domainModel:domainModels) {
+                HashMap map = new HashMap();
+                map.put("domainModel", domainModel);
+                map.put("projectName", modelParameter.getProjectNamePrefix());
+                map.put("serviceName", modelParameter.getProjectNamePrefix()
+                        .concat(".")
+                        .concat(modelParameter.getProjectStructure().getServiceName()
+                                .concat(".provider")));
+                templateService.createTmpleFile(map
+                        , modelParameter.getSourcesBasePath().concat(File.separator).concat(domainModel.getModelName().concat("V1Client.java"))
+                        , "feignclient"
+                        , "feignclient.ftl");
+
+            }
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }

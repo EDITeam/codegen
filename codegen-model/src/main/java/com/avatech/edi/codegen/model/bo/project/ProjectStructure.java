@@ -1,6 +1,7 @@
 package com.avatech.edi.codegen.model.bo.project;
 
 import com.avatech.edi.codegen.data.DataBaseType;
+import com.avatech.edi.codegen.data.ModelEnum;
 import com.avatech.edi.codegen.data.ProjectType;
 import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -116,5 +117,13 @@ public class ProjectStructure {
 
     public void setModelNames(List<String> modelNames) {
         this.modelNames = modelNames;
+    }
+
+    public String getServiceName(){
+        if(this.projectType.equals(ProjectType.DAHUPT_APPLICATION)){
+            return "application";
+        }else {
+            return "service";
+        }
     }
 }

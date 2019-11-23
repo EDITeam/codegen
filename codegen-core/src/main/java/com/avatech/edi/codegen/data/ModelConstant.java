@@ -23,7 +23,7 @@ public class ModelConstant {
 
     public static final String STARTER_BASE_PACKAGE = "com.avatech.dahupt.%s.starter";
 
-    public static final String FEIGNCLIENT_BASE_PACKAGE = "com.avatech.dahupt.%s.feignclient";
+    public static final String FEIGNCLIENT_BASE_PACKAGE = "com.avatech.dahupt.%s.feignclient.v1";
 
     public static final String CORE_BASE_PACKAGE = "com.avatech.dahupt.%s.core";
 
@@ -41,7 +41,7 @@ public class ModelConstant {
 
     public static final String SERVICE_MODEL_NAME = "%s_service";
 
-    public static final String FEIGNCLIENT_MODEL_NAME = "%s_model";
+    public static final String FEIGNCLIENT_MODEL_NAME = "%s_feignclient";
 
     public static final String STARTER_MODEL_NAME = "%s_starter";
 

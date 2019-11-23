@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com.avatech.dahupt.${projectName?lower_case}")
 @MapperScan(basePackages = "com.avatech.dahupt.${projectName?lower_case}.repository.mapper")
-public class ${projectName?upper_case}ProviderApplication {
+public class ${projectName?cap_first}ProviderApplication {
 
     @Autowired(required = false)
     private TtlScheduler ttlScheduler;
@@ -26,7 +26,7 @@ public class ${projectName?upper_case}ProviderApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(${projectName?upper_case}ProviderApplication.class, args);
+        SpringApplication.run(${projectName?cap_first}ProviderApplication.class, args);
     }
 
 }

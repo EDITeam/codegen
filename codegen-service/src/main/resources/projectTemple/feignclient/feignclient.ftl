@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(value = "${serviceName}")
-public interface ${domainModel.modelName?upper_abc}V1Client {
+public interface ${domainModel.modelName?uncap_first}V1Client {
 
     @GetMapping("${domainModel.modelName?lower_case}")
-    public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}();
+    List<${domainModel.modelName}> get${domainModel.modelName}();
 
     @PostMapping("${domainModel.modelName?lower_case}")
-    public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first});
+    Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first});
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id);
+    Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id);
 
     @DeleteMapping("${domainModel.modelName?lower_case}/}{id}")
-    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id);
+    Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id);
 }
