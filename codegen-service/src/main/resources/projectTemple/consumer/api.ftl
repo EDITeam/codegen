@@ -40,7 +40,7 @@ public class ${domainModel.modelName}V1API {
         return ${projectName?uncap_first}V1Client.update${projectName?cap_first}V1Client();
     }
 
-    @DeleteMapping("${domainModel.modelName?lower_case}/}{id}")
+    @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
         return ${projectName?uncap_first}V1Client.delete${projectName?cap_first}V1Client();
     }

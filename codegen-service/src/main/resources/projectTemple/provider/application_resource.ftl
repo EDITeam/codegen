@@ -23,7 +23,7 @@ spring:
     url: "jdbc:mysql://127.0.0.1:3306/XXX?useUnicode=true&characterEncoding=utf-8"
     username: XX
     password: XX
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 </#if>
 <#if projectInfo.dataBaseType == "POSTGRESQL">
 spring:
@@ -40,6 +40,6 @@ spring:
       host: localhost
       port: 8500
       discovery:
-        service-name: purchase.service.provider
+        service-name: ${serviceName}
         health-check-url: http://${r'${'}spring.cloud.client.ip-address${r'}'}:${r'${'}server.port${r'}'}/actuator/health
         healthCheckInterval: 15s

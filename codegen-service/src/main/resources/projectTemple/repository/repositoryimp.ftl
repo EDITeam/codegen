@@ -32,13 +32,9 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
-    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
-
     @Override
-    public void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public Long save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            Long id = snowflakeIdWorker.nextId();
-            ${modelObject.modelName?uncap_first}.setId(id);
             ${modelObject.modelName?uncap_first}.setIsDelete(EmYesOrNo.NO);
             ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
             <#if modelObject.tableList?has_content>
@@ -46,12 +42,12 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
-                ${tableMap.childTableProName?uncap_first}.setId(id);
+                ${tableMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
                 for (${boMap.childTableProName?cap_first} ${boMap.childTableProName?uncap_first} : ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s()){
-                    ${boMap.childTableProName?uncap_first}.setId(id);
+                    ${boMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
                     ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
                 }
                     </#if>
@@ -61,6 +57,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
+            return id;
         }catch(Exception e){
             logger.error("save ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
@@ -101,9 +98,9 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     }
 
     @Override
-    public void update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            ${mapperObject.mapperObjName?uncap_first}Mapper.update${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.update${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
         <#--找子表-->
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
@@ -124,6 +121,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
+            return rowNumber;
         }catch(Exception e){
             logger.error("update ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
@@ -131,9 +129,10 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     }
 
     @Override
-    public void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            return rowNumber;
         }catch(Exception e){
             logger.error("delete ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());

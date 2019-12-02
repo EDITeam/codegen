@@ -24,16 +24,26 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
 
-    @Transactional
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+    public Long save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+        Long id;
+        if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
+            id = snowflakeIdWorker.nextId();
+            ${mapperObject.mapperObjName?uncap_first}.setId(id);
+        }else{
+            id = ${mapperObject.mapperObjName?uncap_first}.getId();
+        }
         ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
         if (true) {
             super.save(${mapperObject.mapperObjName?uncap_first});
         }
+        return id;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
@@ -42,7 +52,7 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
         }
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});

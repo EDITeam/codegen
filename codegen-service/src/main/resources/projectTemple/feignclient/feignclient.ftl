@@ -19,6 +19,6 @@ public interface ${domainModel.modelName?uncap_first}V1Client {
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
     Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id);
 
-    @DeleteMapping("${domainModel.modelName?lower_case}/}{id}")
+    @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
     Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id);
 }
