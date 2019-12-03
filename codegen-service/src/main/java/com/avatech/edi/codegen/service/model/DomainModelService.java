@@ -1,13 +1,11 @@
 package com.avatech.edi.codegen.service.model;
 
-import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.data.TableType;
 import com.avatech.edi.codegen.model.bo.BusinessObjectMap;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
 import com.avatech.edi.codegen.service.TemplateService;
-import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.data.ModelConstant;
 import com.avatech.edi.codegen.service.sql.DataBaseHandler;
 import com.avatech.edi.codegen.service.sql.DataBaseHandlerFactory;
@@ -16,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,6 +76,32 @@ public class RepositoryModelService extends AbstractModelService{
     public void createTestsFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createTestsFile(domainModels,modelParameter);
+            HashMap root = new HashMap();
+            root.put("projectName",modelParameter.getProjectNamePrefix());
+
+            String filePath = modelParameter.getTestsBasePath();
+            templateService.createTmpleFile(root
+                    ,filePath+"/"+ StringUtils.capitalize(modelParameter.getProjectNamePrefix()) +"RepositoryApplication.java"
+                    ,"repository"
+                    ,"unit_application.ftl");
+
+            MapperObject mapperObject;
+            for (DomainModel domainModel : domainModels) {
+                mapperObject = getMapperObject(domainModel, modelParameter);
+                mapperObject.setMapperApplicationName(modelParameter.getProjectNamePrefix());
+                mapperObject.setPackageName(modelParameter.getModelBasePakage().concat(".").concat("mapper"));
+                mapperObject.setFilePath(modelParameter.getSourcesBasePath());
+                mapperObject.setPackageName(modelParameter.getModelBasePakage());
+                createRepository(domainModel, mapperObject);
+                root = new HashMap();
+                root.put("mapperObject", mapperObject);
+                root.put("modelObject",domainModel);
+                templateService.createTmpleFile(root
+                        , modelParameter.getTestsBasePath() + "/" + StringUtils.capitalize(mapperObject.getMapperObjName()) + "RepositoryImpTest.java"
+                        ,"repository"
+                        , "unit_test.ftl");
+            }
+
         } catch (IOException e) {
             logger.error("创建测试文件异常:",e);
         }

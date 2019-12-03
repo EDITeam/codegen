@@ -1,8 +1,8 @@
-package ${mapperObject.packageName}.imp;
+package ${mapperObject.packageName};
 
 <#if mapperObject.mapperObjectItems?has_content>
     <#list mapperObject.mapperObjectItems as mapperItem>
-    import ${mapperItem.boPackageName};
+import ${mapperItem.boPackageName};
     </#list>
 </#if>
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -47,7 +44,6 @@ public class ${mapperObject.mapperObjName}RepositoryImpTest {
     private ${mapperObject.mapperObjName} get${mapperObject.mapperObjName}(){
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = new ${mapperObject.mapperObjName}();
         ${mapperObject.mapperObjName?uncap_first}.setId(getId());
-        ${mapperObject.mapperObjName?uncap_first}.setCreateDate(new Date());
         <#if modelObject.tableList?has_content>
             <#list modelObject.tableList as table>
                 <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>

@@ -19,7 +19,7 @@ public interface ${mapperObject.mapperObjName}Mapper{
 <#if mapperObject.mapperObjectItems?has_content>
     <#list mapperObject.mapperObjectItems as mapperItem>
 
-    Long insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+    int insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
 
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
 

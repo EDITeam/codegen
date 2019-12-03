@@ -64,4 +64,11 @@ public enum ModelEnum {
         this.name = name;
     }
 
+    public int getKey() {
+        return key;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

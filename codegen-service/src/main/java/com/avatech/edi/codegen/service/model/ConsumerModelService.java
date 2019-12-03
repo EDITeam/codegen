@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class ConsumerModelService extends AbstractModelService {
                     + modelParameter.getProjectStructure().getServiceName()
                     + ".consumer");
             templateService.createTmpleFile(map
-                    , modelParameter.getSourcesBasePath().concat(File.separator).concat(modelParameter.getProjectNamePrefix().toUpperCase()).concat("ConsumerApplication.java")
+                    , modelParameter.getSourcesBasePath().concat(File.separator).concat(StringUtils.capitalize(modelParameter.getProjectNamePrefix())).concat("ConsumerApplication.java")
                     ,"consumer"
                     ,"starter.ftl");
             templateService.createTmpleFile(map
@@ -87,6 +88,17 @@ public class ConsumerModelService extends AbstractModelService {
     public void createTestsFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createTestsFile(domainModels,modelParameter);
+
+            new File(modelParameter.getTestsBasePath().concat(File.separator).concat("v1")).mkdirs();
+            for (DomainModel domainModel:domainModels) {
+                HashMap map = new HashMap();
+                map.put("domainModel",domainModel);
+                map.put("projectName",modelParameter.getProjectNamePrefix());
+                templateService.createTmpleFile(map
+                        , modelParameter.getTestsBasePath().concat(File.separator).concat("v1").concat(File.separator).concat(domainModel.getModelName().concat("V1ConsumerTest.java"))
+                        ,"consumer"
+                        ,"unit_test.ftl");
+            }
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }

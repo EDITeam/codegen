@@ -1,6 +1,6 @@
-package com.avatech.dahupt.${projectName}.provider.v1;
+package com.avatech.dahupt.${projectName}.consumer.v1;
 
-import com.avatech.dahupt.purchase.feignclient.v1.${projectName?cap_first}V1Client;
+import com.avatech.dahupt.${projectName?lower_case}.feignclient.v1.${domainModel.modelName}V1Client;
 import com.avatech.dahupt.${projectName}.model.bo.${domainModel.modelName?lower_case}.${domainModel.modelName};
 import com.avatech.edi.common.exception.BaseException;
 import com.avatech.edi.model.dto.Result;
@@ -22,26 +22,26 @@ public class ${domainModel.modelName}V1API {
     private final Logger logger = LoggerFactory.getLogger(${domainModel.modelName}V1API.class);
 
     @Autowired
-    private ${projectName?cap_first}V1Client ${projectName?uncap_first}V1Client;
+    private ${domainModel.modelName}V1Client ${domainModel.modelName?uncap_first}V1Client;
 
 
     @GetMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}(){
-        return ${projectName?uncap_first}V1Client.get${projectName?cap_first}V1Client();
+        return ${domainModel.modelName}V1Client.get${domainModel.modelName}();
     }
 
     @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
-        return ${projectName?uncap_first}V1Client.add${projectName?cap_first}V1Client();
+        return ${domainModel.modelName}V1Client.add${domainModel.modelName}(${domainModel.modelName?uncap_first});
     }
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id){
-        return ${projectName?uncap_first}V1Client.update${projectName?cap_first}V1Client();
+        return ${domainModel.modelName}V1Client.update${domainModel.modelName}(${domainModel.modelName?uncap_first},id);
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
-        return ${projectName?uncap_first}V1Client.delete${projectName?cap_first}V1Client();
+        return ${domainModel.modelName}V1Client.delete${domainModel.modelName}(id);
     }
 }

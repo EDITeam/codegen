@@ -30,7 +30,7 @@
             <!--<version>2.3.48</version>-->
         </dependency>
     </#if>
-    <#if projectInfo.dataBaseType == "MSSQL">
+    <#if projectInfo.dataBaseType == "MYSQL">
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

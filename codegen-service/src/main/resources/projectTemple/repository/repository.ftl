@@ -20,7 +20,7 @@ public interface ${mapperObject.mapperObjName}Repository{
     /**
     * 保存
     **/
-    Long save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
+    int save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 
     /**
     * 查询

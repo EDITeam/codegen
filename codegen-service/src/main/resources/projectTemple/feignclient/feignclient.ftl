@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(value = "${serviceName}")
-public interface ${domainModel.modelName?uncap_first}V1Client {
+public interface ${domainModel.modelName?cap_first}V1Client {
 
     @GetMapping("${domainModel.modelName?lower_case}")
     List<${domainModel.modelName}> get${domainModel.modelName}();

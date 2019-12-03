@@ -1,34 +1,27 @@
 package com.avatech.edi.codegen.controller;
 
-import ch.qos.logback.core.util.FileUtil;
-import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.common.ZipUtils;
 import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.data.FileSettings;
 import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
-import com.avatech.edi.codegen.model.vo.ProjectTypeDropDownList;
 import com.avatech.edi.codegen.data.ProjectType;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
-import com.avatech.edi.codegen.service.imp.DataStructureFileServiceImp;
 import com.avatech.edi.codegen.service.project.IProjectService;
 import org.apache.commons.io.IOUtils;
-import org.mockito.internal.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author Fancy

@@ -41,17 +41,20 @@ public class DahubServiceProjectBuilder implements IProjectService{
         providerModelService.createPOM(modelParameter);
         providerModelService.createSourcesFile(domainModels,modelParameter);
         providerModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
 
         //create consumer
         modelParameter = new ConsumerModelParameter(projectStructure);
         consumerModelService.createPOM(modelParameter);
         consumerModelService.createSourcesFile(domainModels,modelParameter);
         consumerModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
 
         modelParameter = new ClientModelParameter(projectStructure);
         clientModelService.createPOM(modelParameter);
         clientModelService.createSourcesFile(domainModels,modelParameter);
         clientModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
 
     }
 

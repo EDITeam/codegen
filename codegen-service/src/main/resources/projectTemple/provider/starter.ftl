@@ -1,10 +1,14 @@
-package com.avatech.dahupt.${projectName?lower_case}.starter;
+package com.avatech.dahupt.${projectName?lower_case}.provider;
 
+import com.ecwid.consul.v1.ConsulClient;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
+import org.springframework.cloud.consul.discovery.HeartbeatProperties;
+import org.springframework.cloud.consul.discovery.TtlScheduler;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.context.annotation.ComponentScan;
 
 /**

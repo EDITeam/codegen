@@ -33,10 +33,10 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
     @Override
-    public Long save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
             ${modelObject.modelName?uncap_first}.setIsDelete(EmYesOrNo.NO);
-            ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
@@ -57,7 +57,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
-            return id;
+            return rowNumber;
         }catch(Exception e){
             logger.error("save ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());

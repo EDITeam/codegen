@@ -25,7 +25,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <#if projectInfo.projectType == "DAHUB_APPLICATION" || projectInfo.projectType == "DAHUB_SERVICE">
+        <#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         </#if>
     </properties>
@@ -45,7 +45,7 @@
     </repositories>
 
     <dependencies>
-    <#if projectInfo.projectType == "DAHUB_APPLICATION" || projectInfo.projectType == "DAHUB_SERVICE">
+    <#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
@@ -72,7 +72,7 @@
         </dependency>
     </dependencies>
 
-    <#if projectInfo.projectType == "DAHUB_APPLICATION" || projectInfo.projectType == "DAHUB_SERVICE">
+    <#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
     <dependencyManagement>
         <dependencies>
             <dependency>

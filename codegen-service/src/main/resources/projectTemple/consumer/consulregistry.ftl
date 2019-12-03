@@ -1,4 +1,4 @@
-package com.avatech.dahupt.${projectName}.provider;
+package com.avatech.dahupt.${projectName}.consumer;
 
 import com.ecwid.consul.v1.ConsulClient;
 import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
