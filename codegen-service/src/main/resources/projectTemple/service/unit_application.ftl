@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 */
 @SpringBootApplication
 @MapperScan(basePackages = "com.avatech.dahupt.${projectName?lower_case}.repository.mapper")
-public class ${projectName?cap_first}ServiceTestApplication {
+public class ${projectName?cap_first}ServiceApplication {
     @Test
     public void contextLoads() {
     }

@@ -59,8 +59,8 @@ public class ${mapperObject.mapperObjName}ServiceTest {
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
 
         //update
-        ${mapperObject.mapperObjName?uncap_first}.setPurpose("test");
-        ${mapperObject.mapperObjName?uncap_first}Service.update(purchaseRequest);
+        //${mapperObject.mapperObjName?uncap_first}.setPurpose("test");
+        ${mapperObject.mapperObjName?uncap_first}Service.update(${mapperObject.mapperObjName?uncap_first});
     }
 
     @Test

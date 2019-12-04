@@ -13,6 +13,8 @@ public class ModelConstant {
 
     public static final String MODEL_TESTS_BASE_PATH = "src.test.java";
 
+    public static final String MODEL_TESTS_RESOURCES_BASE_PATH = "src.test.resources";
+
     public static final String PROJECT_BASE_PACKAGE = "com.avatech.dahupt.%s";
 
     public static final String API_BASE_PACKAGE = "com.avatech.dahupt.%s.api.v1";

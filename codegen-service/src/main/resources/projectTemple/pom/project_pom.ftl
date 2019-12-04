@@ -45,12 +45,6 @@
     </repositories>
 
     <dependencies>
-    <#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-        </dependency>
-    </#if>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

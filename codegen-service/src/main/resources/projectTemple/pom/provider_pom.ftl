@@ -12,7 +12,10 @@
     <artifactId>${modelInfo.modelName}</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.avatech.dahupt</groupId>
             <artifactId>${modelInfo.projectName}_service</artifactId>

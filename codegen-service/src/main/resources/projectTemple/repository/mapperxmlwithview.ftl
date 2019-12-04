@@ -17,15 +17,15 @@
 <#if mapperObject.mapperObjectItems?has_content>
     <#list mapperObject.mapperObjectItems as mapperItem>
         <insert id="insert${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
-            INSERT INTO "${mapperItem.tableName}" (
+            INSERT INTO ${quotation}${mapperItem.tableName}${quotation} (
             <#if mapperItem.tableLines?has_content>
-                    "Id",
+            ${quotation}Id${quotation},
                 <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-                    "ObjectCode",
-                    "IsDelete",
+                ${quotation}ObjectCode${quotation},
+                ${quotation}IsDelete${quotation},
                 </#if>
                 <#list mapperItem.tableLines as mapperItemLine>
-                    "${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
+                ${quotation}${mapperItemLine.fieldName}${quotation}<#if mapperItemLine?has_next>,</#if>
                 </#list>
             </#if>)
             values(
@@ -33,7 +33,7 @@
                     #${r"{"}id${r"}"},
                 <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
                     #${r"{"}objectCode${r"}"},
-                    #${r"{"}isDelete${r"}"},
+                    #${r"{"}isDelete.key${r"}"},
                 </#if>
                 <#list mapperItem.tableLines as mapperItemLine>
                     #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}<#if mapperItemLine?has_next>,</#if>
@@ -45,44 +45,44 @@
         <select id="search${mapperItem.tableProperty?cap_first}s" resultMap="${mapperItem.tableProperty}Map">
             SELECT
             <#if mapperItem.tableLines?has_content>
-                     T0."Id",
+                     T0.${quotation}Id${quotation},
                 <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-                     T0."ObjectCode",
+                     T0.${quotation}ObjectCode${quotation},
                 </#if>
                 <#list mapperItem.tableLines as mapperItemLine>
-                    T0."${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
+                    T0.${quotation}${mapperItemLine.fieldName}${quotation}<#if mapperItemLine?has_next>,</#if>
                 </#list>
             </#if>
-            from "${mapperItem.tableName}" T0
+            from ${quotation}${mapperItem.tableName}${quotation} T0
         </select>
 
         <select id="search${mapperItem.tableProperty?cap_first}sByView" resultMap="${mapperItem.tableProperty}Map">
-            SELECT  T0."Id",
+            SELECT  T0.${quotation}Id${quotation},
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-                    T0."ObjectCode",
+                    T0.${quotation}ObjectCode${quotation},
             </#if>
             <#if mapperItem.tableLines?has_content>
                 <#list mapperItem.tableLines as mapperItemLine>
-                    T0."${mapperItemLine.fieldName}"<#if mapperItemLine?has_next>,</#if>
+                    T0.${quotation}${mapperItemLine.fieldName}${quotation}<#if mapperItemLine?has_next>,</#if>
                 </#list>
             </#if>
-            from "${mapperItem.viewName}" T0
+            from ${quotation}${mapperItem.viewName}${quotation} T0
         </select>
 
         <update id="update${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
-            UPDATE "${mapperItem.tableName}" set
+            UPDATE ${quotation}${mapperItem.tableName}${quotation} set
             <#if mapperItem.tableLines?has_content>
                 <#list mapperItem.tableLines as mapperItemLine>
-                    "${mapperItemLine.fieldName}" =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"} <#if mapperItemLine?has_next>,</#if>
+                ${quotation}${mapperItemLine.fieldName}${quotation} =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"} <#if mapperItemLine?has_next>,</#if>
                 </#list>
             </#if>
-            WHERE "Id" = #${r"{"}id${r"}"};
+            WHERE ${quotation}Id${quotation} = #${r"{"}id${r"}"};
         </update>
         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
         <update id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
-            UPDATE "${mapperItem.tableName}" set
-            "IsDelete" = 'Y'
-            WHERE "Id" = #${r"{"}id${r"}"};
+            UPDATE ${quotation}${mapperItem.tableName}${quotation} set
+        ${quotation}IsDelete${quotation} = 'Y'
+            WHERE ${quotation}Id${quotation} = #${r"{"}id${r"}"};
         </update>
         </#if>
     </#list>

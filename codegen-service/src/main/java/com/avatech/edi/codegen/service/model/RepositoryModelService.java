@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.exception.BusinessServiceException;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
@@ -44,7 +45,7 @@ public class RepositoryModelService extends AbstractModelService{
             for (DomainModel domainModel : domainModels) {
                 mapperObject = getMapperObject(domainModel, modelParameter);
                 mapperObject.setMapperApplicationName(modelParameter.getProjectNamePrefix());
-                createMapperResource(mapperObject);
+                createMapperResource(mapperObject,modelParameter.getProjectStructure().getDataBaseType());
                 mapperObject.setPackageName(modelParameter.getModelBasePakage().concat(".").concat("mapper"));
                 createMapper(mapperObject);
                 mapperObject.setFilePath(modelParameter.getSourcesBasePath());
@@ -53,6 +54,13 @@ public class RepositoryModelService extends AbstractModelService{
             }
 
             createTransactionMapper(modelParameter);
+
+            // create resources
+            String resourceFile = modelParameter.getRootPath()
+                    .concat(File.separator)
+                    .concat(ModelConstant.MODEL_RESOURCES_BASE_PATH.replace(".",File.separator));
+            new File(resourceFile).mkdir();
+
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }
@@ -101,6 +109,17 @@ public class RepositoryModelService extends AbstractModelService{
                         ,"repository"
                         , "unit_test.ftl");
             }
+            // create resources
+            String resourceFile = modelParameter.getRootPath()
+                    .concat(File.separator)
+                    .concat(ModelConstant.MODEL_TESTS_RESOURCES_BASE_PATH.replace(".",File.separator));
+            new File(resourceFile).mkdir();
+
+            root.put("projectInfo",modelParameter.getProjectStructure());
+            templateService.createTmpleFile(root
+                    ,resourceFile.concat(File.separator).concat("application.yml")
+                    ,"repository"
+                    ,"application_resource.ftl");
 
         } catch (IOException e) {
             logger.error("创建测试文件异常:",e);
@@ -122,7 +141,7 @@ public class RepositoryModelService extends AbstractModelService{
                 ,"mapperwithview.ftl");
     }
 
-    private void createMapperResource(MapperObject mapperObject){
+    private void createMapperResource(MapperObject mapperObject, DataBaseType dataBaseType){
         // TODO 创建文件夹
         String mapperFilePath = mapperObject.getFilePath();
         File file = new File(mapperFilePath);
@@ -130,6 +149,12 @@ public class RepositoryModelService extends AbstractModelService{
 
         // TODO 创建mapper类
         HashMap root = new HashMap();
+
+        if(dataBaseType.equals(DataBaseType.MYSQL)){
+            root.put("quotation","`");
+        }else{
+            root.put("quotation",'"');
+        }
         mapperObject.setPackageName(mapperObject.getPackageName() + "."+mapperObject.getMapperObjName()+"Mapper");
         root.put("mapperObject",mapperObject);
         templateService.createTmpleFile(root

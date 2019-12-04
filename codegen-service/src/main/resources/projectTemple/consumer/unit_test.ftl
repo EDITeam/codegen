@@ -54,7 +54,7 @@ public class ${domainModel.modelName}V1ConsumerTest {
 
         Mockito.when(${domainModel.modelName?uncap_first}V1Client.get${domainModel.modelName}()).thenReturn(${domainModel.modelName?uncap_first}s);
 
-        MvcResult mvcResult = mockMvc.perform(get("/v1/${domainModel.modelName?lower_case}"))
+        MvcResult mvcResult = mockMvc.perform(get("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}"))
                 .andExpect(status().isOk())
                 .andReturn();
     }
@@ -65,7 +65,7 @@ public class ${domainModel.modelName}V1ConsumerTest {
         Mockito.when(${domainModel.modelName?uncap_first}V1Client.add${domainModel.modelName}(Mockito.any(${domainModel.modelName}.class))).thenReturn(result.ok());
         ObjectMapper mapper = new ObjectMapper();
         String ${domainModel.modelName?uncap_first}JsonStr =  mapper.writeValueAsString(get${domainModel.modelName}());
-        MvcResult mvcResult = mockMvc.perform(post("/v1/${domainModel.modelName?lower_case}")
+        MvcResult mvcResult = mockMvc.perform(post("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}")
                 .contentType("application/json")
                 .content(${domainModel.modelName?uncap_first}JsonStr))
                 .andExpect(status().isOk())
@@ -79,7 +79,7 @@ public class ${domainModel.modelName}V1ConsumerTest {
         Mockito.when(${domainModel.modelName?uncap_first}V1Client.update${domainModel.modelName}(Mockito.any(${domainModel.modelName}.class),Mockito.any())).thenReturn(result.ok());
         ObjectMapper mapper = new ObjectMapper();
         String ${domainModel.modelName?uncap_first}JsonStr =  mapper.writeValueAsString(get${domainModel.modelName}());
-        MvcResult mvcResult = mockMvc.perform(put("/v1/${domainModel.modelName?lower_case}/"+1)
+        MvcResult mvcResult = mockMvc.perform(put("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/"+1)
                 .contentType("application/json")
                 .content(${domainModel.modelName?uncap_first}JsonStr))
                 .andExpect(status().isOk())
@@ -93,7 +93,7 @@ public class ${domainModel.modelName}V1ConsumerTest {
         Mockito.when(${domainModel.modelName?uncap_first}V1Client.delete${domainModel.modelName}(Mockito.any())).thenReturn(result.ok());
         ObjectMapper mapper = new ObjectMapper();
         String ${domainModel.modelName?uncap_first}JsonStr =  mapper.writeValueAsString(get${domainModel.modelName}());
-        MvcResult mvcResult = mockMvc.perform(delete("/v1/${domainModel.modelName?lower_case}/"+1)
+        MvcResult mvcResult = mockMvc.perform(delete("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/"+1)
                 .contentType("application/json")
                 .content(${domainModel.modelName?uncap_first}JsonStr))
                 .andExpect(status().isOk())

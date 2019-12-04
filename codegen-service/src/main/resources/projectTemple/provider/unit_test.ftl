@@ -71,7 +71,6 @@ public class ${domainModel.modelName}V1APITest {
 
         String str = mvcResult.getResponse().getContentAsString();
         Result<Long> result = mapper.readValue(str, new TypeReference<Result<Long>>() {});
-        ${domainModel.modelName?uncap_first}.setCreateDate(new Date());
         ${domainModel.modelName?uncap_first}JsonStr = mapper.writeValueAsString(${domainModel.modelName?uncap_first});
 
         // update

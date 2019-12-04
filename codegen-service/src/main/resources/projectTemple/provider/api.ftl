@@ -36,8 +36,8 @@ public class ${domainModel.modelName}V1API {
     @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
     try{
-        ${domainModel.modelName}Service.save(${domainModel.modelName?uncap_first});
-            return (new Result()).ok();
+        Long id = ${domainModel.modelName}Service.save(${domainModel.modelName?uncap_first});
+        return (new Result()).ok(id);
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
         }catch(Exception e){

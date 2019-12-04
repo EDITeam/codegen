@@ -92,7 +92,17 @@ public class ServiceModelService extends AbstractModelService{
                         ,"service"
                         , "unit_test.ftl");
             }
+            // create resources
+            String resourceFile = modelParameter.getRootPath()
+                    .concat(File.separator)
+                    .concat(ModelConstant.MODEL_TESTS_RESOURCES_BASE_PATH.replace(".",File.separator));
+            new File(resourceFile).mkdir();
 
+            root.put("projectInfo",modelParameter.getProjectStructure());
+            templateService.createTmpleFile(root
+                    ,resourceFile.concat(File.separator).concat("application.yml")
+                    ,"service"
+                    ,"application_resource.ftl");
 
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);

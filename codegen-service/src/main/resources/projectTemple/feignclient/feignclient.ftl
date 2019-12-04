@@ -10,15 +10,15 @@ import java.util.List;
 @FeignClient(value = "${serviceName}")
 public interface ${domainModel.modelName?cap_first}V1Client {
 
-    @GetMapping("${domainModel.modelName?lower_case}")
+    @GetMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}")
     List<${domainModel.modelName}> get${domainModel.modelName}();
 
-    @PostMapping("${domainModel.modelName?lower_case}")
+    @PostMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}")
     Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first});
 
-    @PutMapping("${domainModel.modelName?lower_case}/{id}")
+    @PutMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/{id}")
     Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id);
 
-    @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
+    @DeleteMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/{id}")
     Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id);
 }

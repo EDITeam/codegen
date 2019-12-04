@@ -27,21 +27,21 @@ public class ${domainModel.modelName}V1API {
 
     @GetMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}(){
-        return ${domainModel.modelName}V1Client.get${domainModel.modelName}();
+        return ${domainModel.modelName?uncap_first}V1Client.get${domainModel.modelName}();
     }
 
     @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
-        return ${domainModel.modelName}V1Client.add${domainModel.modelName}(${domainModel.modelName?uncap_first});
+        return ${domainModel.modelName?uncap_first}V1Client.add${domainModel.modelName}(${domainModel.modelName?uncap_first});
     }
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id){
-        return ${domainModel.modelName}V1Client.update${domainModel.modelName}(${domainModel.modelName?uncap_first},id);
+        return ${domainModel.modelName?uncap_first}V1Client.update${domainModel.modelName}(${domainModel.modelName?uncap_first},id);
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
-        return ${domainModel.modelName}V1Client.delete${domainModel.modelName}(id);
+        return ${domainModel.modelName?uncap_first}V1Client.delete${domainModel.modelName}(id);
     }
 }
