@@ -16,7 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 * AT ${.now?string["yyyy-MM-dd"]}
 */
 @SpringBootApplication
-@ComponentScan("com.avatech.dahupt.${projectName?lower_case}")
+@EnableDiscoveryClient
+@EnableFeignClients("com.avatech.dahupt.${projectName?lower_case}.feignclient")
 public class ${projectName?cap_first}ConsumerApplication {
 
     @Autowired(required = false)
