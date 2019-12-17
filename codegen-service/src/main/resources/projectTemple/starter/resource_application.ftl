@@ -33,3 +33,15 @@ spring:
     password: XX
     driver-class-name: org.postgresql.Driver
 </#if>
+  application:
+    name: ${serviceName}
+<#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${serviceName}
+        health-check-url: http://${r'${'}spring.cloud.client.ip-address${r'}'}:${r'${'}server.port${r'}'}/actuator/health
+        healthCheckInterval: 15s
+</#if>

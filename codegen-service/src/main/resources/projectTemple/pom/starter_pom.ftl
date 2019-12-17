@@ -12,6 +12,12 @@
     <artifactId>${modelInfo.modelName}</artifactId>
 
     <dependencies>
+<#if projectInfo.projectType == "DAHUPT_APPLICATION" || projectInfo.projectType == "DAHUPT_SERVICE">
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+</#if>
         <dependency>
             <groupId>com.avatech.dahupt</groupId>
             <artifactId>${modelInfo.projectName}_api</artifactId>

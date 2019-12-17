@@ -1,12 +1,11 @@
 package com.avatech.edi.codegen.service.project;
 
+import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.*;
 import com.avatech.edi.codegen.service.TemplateService;
-import com.avatech.edi.codegen.service.model.ClientModelService;
-import com.avatech.edi.codegen.service.model.ConsumerModelService;
-import com.avatech.edi.codegen.service.model.ProviderModelService;
+import com.avatech.edi.codegen.service.model.*;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,30 +24,32 @@ public class DahubServiceProjectBuilder implements IProjectService{
     private TemplateService templateService;
 
     @Autowired
-    private ProviderModelService providerModelService;
-
-    @Autowired
-    private ConsumerModelService consumerModelService;
-
-    @Autowired
     private ClientModelService clientModelService;
+
+    @Autowired
+    private StarterModelService starterModelService;
+
+    @Autowired
+    private APIModelService apiModelService;
 
     @Override
     public void createProject(List<DomainModel> domainModels, ProjectStructure projectStructure) {
 
-        //create provider
-        BaseModelParameter modelParameter = new ProviderModelParameter(projectStructure);
-        providerModelService.createPOM(modelParameter);
-        providerModelService.createSourcesFile(domainModels,modelParameter);
-        providerModelService.createTestsFile(domainModels,modelParameter);
+        BaseModelParameter modelParameter = new StarterModelParameter(projectStructure);
+        starterModelService.createPOM(modelParameter);
+        starterModelService.createSourcesFile(domainModels,modelParameter);
+        starterModelService.createTestsFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
-        //create consumer
-        modelParameter = new ConsumerModelParameter(projectStructure);
-        consumerModelService.createPOM(modelParameter);
-        consumerModelService.createSourcesFile(domainModels,modelParameter);
-        consumerModelService.createTestsFile(domainModels,modelParameter);
-        projectStructure.getModelNames().add(modelParameter.getModelName());
+        if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.HTTP)){
+            modelParameter = new APIModelParameter(projectStructure);
+            apiModelService.createPOM(modelParameter);
+            apiModelService.createSourcesFile(domainModels,modelParameter);
+            apiModelService.createTestsFile(domainModels,modelParameter);
+            projectStructure.getModelNames().add(modelParameter.getModelName());
+        }else if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.SOAP)){
+
+        }
 
         modelParameter = new ClientModelParameter(projectStructure);
         clientModelService.createPOM(modelParameter);

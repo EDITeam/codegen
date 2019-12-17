@@ -7,10 +7,14 @@
     <#list tables as tables>
 CREATE TABLE ${tables.tableName}(
     <#if tables.tableLines?has_content>
-    "Id" bigint,
-    <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData">
-    "IsDelete" char(1) default N'N',
-    "ObjectCode" varchar(60),
+    "id" bigint,
+    <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
+    "is_delete" char(1) default N'N',
+    "object_code" varchar(60),
+    "create_date" timestamp,
+    "creator" varchar(60),
+    "modify_date" timestamp,
+    "modifier" varchar(60),
     </#if>
         <#list tables.tableLines as tableLines>
             <#if tableLines.fieldType == "NVARCHAR" ||tableLines.fieldType == "VARCHAR"||tableLines.fieldType == "NCHAR" ||tableLines.fieldType == "CHAR">
@@ -25,10 +29,14 @@ CREATE TABLE ${tables.tableName}(
 );
 CREATE VIEW ${tables.viewName} AS SELECT
 <#if tables.tableLines?has_content>
-    "Id" ,
-    <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData">
-    "IsDelete" ,
-    "ObjectCode",
+    "id" ,
+    <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
+    "is_delete" ,
+    "object_code",
+    "create_date" timestamp,
+    "creator" varchar(60),
+    "modify_date" timestamp,
+    "modifier" varchar(60),
      </#if>
     <#list tables.tableLines as tableLines>
     "${tableLines.fieldName}" <#if tableLines?has_next>,</#if>

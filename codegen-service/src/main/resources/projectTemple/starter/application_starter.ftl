@@ -15,10 +15,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com.avatech.dahupt.${projectName?lower_case}")
 @MapperScan(basePackages = "com.avatech.dahupt.${projectName?lower_case}.repository.mapper")
-public class ${projectName?uncap_first}Application {
+public class ${projectName?cap_first}Application {
 
     public static void main(String[] args) {
-         SpringApplication.run(${projectName?uncap_first}Application.class, args);
+         SpringApplication.run(${projectName?cap_first}Application.class, args);
     }
 
 }

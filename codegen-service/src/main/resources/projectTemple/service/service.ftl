@@ -30,6 +30,7 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Long save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+        ${mapperObject.mapperObjName?uncap_first}.check();
         Long id;
         if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
             id = snowflakeIdWorker.nextId();
