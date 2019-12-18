@@ -128,7 +128,9 @@ public class DomainModelService  extends AbstractModelService {
             case bott_DocumentLines:return "BODocumentLine";
             case bott_MasterData:return "BOMasterData";
             case bott_MasterDataLines:return "BOMasterDataLine";
-            default:return "SimpleObject";
+            case bott_SimpleData:return "BOSimpleData";
+            case bott_SimpleDataLines:return "BOSimpleDataLine";
+            default:return "BOSimpleData";
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DomainModel Name="Sales" ShortName="IM">
+<DomainModel Name="SalesOrder" ShortName="IM">
     <Table Name="ava_sm_ordr" Description="销售订单" Type="bott_Document" PropertyName="SalesOrder">
         <Field Name="doc_date" Description="过账日期" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="PostingDate"  IsRequired="Yes"  IsSystem="Yes" FixedDataType="Date" />
         <Field Name="doc_due_date" Description="到期日" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="DeliveryDate"  IsSystem="Yes" FixedDataType="Date" />
@@ -24,7 +24,7 @@
 		<Field Name="payment_type" Description="付款方式" DataType="db_Alpha" SubType="st_None" EditSize="60" PropertyName="Payment" FixedDataType="String" />
 		<Field Name="amount" Description="订单金额" DataType="db_Float" SubType="st_Sum" EditSize="8" PropertyName="Amount"  IsRequired="Yes"  FixedDataType="BigDecimal" />
 		<Field Name="actual_amount" Description="商品金额" DataType="db_Float" SubType="st_Sum" EditSize="8" PropertyName="ActualAmount"  IsRequired="Yes"  FixedDataType="BigDecimal" />
-		<Field Name="IsSync" Description="是否生成单据" DataType="db_Alpha" SubType="st_None" EditSize="1" PropertyName="IsSync" FixedDataType="String" DefaultValue="N">
+		<Field Name="is_sync" Description="是否生成单据" DataType="db_Alpha" SubType="st_None" EditSize="1" PropertyName="IsSync" FixedDataType="String" DefaultValue="N">
 		   <ValidValue Value="Y" Description="是" />
 		   <ValidValue Value="N" Description="否" />
 		</Field>
@@ -41,8 +41,8 @@
 		<Field Name="price" Description="单价" DataType="db_Float" SubType="st_Price" EditSize="8" PropertyName="Price" FixedDataType="BigDecimal"  IsRequired="Yes" />
 		<Field Name="currency" Description="价格货币" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="PriceCurrency" FixedDataType="String" />
 		<Field Name="rate" Description="货币汇率" DataType="db_Float" SubType="st_Rate" EditSize="8" PropertyName="CurrencyRate" FixedDataType="BigDecimal" />
-		<Field Name="whsCode" Description="仓库代码" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="Warehouse" FixedDataType="String"  IsRequired="Yes" />
-		<Field Name="acctCode" Description="科目代码" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="AccountCode" FixedDataType="String" />
+		<Field Name="whs_code" Description="仓库代码" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="Warehouse" FixedDataType="String"  IsRequired="Yes" />
+		<Field Name="acct_code" Description="科目代码" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="AccountCode" FixedDataType="String" />
 		<Field Name="project" Description="项目代码" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="ProjectCode" FixedDataType="String" />
 		<Field Name="ocr_code1" Description="分配规则" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="DistributionRule1" FixedDataType="String" />
 		<Field Name="ocr_code2" Description="分配规则2" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="DistributionRule2" FixedDataType="String" />
@@ -50,7 +50,7 @@
 		<Field Name="ocr_code4" Description="分配规则4" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="DistributionRule4" FixedDataType="String" />
 		<Field Name="ocr_code5" Description="分配规则5" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="DistributionRule5" FixedDataType="String" />
     </Table>
-    <BusinessObject Code="AVA_SM_SALESORDER" Name="销售订单" TableName="ava_sm_ordr" ObjectType="boud_Document" CanCancel="Yes" CanClose="Yes" CanDelete="Yes" CanYearTransfer="Yes" ManageSeries="Yes" PropertyName="SalesOrder">
+    <BusinessObject Code="AVA_SM_SALESORDER" Name="销售订单" TableName="ava_sm_ordr" ObjectType="bott_Document" CanCancel="Yes" CanClose="Yes" CanDelete="Yes" CanYearTransfer="Yes" ManageSeries="Yes" PropertyName="SalesOrder">
 		<ChildTables>
 		   <ChildTable TableName="ava_sm_rdr1" />
 		</ChildTables>

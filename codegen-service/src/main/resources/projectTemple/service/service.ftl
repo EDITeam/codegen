@@ -20,7 +20,11 @@ import org.springframework.transaction.annotation.Transactional;
 */
 
 @Service
-public class ${mapperObject.mapperObjName}Service extends AbastractTransactionService<${mapperObject.mapperObjName}> {
+public class ${mapperObject.mapperObjName}Service <#rt>
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+extends AbastractTransactionService<${mapperObject.mapperObjName}> <#t>
+</#if>
+{<#lt>
 
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
@@ -28,9 +32,13 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
     SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
 
     @Transactional(rollbackFor = Exception.class)
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
     @Override
+</#if>
     public Long save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
         ${mapperObject.mapperObjName?uncap_first}.check();
+</#if>
         Long id;
         if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
             id = snowflakeIdWorker.nextId();
@@ -39,27 +47,37 @@ public class ${mapperObject.mapperObjName}Service extends AbastractTransactionSe
             id = ${mapperObject.mapperObjName?uncap_first}.getId();
         }
         ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
         if (true) {
             super.save(${mapperObject.mapperObjName?uncap_first});
         }
+</#if>
         return id;
     }
 
     @Transactional(rollbackFor = Exception.class)
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
     @Override
+</#if>
     public void update(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
         if (true) {
             super.update(${mapperObject.mapperObjName?uncap_first});
         }
+</#if>
     }
 
     @Transactional(rollbackFor = Exception.class)
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
     @Override
+</#if>
     public void delete(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
         if (true) {
             super.delete(${mapperObject.mapperObjName?uncap_first});
         }
+</#if>
     }
 }

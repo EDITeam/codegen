@@ -27,8 +27,8 @@
          </#if>
      </sql>
          </#list>
-
          <#list mapperObject.mapperObjectItems as mapperItem>
+
      <insert id="insert${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
          INSERT INTO ${quotation}${mapperItem.tableName}${quotation} (
           <#if mapperItem.tableLines?has_content>
@@ -59,6 +59,9 @@
          SELECT
          <include refid="${mapperItem.tableProperty?cap_first}Columns"/>
          FROM ${quotation}${mapperItem.tableName}${quotation} T0
+             <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" || mapperItem.tableType == "bott_SimpleDataLines">
+         WHERE T0.${quotation}id${quotation} = #{id}
+             </#if>
      </select>
 
      <update id="update${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
@@ -79,11 +82,11 @@
         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};
      </update>
 
-         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
+         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
      <delete id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
          UPDATE ${quotation}${mapperItem.tableName}${quotation} set
          ${quotation}is_delete${quotation} = 'Y'
-         WHERE ${quotation}id${quotation} = #${r"{"}Id${r"}"};
+         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};
      </delete>
         </#if>
          </#list>

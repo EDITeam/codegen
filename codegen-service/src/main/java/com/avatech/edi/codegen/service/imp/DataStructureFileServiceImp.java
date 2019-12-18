@@ -115,6 +115,7 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             for (Element childNode : childNodeList) {
                 businessObjectMap = new BusinessObjectMap();
                 businessObjectMap.setObjectCode(element1.attributeValue("Code"));
+                businessObjectMap.setObjectType(element1.attributeValue("ObjectType"));
                 businessObjectMap.setTableProName(element1.attributeValue("PropertyName"));
                 businessObjectMap.setTableName(element1.attributeValue("TableName"));
                 childTableName = childNode.attributeValue("TableName");

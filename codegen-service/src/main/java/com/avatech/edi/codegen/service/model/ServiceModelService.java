@@ -45,6 +45,7 @@ public class ServiceModelService extends AbstractModelService{
                 mapperObject.setMapperObjName(domainModel.getModelName());
                 mapperObject.setPackageName(String.format(ModelConstant.PROJECT_BASE_PACKAGE,modelParameter.getProjectNamePrefix()));
                 root.put("mapperObject", mapperObject);
+                root.put("businessObjectType",getBusinessObjectType(domainModel));
                 templateService.createTmpleFile(root
                         , modelParameter.getSourcesBasePath()
                                 .concat(File.separator)
@@ -106,6 +107,15 @@ public class ServiceModelService extends AbstractModelService{
 
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
+        }
+    }
+
+    private String getBusinessObjectType(DomainModel domainModel){
+        if(domainModel.getBusinessObjectMaps()!= null &&
+                domainModel.getBusinessObjectMaps().size() > 0){
+            return domainModel.getBusinessObjectMaps().get(0).getObjectType();
+        }else {
+            return domainModel.getTableList().get(0).getTableType().getName();
         }
     }
 }

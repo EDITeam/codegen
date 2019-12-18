@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DomainModel Name="UserCenter" ShortName="UC">
+<DomainModel Name="User" ShortName="UC">
   <Table Name="AVA_UC_OUSR" Description="用户" Type="bott_SimpleData" State="bots_BoModelOnly" PropertyName="User">
     <Field Name="tenant_code" Description="租户代码" DataType="db_Alpha" SubType="db_Alpha" EditSize="64" PropertyName="TenantCode" FixedDataType="String" IsRequired="Yes" JsonProperty="tenant_code" />
 	<Field Name="user_name" Description="用户名" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="UserName" FixedDataType="String" IsRequired="No" JsonProperty="user_name"/>

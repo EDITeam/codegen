@@ -58,7 +58,10 @@
     <select id="search${mapperItem.tableProperty?cap_first}s" resultMap="${mapperItem.tableProperty}Map">
         SELECT
         <include refid="${mapperItem.tableProperty?cap_first}Columns"/>
-        from ${quotation}${mapperItem.tableName}${quotation} T0
+        FROM ${quotation}${mapperItem.tableName}${quotation} T0
+        <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" || mapperItem.tableType == "bott_SimpleDataLines">
+        WHERE T0.${quotation}id${quotation} = #${r"{"}id${r"}"}
+        </#if>
     </select>
 
     <select id="search${mapperItem.tableProperty?cap_first}sByView" resultMap="${mapperItem.tableProperty}Map">
@@ -85,7 +88,7 @@
         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};
     </update>
 
-        <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
+        <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
     <delete id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
         UPDATE ${quotation}${mapperItem.tableName}${quotation} set
         ${quotation}IsDelete${quotation} = 'Y'

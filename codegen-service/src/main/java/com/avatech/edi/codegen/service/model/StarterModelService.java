@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.ProjectType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
 import com.avatech.edi.codegen.service.TemplateService;
@@ -47,10 +48,13 @@ public class StarterModelService extends AbstractModelService  {
                     , modelParameter.getSourcesBasePath().concat(File.separator).concat(StringUtils.capitalize(modelParameter.getProjectNamePrefix())).concat("Application.java")
                     ,"starter"
                     ,"application_starter.ftl");
-            templateService.createTmpleFile(map
-                    , modelParameter.getSourcesBasePath().concat(File.separator).concat("DahuptConsulServiceRegistry.java")
-                    ,"starter"
-                    ,"consulregistry.ftl");
+            if(modelParameter.getProjectStructure().getProjectType().equals(ProjectType.DAHUPT_APPLICATION)||
+                    modelParameter.getProjectStructure().getProjectType().equals(ProjectType.DAHUPT_SERVICE)) {
+                templateService.createTmpleFile(map
+                        , modelParameter.getSourcesBasePath().concat(File.separator).concat("DahuptConsulServiceRegistry.java")
+                        , "starter"
+                        , "consulregistry.ftl");
+            }
 
             String resourceFile = modelParameter.getRootPath()
                     .concat(File.separator)

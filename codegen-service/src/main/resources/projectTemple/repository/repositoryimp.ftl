@@ -74,12 +74,12 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                 <#list modelObject.tableList as table>
                 <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                     <#list table.businessObjectMaps as tableMap>
-                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView();
+                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView(${modelObject.modelName?uncap_first}.getId());
                      <#--查找孙子表-->
                         <#list modelObject.businessObjectMaps as boMap>
                             <#if boMap.tableName == tableMap.childTableName>
                 for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
-                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView();
+                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView(${tableMap.childTableProName?uncap_first}.getId());
                     ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }
                             </#if>
