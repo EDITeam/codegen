@@ -7,6 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import ${mapperObject.packageName}.mapper.TransactionNoticeMapper;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
 import com.avatech.edi.common.data.EmYesOrNo;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,11 @@ import java.util.List;
 */
 
 @Component
-public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObject.mapperObjName}Repository{
+public class ${mapperObject.mapperObjName}RepositoryImp <#rt>
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+extends AbastractTransactionService<${mapperObject.mapperObjName}> <#t>
+</#if>
+implements ${mapperObject.mapperObjName}Repository{<#lt>
 <#if mapperObject.mapperObjectItems?has_content>
 
     private final Logger logger = LoggerFactory.getLogger(${mapperObject.mapperObjName}RepositoryImp.class);
@@ -32,6 +38,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
@@ -97,6 +104,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
@@ -121,6 +129,11 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
+    <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+                super.update(${mapperObject.mapperObjName?uncap_first});
+            }
+    </#if>
             return rowNumber;
         }catch(Exception e){
             logger.error("update ${modelObject.modelName?uncap_first} error:",e);
@@ -128,10 +141,16 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
             int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+    <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+                super.delete(${mapperObject.mapperObjName?uncap_first});
+            }
+    </#if>
             return rowNumber;
         }catch(Exception e){
             logger.error("delete ${modelObject.modelName?uncap_first} error:",e);

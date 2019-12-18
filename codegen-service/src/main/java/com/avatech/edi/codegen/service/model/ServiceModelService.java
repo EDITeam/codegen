@@ -53,12 +53,6 @@ public class ServiceModelService extends AbstractModelService{
                         ,"service"
                         , "service.ftl");
             }
-            templateService.createTmpleFile(root
-                    , modelParameter.getSourcesBasePath()
-                            .concat(File.separator)
-                            .concat("AbastractTransactionService.java")
-                    ,"service"
-                    , "AbastractTransactionService.ftl");
 
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);

@@ -109,6 +109,12 @@ public class RepositoryModelService extends AbstractModelService{
                         ,"repository"
                         , "unit_test.ftl");
             }
+            templateService.createTmpleFile(root
+                    , modelParameter.getSourcesBasePath()
+                            .concat(File.separator)
+                            .concat("AbastractTransactionService.java")
+                    ,"repository"
+                    , "AbastractTransactionService.ftl");
             // create resources
             String resourceFile = modelParameter.getRootPath()
                     .concat(File.separator)
@@ -204,6 +210,7 @@ public class RepositoryModelService extends AbstractModelService{
                     , mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java"
                     ,"repository"
                     , "repository.ftl");
+            root.put("businessObjectType",getBusinessObjectType(domainModel));
             templateService.createTmpleFile(root
                     , mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java"
                     ,"repository"
@@ -214,4 +221,12 @@ public class RepositoryModelService extends AbstractModelService{
         }
     }
 
+    private String getBusinessObjectType(DomainModel domainModel){
+        if(domainModel.getBusinessObjectMaps()!= null &&
+                domainModel.getBusinessObjectMaps().size() > 0){
+            return domainModel.getBusinessObjectMaps().get(0).getObjectType();
+        }else {
+            return domainModel.getTableList().get(0).getTableType().getName();
+        }
+    }
 }
