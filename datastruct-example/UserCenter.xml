@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DomainModel Name="UserCenter" ShortName="UC">
+  <Table Name="AVA_UC_OUSR" Description="用户" Type="bott_SimpleData" State="bots_BoModelOnly" PropertyName="User">
+    <Field Name="tenant_code" Description="租户代码" DataType="db_Alpha" SubType="db_Alpha" EditSize="64" PropertyName="TenantCode" FixedDataType="String" IsRequired="Yes" JsonProperty="tenant_code" />
+	<Field Name="user_name" Description="用户名" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="UserName" FixedDataType="String" IsRequired="No" JsonProperty="user_name"/>
+	<Field Name="password" Description="密码" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="Password" IsSystem="Yes" FixedDataType="String" IsRequired="Yes"  IsPrimaryKey="Yes" JsonProperty="password"/>
+    <Field Name="nick_name" Description="昵称" DataType="db_Alpha" SubType="st_None" EditSize="60" PropertyName="NickName" IsSystem="Yes" FixedDataType="String" JsonProperty="nick_name"/>
+    <Field Name="phone_no" Description="手机号" DataType="db_Alpha" SubType="st_None" EditSize="20" PropertyName="PhoneNo" IsSystem="Yes" FixedDataType="String" IsRequired="Yes"  JsonProperty="phone_no"/>
+	<Field Name="mail" Description="邮箱地址" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="Mail" IsSystem="Yes" FixedDataType="String" IsRequired="Yes"  JsonProperty="mail"/>
+  </Table>
+  <BusinessObject Code="AVA_UC_OUSR" Name="物料清单" TableName="ava_uc_user" ObjectType="bott_SimpleData" CanCancel="No" CanClose="No" CanDelete="No" CanYearTransfer="Yes" ManageSeries="Yes" PropertyName="User">
+	  <ChildTables>
+	  </ChildTables>
+  </BusinessObject>
+</DomainModel>
