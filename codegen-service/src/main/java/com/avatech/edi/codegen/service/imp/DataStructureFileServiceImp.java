@@ -96,6 +96,8 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
                         field.attributeValue("Name").toLowerCase():field.attributeValue("JsonProperty"));
                 tableLine.setFieldSize(Integer.valueOf(field.attributeValue("EditSize")));
                 tableLine.setKey(false);
+                tableLine.setRequired(getEnumYesOrNo(field.attributeValue("IsRequired")));
+
                 tableLine.setProName(field.attributeValue("PropertyName"));
                 tableLine.setTableProName(element1.attributeValue("PropertyName"));
                 tableLineList.add(tableLine);
@@ -144,7 +146,19 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
             case "bott_DocumentLines":return TableType.bott_DocumentLines;
             case "bott_MasterData":return TableType.bott_MasterData;
             case "bott_MasterDataLines":return TableType.bott_MasterDataLines;
+            case "bott_SimpleData":return TableType.bott_SimpleData;
+            case "bott_SimpleDataLines":return TableType.bott_SimpleDataLines;
             default:throw new BaseException("401","invalid table type");
         }
+    }
+
+    private boolean getEnumYesOrNo(String value){
+        if(StringUtils.isEmpty(value)){
+            return false;
+        }
+        if(value.toUpperCase().equals("YES")){
+            return true;
+        }
+        return false;
     }
 }

@@ -14,7 +14,7 @@
     </parameterMap>
 
     <select id="callTransactionNotice" statementType="CALLABLE" parameterMap="paramMap" resultMap="ResultMap">
-    ${r"{"}call AVA_SP_TRANSACTIONNOTIFICATION(
+    ${r"{"}call ava_sp_transactionnotification(
             #${r"{"}object_code, jdbcType = NVARCHAR, mode = IN${r"}"},
             #${r"{"}transaction_type, jdbcType = NCHAR, mode = IN${r"}"},
             #${r"{"}table_name, jdbcType = NVARCHAR, mode = IN${r"}"},
