@@ -39,9 +39,8 @@ public class ClientModelService extends AbstractModelService  {
                 map.put("domainModel", domainModel);
                 map.put("projectName", modelParameter.getProjectNamePrefix());
                 map.put("serviceName", modelParameter.getProjectNamePrefix()
-                        .concat(".")
-                        .concat(modelParameter.getProjectStructure().getServiceName()
-                                .concat(".provider")));
+                        .concat("-")
+                        .concat(modelParameter.getProjectStructure().getServiceName()));
                 templateService.createTmpleFile(map
                         , modelParameter.getSourcesBasePath().concat(File.separator).concat(domainModel.getModelName().concat("V1Client.java"))
                         , "feignclient"

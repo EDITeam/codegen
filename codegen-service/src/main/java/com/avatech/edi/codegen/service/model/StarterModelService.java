@@ -43,7 +43,9 @@ public class StarterModelService extends AbstractModelService  {
             map.put("projectName",modelParameter.getProjectNamePrefix());
             map.put("applicationname","EDI");
             map.put("projectInfo",modelParameter.getProjectStructure());
-            map.put("serviceName",modelParameter.getProjectNamePrefix());
+            map.put("serviceName",modelParameter.getProjectNamePrefix()
+                        + "-"
+                        +modelParameter.getProjectStructure().getServiceName());
             templateService.createTmpleFile(map
                     , modelParameter.getSourcesBasePath().concat(File.separator).concat(StringUtils.capitalize(modelParameter.getProjectNamePrefix())).concat("Application.java")
                     ,"starter"
