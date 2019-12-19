@@ -29,9 +29,11 @@
                 <#if tableLines.required >
                 NOT NULL <#t>
                 </#if>
-            COMMENT '${tableLines.proDesc}'<#t>
-            <#if tableLines?has_next>,</#if><#lt>
+            COMMENT '${tableLines.proDesc}',<#t>
             </#list>
+            <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
+            PRIMARY KEY (`id`)
+            </#if>
         </#if>
     );
     CREATE VIEW `${tables.viewName?lower_case}` AS SELECT
