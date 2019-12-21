@@ -35,22 +35,34 @@
           <#if mapperItem.tableLines?has_content>
           ${quotation}id${quotation},
              <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-             ${quotation}object_code${quotation},
-             ${quotation}is_delete${quotation},
+              ${quotation}object_code${quotation},
              </#if>
+              <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
+              ${quotation}create_date${quotation},
+              ${quotation}creator${quotation},
+              ${quotation}modifier${quotation},
+              ${quotation}modify_date${quotation},
+              ${quotation}is_delete${quotation},
+              </#if>
               <#list mapperItem.tableLines as mapperItemLine>
               ${quotation}${mapperItemLine.fieldName}${quotation}<#if mapperItemLine?has_next>,</#if>
               </#list>
           </#if>)
          values(
           <#if mapperItem.tableLines?has_content>
-                  #${r"{"}id${r"}"},
+              #${r"{"}id${r"}"},
               <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-                  #${r"{"}objectCode${r"}"},
-                  #${r"{"}isDelete.key${r"}"},
+              #${r"{"}objectCode${r"}"},
+              </#if>
+              <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
+              #${r"{"}createDate${r"}"},
+              #${r"{"}creator${r"}"},
+              #${r"{"}modifier${r"}"},`
+              #${r"{"}modifyDate${r"}"},
+              #${r"{"}isDelete.key${r"}"},
               </#if>
               <#list mapperItem.tableLines as mapperItemLine>
-                  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}<#if mapperItemLine?has_next>,</#if>
+              #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}<#if mapperItemLine?has_next>,</#if>
               </#list>
           </#if>
          )

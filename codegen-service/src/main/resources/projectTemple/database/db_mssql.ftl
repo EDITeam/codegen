@@ -15,8 +15,8 @@ CREATE TABLE ${tables.tableName?lower_case}(
     "is_delete" char(1) default N'N',
     "create_date" date NOT NULL ,
     "creator" varchar(60) NOT NULL,
-    "modify_date" date NOT NULL ,
-    "modifier" varchar(60) NOT NULL ,
+    "modify_date" date,
+    "modifier" varchar(60) ,
     </#if>
         <#list tables.tableLines as tableLines>
             <#if tableLines.fieldType == "NVARCHAR" ||tableLines.fieldType == "VARCHAR"||tableLines.fieldType == "NCHAR" ||tableLines.fieldType == "CHAR">

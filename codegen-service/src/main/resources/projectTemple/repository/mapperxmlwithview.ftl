@@ -38,6 +38,12 @@
         ${quotation}id${quotation},
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
             ${quotation}object_code${quotation},
+            </#if>
+            <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
+            ${quotation}create_date${quotation},
+            ${quotation}creator${quotation},
+            ${quotation}modifier${quotation},
+            ${quotation}modify_date${quotation},
             ${quotation}is_delete${quotation},
             </#if>
             <#list mapperItem.tableLines as mapperItemLine>
@@ -49,6 +55,12 @@
                 #${r"{"}id${r"}"},
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
                 #${r"{"}objectCode${r"}"},
+            </#if>
+            <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
+                #${r"{"}createDate${r"}"},
+                #${r"{"}creator${r"}"},
+                #${r"{"}modifier${r"}"},
+                #${r"{"}modifyDate${r"}"},
                 #${r"{"}isDelete.key${r"}"},
             </#if>
             <#list mapperItem.tableLines as mapperItemLine>
@@ -78,7 +90,7 @@
             <set>
         <#if mapperItem.tableLines?has_content>
             <#list mapperItem.tableLines as mapperItemLine>
-            <if test="${mapperItemLine.fieldName} != null">
+            <if test="${mapperItemLine.proName?uncap_first} != null">
             ${quotation}${mapperItemLine.fieldName}${quotation} =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"},
             </if>
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
@@ -94,7 +106,7 @@
         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
     <delete id="delete${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
         UPDATE ${quotation}${mapperItem.tableName}${quotation} set
-        ${quotation}IsDelete${quotation} = 'Y'
+        ${quotation}is_delete${quotation} = 'Y'
         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};
     </delete>
         </#if>
