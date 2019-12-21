@@ -29,10 +29,10 @@
                 <#if tableLines.required >
                 NOT NULL <#t>
                 </#if>
-            COMMENT '${tableLines.proDesc}',<#t>
+            COMMENT '${tableLines.proDesc}',<#lt>
             </#list>
             <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
-            PRIMARY KEY (`id`)
+            PRIMARY KEY ("id")
             </#if>
         </#if>
     );

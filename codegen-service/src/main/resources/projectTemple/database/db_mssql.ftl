@@ -12,11 +12,11 @@ CREATE TABLE ${tables.tableName?lower_case}(
     "object_code" varchar(60) NOT NULL COMMENT '对象编码',
     </#if>
     <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
-    "is_delete" char(1) default N'N' COMMENT '删除标志 Y:已删除，N：未删除',
-    "create_date" timestamp NOT NULL COMMENT '创建时间',
-    "creator" varchar(60) NOT NULL COMMENT '创建人',
-    "modify_date" timestamp NOT NULL COMMENT '最后更新时间',
-    "modifier" varchar(60) NOT NULL COMMENT '最后更新人',
+    "is_delete" char(1) default N'N',
+    "create_date" date NOT NULL ,
+    "creator" varchar(60) NOT NULL,
+    "modify_date" date NOT NULL ,
+    "modifier" varchar(60) NOT NULL ,
     </#if>
         <#list tables.tableLines as tableLines>
             <#if tableLines.fieldType == "NVARCHAR" ||tableLines.fieldType == "VARCHAR"||tableLines.fieldType == "NCHAR" ||tableLines.fieldType == "CHAR">
@@ -29,10 +29,10 @@ CREATE TABLE ${tables.tableName?lower_case}(
             <#if tableLines.required >
     NOT NULL <#t>
             </#if>
-    COMMENT '${tableLines.proDesc}',<#t>
+    COMMENT '${tableLines.proDesc}',<#lt>
         </#list>
         <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
-    PRIMARY KEY (`id`)
+    PRIMARY KEY ("id")
         </#if>
     </#if>
 );
