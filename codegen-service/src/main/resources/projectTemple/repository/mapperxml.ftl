@@ -85,11 +85,11 @@
              <if test="${mapperItemLine.proName} != null">
              ${quotation}${mapperItemLine.fieldName}${quotation} =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}<#if mapperItemLine?has_next>,</#if>
              </if>
+             </#list>
              <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
              ${quotation}modifier${quotation} = #${r"{"}modifier${r"}"},
              ${quotation}modify_date${quotation} = #${r"{"}modifyDate${r"}"}
              </#if>
-             </#list>
          </#if>
             </set>
         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};
