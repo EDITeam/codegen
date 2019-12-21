@@ -7,7 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
-import ${mapperObject.packageName}.mapper.TransactionNoticeMapper;
+import ${mapperObject.packageName}.repository.AbastractTransactionService;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
 import com.avatech.edi.common.data.EmYesOrNo;
