@@ -29,9 +29,11 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     @Autowired
     private ${mapperObject.mapperObjName}Service ${mapperObject.mapperObjName?uncap_first}Service;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     private ${mapperObject.mapperObjName} get${mapperObject.mapperObjName}(){
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = new ${mapperObject.mapperObjName}();
-
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${mapperObject.mapperObjName?uncap_first};
     }
 

@@ -35,7 +35,7 @@ public class ${domainModel.modelName}V1APITest {
 
     private ${domainModel.modelName} get${domainModel.modelName}(){
         ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
-        ${domainModel.modelName?uncap_first}.setId(1L);
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${domainModel.modelName?uncap_first};
     }
 
