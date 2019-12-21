@@ -10,13 +10,14 @@
         <result column="${mapperItemLine.fieldName}" property="${mapperItemLine.proName?uncap_first}" jdbcType="${mapperItemLine.fieldType}"/>
             </#list>
         </#if>
-     </resultMap>
+    </resultMap>
         </#list>
     </#if>
 
      <#if mapperObject.mapperObjectItems?has_content>
          <#list mapperObject.mapperObjectItems as mapperItem>
      <sql id="${mapperItem.tableProperty?cap_first}Columns">
+         T0.${quotation}id${quotation},
          <#if mapperItem.tableLines?has_content>
              <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
          T0.${quotation}object_code${quotation},
