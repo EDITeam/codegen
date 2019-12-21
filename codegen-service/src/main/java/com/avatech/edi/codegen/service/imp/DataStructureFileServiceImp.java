@@ -45,6 +45,9 @@ public class DataStructureFileServiceImp implements IDataStructureFileService {
         List<DomainModel> domainModels = new ArrayList<>();
 
         for (File item : dataFiles) {
+            if(!item.getName().endsWith(".xml")){
+                continue;
+            }
             try {
                 StringWriter writer = new StringWriter();
                 String xmlStr = IOUtils.toString(item.toURI(),"UTF-8");
