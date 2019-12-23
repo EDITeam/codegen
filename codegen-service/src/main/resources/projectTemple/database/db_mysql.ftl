@@ -23,7 +23,7 @@
             <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
             `is_delete` char(1) default N'N' COMMENT '删除标志 Y:已删除，N：未删除',
             `create_date` timestamp NOT NULL COMMENT '创建时间',
-            `creator` varchar(60) NOT NULL COMENT '创建人',
+            `creator` varchar(60) NOT NULL COMMENT '创建人',
             `modify_date` timestamp COMMENT '最后修改时间',
             `modifier` varchar(60) COMMENT '最后修改人',
             </#if>

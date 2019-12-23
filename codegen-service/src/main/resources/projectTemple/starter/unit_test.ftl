@@ -6,6 +6,7 @@ import com.avatech.edi.model.dto.Result;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,11 @@ public class ${domainModel.modelName}V1APITest {
     @Autowired
     MockMvc mockMvc;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     private ${domainModel.modelName} get${domainModel.modelName}(){
         ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
-        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
+        ${domainModel.modelName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${domainModel.modelName?uncap_first};
     }
 
