@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.project;
 
+import com.avatech.edi.codegen.data.ModelEnum;
 import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
@@ -35,8 +36,6 @@ public class ProjectFactoryService implements IProjectService{
     @Autowired
     private DahubServiceProjectBuilder dahubServiceProjectBuilder;
 
-    @Autowired
-    private APIModelService apiModelService;
 
     @Autowired
     private CoreModelService coreModelService;
@@ -44,8 +43,6 @@ public class ProjectFactoryService implements IProjectService{
     @Autowired
     private DomainModelService domainModelService;
 
-    @Autowired
-    private StarterModelService starterModelService;
 
     @Autowired
     private ServiceModelService serviceModelService;
@@ -77,15 +74,6 @@ public class ProjectFactoryService implements IProjectService{
         coreModelService.createTestsFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
-        if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.HTTP)){
-            modelParameter = new APIModelParameter(projectStructure);
-            apiModelService.createPOM(modelParameter);
-            apiModelService.createSourcesFile(domainModels,modelParameter);
-            apiModelService.createTestsFile(domainModels,modelParameter);
-            projectStructure.getModelNames().add(modelParameter.getModelName());
-        }else if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.SOAP)){
-
-        }
 
         modelParameter = new DomainModelParameter(projectStructure);
         modelParameter.setProjectStructure(projectStructure);
@@ -101,11 +89,7 @@ public class ProjectFactoryService implements IProjectService{
         serviceModelService.createTestsFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
-        modelParameter = new StarterModelParameter(projectStructure);
-        starterModelService.createPOM(modelParameter);
-        starterModelService.createSourcesFile(domainModels,modelParameter);
-        starterModelService.createTestsFile(domainModels,modelParameter);
-        projectStructure.getModelNames().add(modelParameter.getModelName());
+
 
         modelParameter = new RepositoryModelParameter(projectStructure);
         repositoryModelService.createPOM(modelParameter);
@@ -113,12 +97,7 @@ public class ProjectFactoryService implements IProjectService{
         repositoryModelService.createTestsFile(domainModels,modelParameter);
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
-        //调整项目名称
-        projectStructure.setProjectName(modelParameter.getProjectName());
-        createProjectPOM(projectStructure);
 
-        modelParameter.setProjectStructure(projectStructure);
-        createAPIDoc(domainModels,modelParameter);
     }
 
     private void createAPIDoc(List<DomainModel> domainModels,BaseModelParameter modelParameter) {
@@ -150,13 +129,22 @@ public class ProjectFactoryService implements IProjectService{
 
         switch (projectStructure.getProjectType()) {
             case DAHUPT_APPLICATION:
-                dahubApplicationProjectBuilder.createProject(domainModels, projectStructure);
+                dahubApplicationProjectBuilder.createProject(domainModels, projectStructure);break;
             case DAHUPT_SERVICE:
-                dahubServiceProjectBuilder.createProject(domainModels, projectStructure);
+                dahubServiceProjectBuilder.createProject(domainModels, projectStructure);break;
             case SBO_PROJECT:
-                sboProjectBuilder.createProject(domainModels, projectStructure);
+                sboProjectBuilder.createProject(domainModels, projectStructure);break;
             case SIMPLE_SERVICE:
-                simpleProjectBuilder.createProject(domainModels, projectStructure);
+                simpleProjectBuilder.createProject(domainModels, projectStructure);break;
         }
+
+        BaseModelParameter modelParameter = new DomainModelParameter(projectStructure);
+
+        //调整项目名称
+        projectStructure.setProjectName(modelParameter.getProjectName());
+        createProjectPOM(projectStructure);
+
+        modelParameter.setProjectStructure(projectStructure);
+        createAPIDoc(domainModels,modelParameter);
     }
 }

@@ -23,21 +23,21 @@ public class ${domainModel.modelName}V1API {
     private final Logger logger = LoggerFactory.getLogger(${domainModel.modelName}V1API.class);
 
     @Autowired
-    private ${domainModel.modelName}Service ${domainModel.modelName}Service;
+    private ${domainModel.modelName}Service ${domainModel.modelName?uncap_first}Service;
 
     @Autowired
-    private ${domainModel.modelName}Repository ${domainModel.modelName}Repository;
+    private ${domainModel.modelName}Repository ${domainModel.modelName?uncap_first}Repository;
 
     @GetMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody List<${domainModel.modelName}> get${domainModel.modelName}(){
-        return ${domainModel.modelName}Repository.fetch${domainModel.modelName}s();
+        return ${domainModel.modelName?uncap_first}Repository.fetch${domainModel.modelName}s();
     }
 
     @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            ${domainModel.modelName}Service.save(${domainModel.modelName?uncap_first});
-            return (new Result()).ok();
+            Long id = ${domainModel.modelName?uncap_first}Service.save(${domainModel.modelName?uncap_first});
+            return (new Result()).ok(id);
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
         }catch(Exception e){
@@ -49,7 +49,7 @@ public class ${domainModel.modelName}V1API {
     public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id){
         try{
             ${domainModel.modelName?uncap_first}.setId(id);
-            ${domainModel.modelName}Service.update(${domainModel.modelName?uncap_first});
+            ${domainModel.modelName?uncap_first}Service.update(${domainModel.modelName?uncap_first});
             return (new Result()).ok();
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
@@ -58,12 +58,12 @@ public class ${domainModel.modelName}V1API {
         }
     }
 
-    @DeleteMapping("${domainModel.modelName?lower_case}/}{id}")
+    @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
     public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
         try{
             ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
             ${domainModel.modelName?uncap_first}.setId(id);
-            ${domainModel.modelName}Service.delete(${domainModel.modelName?uncap_first});
+            ${domainModel.modelName?uncap_first}Service.delete(${domainModel.modelName?uncap_first});
             return (new Result()).ok();
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());

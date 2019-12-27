@@ -46,6 +46,7 @@ public class BaseProjectParameter {
     }
 
     private void init(ProjectStructure projectStructure){
+        setProjectStructure(projectStructure);
         setRootPath(projectStructure.getProjectFilePath() + File.separator + projectStructure.getProjectName().toLowerCase());
         setProjectName(projectStructure.getProjectName().toLowerCase().concat(getProjectNameSuffix(projectStructure)));
     }

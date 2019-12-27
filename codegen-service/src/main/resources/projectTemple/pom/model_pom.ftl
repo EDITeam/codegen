@@ -19,8 +19,8 @@
         </dependency>
         <dependency>
             <groupId>com.avatech.edi</groupId>
-            <artifactId>edi-freamwork-model</artifactId>
-            <version>1.0.0.01_alpha</version>
+            <artifactId>edi-framework-model</artifactId>
+            <version>1.0.0.02_alpha</version>
         </dependency>
     </dependencies>
 

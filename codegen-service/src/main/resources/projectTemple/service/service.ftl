@@ -9,6 +9,7 @@ import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_c
 import ${mapperObject.packageName}.repository.${mapperObject.mapperObjName}Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.BaseException;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,35 +20,33 @@ import org.springframework.transaction.annotation.Transactional;
 */
 
 @Service
-public class ${mapperObject.mapperObjName}Service extends AbastractTransactionService<${mapperObject.mapperObjName}> {
+public class ${mapperObject.mapperObjName}Service {
 
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
 
-    @Transactional
-    @Override
-    public void save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
-        ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
-        if (true) {
-            super.save(${mapperObject.mapperObjName?uncap_first});
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
+    public Long save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+        ${mapperObject.mapperObjName?uncap_first}.check();
+</#if>
+        Long id;
+        if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
+            id = snowflakeIdWorker.nextId();
+            ${mapperObject.mapperObjName?uncap_first}.setId(id);
+        }else{
+            id = ${mapperObject.mapperObjName?uncap_first}.getId();
         }
+        ${mapperObject.mapperObjName?uncap_first}Repository.save${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
+        return id;
     }
 
-    @Transactional
-    @Override
     public void update(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.update${mapperObject.mapperObjName?cap_first}(${mapperObject.mapperObjName?uncap_first});
-        if (true) {
-            super.update(${mapperObject.mapperObjName?uncap_first});
-        }
     }
 
-    @Transactional
-    @Override
     public void delete(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
         ${mapperObject.mapperObjName?uncap_first}Repository.delete${mapperObject.mapperObjName}(${mapperObject.mapperObjName?uncap_first});
-        if (true) {
-            super.delete(${mapperObject.mapperObjName?uncap_first});
-        }
     }
 }

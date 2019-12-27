@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DomainModel Name="Materials" ShortName="MM">
+	<Table Name="ava_mm_material" Description="物料主数据" Type="bott_MasterData" State="bots_BoModelOnly" PropertyName="Materials">
+		<Field Name="item_code" Description="物料编号" DataType="db_Alpha" SubType="st_None" EditSize="20" PropertyName="ItemCode" FixedDataType="String"  IsRequired="Yes" />
+		<Field Name="item_name" Description="物料名称" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="ItemName" FixedDataType="String"  IsRequired="Yes" />
+		<Field Name="codebars" Description="条形码" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="CodeBars" FixedDataType="String"  IsRequired="Yes" />
+		<Field Name="weight" Description="重量" DataType="db_Float" SubType="st_Quantity" EditSize="8" PropertyName="Weight" FixedDataType="BigDecimal" />
+	</Table>
+	<BusinessObject Code="AVA_MM_MATERIAL" Name="物料清单" TableName="ava_mm_material" ObjectType="bott_MasterData" CanCancel="No" CanClose="No" CanDelete="No" CanYearTransfer="Yes" ManageSeries="Yes" PropertyName="Materials">
+		<ChildTables>
+		</ChildTables>
+    </BusinessObject>
+</DomainModel>

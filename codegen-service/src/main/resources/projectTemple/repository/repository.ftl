@@ -20,7 +20,7 @@ public interface ${mapperObject.mapperObjName}Repository{
     /**
     * 保存
     **/
-    void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
+    int save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 
     /**
     * 查询
@@ -30,11 +30,11 @@ public interface ${mapperObject.mapperObjName}Repository{
     /**
     * 更新
     **/
-    void update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
+    int update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 
     /**
     * 删除
     **/
-    void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
+    int delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 </#if>
 }

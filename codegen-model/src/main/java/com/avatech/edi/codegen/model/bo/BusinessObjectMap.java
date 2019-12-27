@@ -13,6 +13,8 @@ public class BusinessObjectMap {
 
     private String objectCode;
 
+    private String objectType;
+
     private String childTableName;
 
     private String childTableProName;
@@ -57,5 +59,13 @@ public class BusinessObjectMap {
 
     public void setChildTableProName(String childTableProName) {
         this.childTableProName = childTableProName;
+    }
+
+    public String getObjectType() {
+        return objectType;
+    }
+
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
     }
 }

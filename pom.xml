@@ -23,6 +23,20 @@
     <name>codegen</name>
     <description>Demo project for Spring Boot</description>
 
+    <repositories>
+        <repository>
+            <id>edi.maven</id>
+            <name>EDI Maven Repository</name>
+            <url>http://47.92.196.35:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

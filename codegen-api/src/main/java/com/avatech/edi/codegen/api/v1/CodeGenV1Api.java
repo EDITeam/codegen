@@ -4,12 +4,12 @@ import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.ProjectStructure;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.project.IProjectService;
-import com.avatech.edi.codegen.common.StringUtils;
 import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.data.Dictionary;
 import com.avatech.edi.codegen.data.ProjectType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

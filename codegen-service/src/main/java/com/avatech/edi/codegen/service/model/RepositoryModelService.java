@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.DataBaseType;
 import com.avatech.edi.codegen.exception.BusinessServiceException;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.Table;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class RepositoryModelService extends AbstractModelService{
             for (DomainModel domainModel : domainModels) {
                 mapperObject = getMapperObject(domainModel, modelParameter);
                 mapperObject.setMapperApplicationName(modelParameter.getProjectNamePrefix());
-                createMapperResource(mapperObject);
+                createMapperResource(mapperObject,modelParameter.getProjectStructure().getDataBaseType());
                 mapperObject.setPackageName(modelParameter.getModelBasePakage().concat(".").concat("mapper"));
                 createMapper(mapperObject);
                 mapperObject.setFilePath(modelParameter.getSourcesBasePath());
@@ -52,6 +54,13 @@ public class RepositoryModelService extends AbstractModelService{
             }
 
             createTransactionMapper(modelParameter);
+
+            // create resources
+            String resourceFile = modelParameter.getRootPath()
+                    .concat(File.separator)
+                    .concat(ModelConstant.MODEL_RESOURCES_BASE_PATH.replace(".",File.separator));
+            new File(resourceFile).mkdir();
+
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }
@@ -75,6 +84,49 @@ public class RepositoryModelService extends AbstractModelService{
     public void createTestsFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createTestsFile(domainModels,modelParameter);
+            HashMap root = new HashMap();
+            root.put("projectName",modelParameter.getProjectNamePrefix());
+
+            String filePath = modelParameter.getTestsBasePath();
+            templateService.createTmpleFile(root
+                    ,filePath+"/"+ StringUtils.capitalize(modelParameter.getProjectNamePrefix()) +"RepositoryApplication.java"
+                    ,"repository"
+                    ,"unit_application.ftl");
+
+            MapperObject mapperObject;
+            for (DomainModel domainModel : domainModels) {
+                mapperObject = getMapperObject(domainModel, modelParameter);
+                mapperObject.setMapperApplicationName(modelParameter.getProjectNamePrefix());
+                mapperObject.setPackageName(modelParameter.getModelBasePakage().concat(".").concat("mapper"));
+                mapperObject.setFilePath(modelParameter.getSourcesBasePath());
+                mapperObject.setPackageName(modelParameter.getModelBasePakage());
+                createRepository(domainModel, mapperObject);
+                root = new HashMap();
+                root.put("mapperObject", mapperObject);
+                root.put("modelObject",domainModel);
+                templateService.createTmpleFile(root
+                        , modelParameter.getTestsBasePath() + "/" + StringUtils.capitalize(mapperObject.getMapperObjName()) + "RepositoryImpTest.java"
+                        ,"repository"
+                        , "unit_test.ftl");
+            }
+            templateService.createTmpleFile(root
+                    , modelParameter.getSourcesBasePath()
+                            .concat(File.separator)
+                            .concat("AbastractTransactionService.java")
+                    ,"repository"
+                    , "AbastractTransactionService.ftl");
+            // create resources
+            String resourceFile = modelParameter.getRootPath()
+                    .concat(File.separator)
+                    .concat(ModelConstant.MODEL_TESTS_RESOURCES_BASE_PATH.replace(".",File.separator));
+            new File(resourceFile).mkdir();
+
+            root.put("projectInfo",modelParameter.getProjectStructure());
+            templateService.createTmpleFile(root
+                    ,resourceFile.concat(File.separator).concat("application.yml")
+                    ,"repository"
+                    ,"application_resource.ftl");
+
         } catch (IOException e) {
             logger.error("创建测试文件异常:",e);
         }
@@ -95,7 +147,7 @@ public class RepositoryModelService extends AbstractModelService{
                 ,"mapperwithview.ftl");
     }
 
-    private void createMapperResource(MapperObject mapperObject){
+    private void createMapperResource(MapperObject mapperObject, DataBaseType dataBaseType){
         // TODO 创建文件夹
         String mapperFilePath = mapperObject.getFilePath();
         File file = new File(mapperFilePath);
@@ -103,6 +155,12 @@ public class RepositoryModelService extends AbstractModelService{
 
         // TODO 创建mapper类
         HashMap root = new HashMap();
+
+        if(dataBaseType.equals(DataBaseType.MYSQL)){
+            root.put("quotation","`");
+        }else{
+            root.put("quotation",'"');
+        }
         mapperObject.setPackageName(mapperObject.getPackageName() + "."+mapperObject.getMapperObjName()+"Mapper");
         root.put("mapperObject",mapperObject);
         templateService.createTmpleFile(root
@@ -152,6 +210,7 @@ public class RepositoryModelService extends AbstractModelService{
                     , mapperFilePath + "/" + mapperObject.getMapperObjName() + "Repository.java"
                     ,"repository"
                     , "repository.ftl");
+            root.put("businessObjectType",getBusinessObjectType(domainModel));
             templateService.createTmpleFile(root
                     , mapperFilePath + "/imp/" + mapperObject.getMapperObjName()  + "RepositoryImp.java"
                     ,"repository"
@@ -162,4 +221,12 @@ public class RepositoryModelService extends AbstractModelService{
         }
     }
 
+    private String getBusinessObjectType(DomainModel domainModel){
+        if(domainModel.getBusinessObjectMaps()!= null &&
+                domainModel.getBusinessObjectMaps().size() > 0){
+            return domainModel.getBusinessObjectMaps().get(0).getObjectType();
+        }else {
+            return domainModel.getTableList().get(0).getTableType().getName();
+        }
+    }
 }

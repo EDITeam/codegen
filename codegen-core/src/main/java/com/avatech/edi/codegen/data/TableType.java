@@ -13,13 +13,17 @@ public enum TableType {
     bott_Document(1,"bott_Document"),
     bott_DocumentLines(2,"bott_DocumentLines"),
     bott_MasterData(3,"bott_MasterData"),
-    bott_MasterDataLines(4,"bott_MasterDataLines");
+    bott_MasterDataLines(4,"bott_MasterDataLines"),
+    bott_SimpleData(5,"bott_SimpleData"),
+    bott_SimpleDataLines(6,"bott_SimpleDataLines");
 
     public static final TableType[] ALL = { bott_NoObject
             , bott_Document
             ,bott_DocumentLines
             ,bott_MasterData
-            ,bott_MasterDataLines};
+            ,bott_MasterDataLines
+            ,bott_SimpleData
+            ,bott_SimpleDataLines};
 
     private int key;
 

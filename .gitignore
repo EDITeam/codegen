@@ -24,3 +24,4 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
+/codegen-service/src/main/java/com/avatech/edi/codegen/service/model/ProviderModelService.java

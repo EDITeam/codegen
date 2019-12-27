@@ -19,14 +19,17 @@ public interface ${mapperObject.mapperObjName}Mapper{
 <#if mapperObject.mapperObjectItems?has_content>
     <#list mapperObject.mapperObjectItems as mapperItem>
 
-    void insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
-
+    int insert${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+        <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
+        <#else>
+    List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s(Long id);
+        </#if>
 
-    void update${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+    int update${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
 
-    <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
-    void delete${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
+    <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
+    int delete${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});
     </#if>
     </#list>
 </#if>

@@ -35,14 +35,24 @@ public enum ModelEnum {
     STARTER(4,"starter"),
 
     /**
-     *  client 模块
+     *  feign client 模块
      */
     CLIENT(5,"client"),
 
     /**
      *  repository 模块
      */
-    REPOSITORY(6,"repository")
+    REPOSITORY(6,"repository"),
+
+    /**
+     * provider 模块
+     */
+    PROVIDER(7,"provider"),
+
+    /**
+     * consumer 模块
+     */
+    CONSUMER(8,"consumer")
     ;
 
     private int key;

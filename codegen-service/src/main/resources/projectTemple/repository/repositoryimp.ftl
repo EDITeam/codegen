@@ -7,6 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
+import ${mapperObject.packageName}.repository.AbastractTransactionService;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
 import com.avatech.edi.common.data.EmYesOrNo;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,11 @@ import java.util.List;
 */
 
 @Component
-public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObject.mapperObjName}Repository{
+public class ${mapperObject.mapperObjName}RepositoryImp <#rt>
+<#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+extends AbastractTransactionService<${mapperObject.mapperObjName}> <#t>
+</#if>
+implements ${mapperObject.mapperObjName}Repository{<#lt>
 <#if mapperObject.mapperObjectItems?has_content>
 
     private final Logger logger = LoggerFactory.getLogger(${mapperObject.mapperObjName}RepositoryImp.class);
@@ -32,26 +38,23 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
     @Autowired
     private ${mapperObject.mapperObjName}Mapper ${mapperObject.mapperObjName?uncap_first}Mapper;
 
-    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
-
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int save${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            Long id = snowflakeIdWorker.nextId();
-            ${modelObject.modelName?uncap_first}.setId(id);
             ${modelObject.modelName?uncap_first}.setIsDelete(EmYesOrNo.NO);
-            ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.insert${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
-                ${tableMap.childTableProName?uncap_first}.setId(id);
+                ${tableMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
                 for (${boMap.childTableProName?cap_first} ${boMap.childTableProName?uncap_first} : ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s()){
-                    ${boMap.childTableProName?uncap_first}.setId(id);
+                    ${boMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
                     ${mapperObject.mapperObjName?uncap_first}Mapper.insert${boMap.childTableProName?cap_first}(${boMap.childTableProName?uncap_first});
                 }
                     </#if>
@@ -61,6 +64,7 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
+            return rowNumber;
         }catch(Exception e){
             logger.error("save ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
@@ -77,12 +81,12 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                 <#list modelObject.tableList as table>
                 <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                     <#list table.businessObjectMaps as tableMap>
-                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView();
+                List<${tableMap.childTableProName?cap_first}> ${tableMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${tableMap.childTableProName?cap_first}sByView(${modelObject.modelName?uncap_first}.getId());
                      <#--查找孙子表-->
                         <#list modelObject.businessObjectMaps as boMap>
                             <#if boMap.tableName == tableMap.childTableName>
                 for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
-                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView();
+                    List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView(${tableMap.childTableProName?uncap_first}.getId());
                     ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }
                             </#if>
@@ -100,10 +104,11 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int update${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            ${mapperObject.mapperObjName?uncap_first}Mapper.update${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.update${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
         <#--找子表-->
             <#if modelObject.tableList?has_content>
                 <#list modelObject.tableList as table>
@@ -124,16 +129,29 @@ public class ${mapperObject.mapperObjName}RepositoryImp implements ${mapperObjec
                     </#if>
                 </#list>
             </#if>
+    <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+                super.update(${mapperObject.mapperObjName?uncap_first});
+            }
+    </#if>
+            return rowNumber;
         }catch(Exception e){
             logger.error("update ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
+    public int delete${modelObject.modelName?cap_first}(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}){
         try{
-            ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+            int rowNumber = ${mapperObject.mapperObjName?uncap_first}Mapper.delete${modelObject.modelName?cap_first}(${modelObject.modelName?uncap_first});
+    <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+                super.delete(${mapperObject.mapperObjName?uncap_first});
+            }
+    </#if>
+            return rowNumber;
         }catch(Exception e){
             logger.error("delete ${modelObject.modelName?uncap_first} error:",e);
             throw new DBException("5001",e.getMessage());

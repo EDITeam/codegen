@@ -1,13 +1,13 @@
 
 /******
-* Object:  StoredProcedure AVA_SP_TRANSACTION_NOTIFICATION
+* Object:  StoredProcedure ava_sp_transactionnotification
 * PLEASE KEEP THIS INFOMATION
 * CREATE BY AVATECH EDI CODE TOOL
 * AT ${.now?string["yyyy-MM-dd"]}
 ******/
 
 <#if projectInfo.dataBaseType == "MSSQL">
-create proc [AVA_SP_TRANSACTION_NOTIFICATION]
+create proc [ava_sp_transactionnotification]
     @object_code nvarchar(20), 			-- SBO Object Type
     @transaction_type nchar(1),			-- [A]dd, [U]pdate, [D]elete
     @table_name nvarchar(255),
@@ -32,7 +32,7 @@ end
 </#if>
 
 <#if projectInfo.dataBaseType == "MYSQL">
-CREATE PROCEDURE `AVA_SP_TRANSACTION_NOTIFICATION`(
+CREATE PROCEDURE `ava_sp_transactionnotification`(
     in object_code nvarchar(20), 			-- SBO Object Type
     in transaction_type nchar(1),			-- [A]dd, [U]pdate, [D]elete
     in table_name nvarchar(255),
@@ -56,7 +56,7 @@ END
 </#if>
 
 <#if projectInfo.dataBaseType == "HANA">
-CREATE PROCEDURE "AVA_SP_TRANSACTION_NOTIFICATION"
+CREATE PROCEDURE "ava_sp_transactionnotification"
 (
     object_code nvarchar(20), 				-- SBO Object Type
     transaction_type nchar(1),			    -- [A]dd, [U]pdate, [D]elete

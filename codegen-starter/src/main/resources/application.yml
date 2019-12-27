@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9098
 ## 关闭缓存，修改文件后，刷新页面就可以看到
 spring:
   thymeleaf:
