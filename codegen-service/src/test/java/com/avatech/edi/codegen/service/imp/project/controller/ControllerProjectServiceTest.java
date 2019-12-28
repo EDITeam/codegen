@@ -31,10 +31,10 @@ public class ControllerProjectServiceTest {
         table.setTableProperty("SalesOrder");
         TableLine tableLine = new TableLine();
         tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setFieldType("Long");
+        tableLine.setFieldType("String");
         table.getTableLines().add(tableLine);
         domainModel.getTableList().add(table);
 
@@ -43,10 +43,10 @@ public class ControllerProjectServiceTest {
         table.setTableProperty("SalesOrderItem");
         tableLine = new TableLine();
         tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setFieldType("Long");
+        tableLine.setFieldType("String");
         table.getTableLines().add(tableLine);
         tableLine = new TableLine();
         tableLine.setProName("LineNum");

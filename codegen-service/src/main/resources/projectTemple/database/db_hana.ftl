@@ -7,9 +7,9 @@
     <#list tables as tables>
     CREATE TABLE ${tables.tableName?lower_case}(
         <#if tables.tableLines?has_content>
-            "id" bigint NOT NULL COMMENT '主键',
+            "id" char(36)  COMMENT '主键',
             <#if tables.tableType == "bott_DocumentLines" || tables.tableType == "bott_MasterDataLines" || tables.tableType == "bott_SimpleDataLines">
-            "line_id" int default N'N' COMMENT '行号',
+            "line_id" char(36) NOT NULL COMMENT '行号',
             </#if>
             <#if tables.tableType == "bott_Document">
             "object_code" varchar(60) NOT NULL COMMENT '对象编码',

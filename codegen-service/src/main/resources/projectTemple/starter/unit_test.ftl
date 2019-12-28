@@ -73,7 +73,7 @@ public class ${domainModel.modelName}V1APITest {
                 .andReturn();
 
         String str = mvcResult.getResponse().getContentAsString();
-        Result<Long> result = mapper.readValue(str, new TypeReference<Result<Long>>() {});
+        Result<String> result = mapper.readValue(str, new TypeReference<Result<String>>() {});
         ${domainModel.modelName?uncap_first}JsonStr = mapper.writeValueAsString(${domainModel.modelName?uncap_first});
 
         // update
@@ -99,7 +99,7 @@ public class ${domainModel.modelName}V1APITest {
             .andReturn();
 
         String str = mvcResult.getResponse().getContentAsString();
-        Result<Long> result = mapper.readValue(str, new TypeReference<Result<Long>>() {});
+        Result<String> result = mapper.readValue(str, new TypeReference<Result<String>>() {});
         // delete
         mvcResult = mockMvc.perform(delete("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/"+result.getData()))
                 .andExpect(status().isOk())

@@ -24,9 +24,9 @@ public interface ${mapperObject.mapperObjName}Mapper{
 
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView();
         <#else>
-        List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s(Long id);
+        List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s(String id);
 
-        List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView(Long id);
+        List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView(String id);
         </#if>
 
     int update${mapperItem.tableProperty?cap_first}(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first});

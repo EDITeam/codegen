@@ -17,8 +17,8 @@ public interface ${domainModel.modelName?cap_first}V1Client {
     Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first});
 
     @PutMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/{id}")
-    Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id);
+    Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) String id);
 
     @DeleteMapping("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/{id}")
-    Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id);
+    Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) String id);
 }

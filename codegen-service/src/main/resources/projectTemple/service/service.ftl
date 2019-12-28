@@ -9,7 +9,7 @@ import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_c
 import ${mapperObject.packageName}.repository.${mapperObject.mapperObjName}Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.avatech.edi.common.data.SnowflakeIdWorker;
+import java.util.UUID;
 import com.avatech.edi.common.exception.BaseException;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,15 +25,13 @@ public class ${mapperObject.mapperObjName}Service {
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
 
-    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
-
-    public Long save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
+    public String save(${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first}) {
 <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
         ${mapperObject.mapperObjName?uncap_first}.check();
 </#if>
-        Long id;
+        String id;
         if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
-            id = snowflakeIdWorker.nextId();
+            id = UUID.randomUUID();
             ${mapperObject.mapperObjName?uncap_first}.setId(id);
         }else{
             id = ${mapperObject.mapperObjName?uncap_first}.getId();

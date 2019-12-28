@@ -36,7 +36,7 @@ public class ${domainModel.modelName}V1API {
     @PostMapping("${domainModel.modelName?lower_case}")
     public @ResponseBody Result add${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first}){
         try{
-            Long id = ${domainModel.modelName?uncap_first}Service.save(${domainModel.modelName?uncap_first});
+            String id = ${domainModel.modelName?uncap_first}Service.save(${domainModel.modelName?uncap_first});
             return (new Result()).ok(id);
         }catch(BaseException e){
             return (new Result()).error(e.getCode(),e.getMessage());
@@ -46,7 +46,7 @@ public class ${domainModel.modelName}V1API {
     }
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id){
+    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) String id){
         try{
             ${domainModel.modelName?uncap_first}.setId(id);
             ${domainModel.modelName?uncap_first}Service.update(${domainModel.modelName?uncap_first});
@@ -59,7 +59,7 @@ public class ${domainModel.modelName}V1API {
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
+    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) String id){
         try{
             ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
             ${domainModel.modelName?uncap_first}.setId(id);

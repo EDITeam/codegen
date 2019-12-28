@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import java.util.UUID;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -27,13 +27,11 @@ public class ${mapperObject.mapperObjName}RepositoryImpTest {
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
 
-    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+    private String id;
 
-    private Long id;
-
-    private Long getId(){
+    private String getId(){
         if(id == null){
-            Long id = snowflakeIdWorker.nextId();
+            String id = UUID.randomUUID();
             this.id = id;
             return id;
         }else {
