@@ -8,6 +8,7 @@ import ${mapperItem.boPackageName};
 import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_case}.${mapperObject.mapperObjName};
 import ${mapperObject.packageName}.repository.${mapperObject.mapperObjName}Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.avatech.edi.common.data.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 import com.avatech.edi.common.exception.BaseException;
@@ -30,8 +31,8 @@ public class ${mapperObject.mapperObjName}Service {
         ${mapperObject.mapperObjName?uncap_first}.check();
 </#if>
         String id;
-        if(${mapperObject.mapperObjName?uncap_first}.getId() == null || ${mapperObject.mapperObjName?uncap_first}.getId() == 0){
-            id = UUID.randomUUID();
+        if(StringUtils.isNullOrEmpty(${mapperObject.mapperObjName?uncap_first}.getId())){
+            id = UUID.randomUUID().toString();
             ${mapperObject.mapperObjName?uncap_first}.setId(id);
         }else{
             id = ${mapperObject.mapperObjName?uncap_first}.getId();

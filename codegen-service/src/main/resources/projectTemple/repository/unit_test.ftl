@@ -10,6 +10,7 @@ import com.avatech.edi.common.data.SnowflakeIdWorker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import com.avatech.edi.common.data.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,8 +31,8 @@ public class ${mapperObject.mapperObjName}RepositoryImpTest {
     private String id;
 
     private String getId(){
-        if(id == null){
-            String id = UUID.randomUUID();
+        if(StringUtils.isNullOrEmpty(id)){
+            String id = UUID.randomUUID().toString();
             this.id = id;
             return id;
         }else {

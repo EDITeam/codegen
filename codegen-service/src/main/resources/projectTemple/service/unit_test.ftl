@@ -31,7 +31,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
 
     private ${mapperObject.mapperObjName} get${mapperObject.mapperObjName}(){
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = new ${mapperObject.mapperObjName}();
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID());
+        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
         return ${mapperObject.mapperObjName?uncap_first};
     }
 
@@ -55,7 +55,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     public void update() throws Exception {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
 
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID());
+        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
 
         //update
@@ -67,7 +67,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     public void delete() {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
 
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID());
+        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
         ${mapperObject.mapperObjName?uncap_first}Service.delete(${mapperObject.mapperObjName?uncap_first});
     }
