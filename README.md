@@ -82,6 +82,12 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 
 ![](./img/api_result.jpg)
 
+### 版本相关
+
+|codegen分支|edi-freamwork版本|说明|
+|--|--|--|
+|2.0.0.01|1.0.0.02|id为Long类型（雪花算法），lineId为integer类型|
+|2.0.1.01|1.0.1.02|id、lineId都为String类型（UUID）|
 
 ### 项目功能计划
 
