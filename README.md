@@ -91,21 +91,21 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 
 ### 项目功能计划
 
-+ 支持dahupt_application服务项目创建
++ 支持dahupt_application服务项目创建 √
 
-+ 支持dahupt_service服务项目创建
++ 支持dahupt_service服务项目创建 √
 
-+ 支持sbo_service服务项目创建 （已实现）
++ 支持sbo_service服务项目创建 √
 
-+ 支持simple_service服务项目创建
++ 支持simple_service服务项目创建 √
 
-+ 支持rpc协议
++ 支持rpc协议 √
 
 + 支持soap协议
 
-+ 仓储层增删改查功能（已实现）
++ 仓储层增删改查功能 √
 
-+ 接口文件导出
++ 接口文件导出 √
 
 + 支持标准SBO对象DI生成
 
