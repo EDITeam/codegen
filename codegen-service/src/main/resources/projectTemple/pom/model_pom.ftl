@@ -17,11 +17,6 @@
             <artifactId>${modelInfo.projectName}_core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.avatech.edi</groupId>
-            <artifactId>edi-framework-model</artifactId>
-            <version>1.0.1.02_alpha</version>
-        </dependency>
     </dependencies>
 
 </project>

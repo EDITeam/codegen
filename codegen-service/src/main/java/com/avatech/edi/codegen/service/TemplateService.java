@@ -25,10 +25,10 @@ public class TemplateService {
      *
      * @param map 传递给模板变量的参数
      * @param desFilePath 生成文件的路径
-     * @param templateFile 模板文件的父文件夹
+     * @param templateFilePath 模板文件的父文件夹
      * @param templateCode 模板名称
      */
-    public void createTmpleFile(HashMap map, String desFilePath,String templateFile, String templateCode){
+    public void createTmpleFile(HashMap map, String desFilePath,String templateFilePath, String templateCode){
 
         try{
             Configuration configuration = new Configuration(Configuration.getVersion());
@@ -37,7 +37,7 @@ public class TemplateService {
              * codegen/codegen-starter/target/codegen.application.server.jar!/BOOT-INF/lib/codegen-service-0.0.1-SNAPSHOT.jar!/projectTemple/repository
              **/
 
-            configuration.setClassLoaderForTemplateLoading(ClassLoader.getSystemClassLoader(),String.format("projectTemple/%s",templateFile));
+            configuration.setClassLoaderForTemplateLoading(ClassLoader.getSystemClassLoader(),String.format("projectTemple/%s",templateFilePath));
             logger.info(ClassLoader.getSystemClassLoader().toString());
             //configuratio
             //configuration.setClassForTemplateLoading(ClassLoader.getSystemClassLoader(),String.format("projectTemple/%s",templateFile));

@@ -17,6 +17,16 @@
             <artifactId>edi-framework-common</artifactId>
             <version>1.0.1.02_alpha</version>
         </dependency>
+        <dependency>
+            <groupId>com.avatech.edi</groupId>
+            <artifactId>edi-framework-model</artifactId>
+            <version>1.0.1.02_alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version>
+        </dependency>
     </dependencies>
 
 </project>

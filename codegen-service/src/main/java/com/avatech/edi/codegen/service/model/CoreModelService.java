@@ -7,8 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,6 +34,12 @@ public class CoreModelService  extends AbstractModelService  {
     public void createSourcesFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
             super.createSourcesFile(domainModels,modelParameter);
+            HashMap map = new HashMap();
+            map.put("projectName",modelParameter.getProjectNamePrefix());
+            templateService.createTmpleFile(map
+                    , modelParameter.getSourcesBasePath().concat(File.separator).concat("CustomExceptionHandler.java")
+                    ,"core"
+                    ,"customexceptionhandler.ftl");
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }
