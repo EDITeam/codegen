@@ -64,6 +64,11 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
                     </#if>
                 </#list>
             </#if>
+        <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+            super.save(${mapperObject.mapperObjName?uncap_first});
+            }
+        </#if>
             return rowNumber;
         }catch(Exception e){
             logger.error("save ${modelObject.modelName?uncap_first} error:",e);

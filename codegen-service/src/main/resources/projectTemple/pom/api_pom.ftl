@@ -17,6 +17,13 @@
             <artifactId>${modelInfo.projectName}_service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <#if projectInfo.serviceProtocol == "SOAP">
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+                <version>3.2.4</version>
+            </dependency>
+        </#if>
     </dependencies>
 
 </project>
