@@ -15,12 +15,12 @@
         <dependency>
             <groupId>com.avatech.edi</groupId>
             <artifactId>edi-framework-common</artifactId>
-            <version>1.0.1.02_alpha</version>
+            <version>1.0.0.02_alpha</version>
         </dependency>
         <dependency>
             <groupId>com.avatech.edi</groupId>
             <artifactId>edi-framework-model</artifactId>
-            <version>1.0.1.02_alpha</version>
+            <version>1.0.0.02_alpha</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

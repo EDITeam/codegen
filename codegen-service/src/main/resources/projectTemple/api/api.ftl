@@ -40,14 +40,14 @@ public class ${domainModel.modelName}V1API {
     }
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) String id){
+    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id") Long id){
         ${domainModel.modelName?uncap_first}.setId(id);
         ${domainModel.modelName?uncap_first}Service.update(${domainModel.modelName?uncap_first});
         return (new Result()).ok();
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) String id){
+    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id") Long id){
         ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
         ${domainModel.modelName?uncap_first}.setId(id);
         ${domainModel.modelName?uncap_first}Service.delete(${domainModel.modelName?uncap_first});
