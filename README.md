@@ -101,7 +101,7 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 
 + 支持rpc协议 √
 
-+ 支持soap协议
++ 支持soap协议 √
 
 + 仓储层增删改查功能 √
 
