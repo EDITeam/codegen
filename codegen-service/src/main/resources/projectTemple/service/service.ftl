@@ -8,6 +8,7 @@ import ${mapperItem.boPackageName};
 import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_case}.${mapperObject.mapperObjName};
 import ${mapperObject.packageName}.repository.${mapperObject.mapperObjName}Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.avatech.edi.common.data.StringUtils;
 import org.springframework.stereotype.Service;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.BaseException;

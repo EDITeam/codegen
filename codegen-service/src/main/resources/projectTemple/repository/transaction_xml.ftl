@@ -18,7 +18,7 @@
             #${r"{"}object_code, jdbcType = NVARCHAR, mode = IN${r"}"},
             #${r"{"}transaction_type, jdbcType = NCHAR, mode = IN${r"}"},
             #${r"{"}table_name, jdbcType = NVARCHAR, mode = IN${r"}"},
-            #${r"{"}cols_val_tab_del, jdbcType = BIGINT, mode = IN${r"}"}
+            #${r"{"}cols_val_tab_del, jdbcType = NVARCHAR, mode = IN${r"}"}
                 )${r"}"}
     </select>
 

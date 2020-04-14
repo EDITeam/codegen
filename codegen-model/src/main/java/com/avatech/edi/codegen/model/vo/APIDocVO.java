@@ -43,7 +43,7 @@ public class APIDocVO {
 
         ParameterVO parameterVO = new ParameterVO();
         parameterVO.setParameterName("id");
-        parameterVO.setParameterType("Long");
+        parameterVO.setParameterType("String");
         parameterVO.setParameterDescription("单据流水号");
         apiDocVO.getInquiryReturnParams().add(parameterVO);
 

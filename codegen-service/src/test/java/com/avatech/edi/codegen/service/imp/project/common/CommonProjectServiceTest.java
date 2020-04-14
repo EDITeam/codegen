@@ -30,10 +30,10 @@ public class CommonProjectServiceTest {
         table.setTableProperty("SalesOrder");
         TableLine tableLine = new TableLine();
         tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         table.getTableLines().add(tableLine);
         domainModel.getTableList().add(table);
 
@@ -42,10 +42,10 @@ public class CommonProjectServiceTest {
         table.setTableProperty("SalesOrderItem");
         tableLine = new TableLine();
         tableLine.setProName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         tableLine.setProDesc("单据号");
         tableLine.setFieldName("DocEntry");
-        tableLine.setProDataType("Long");
+        tableLine.setProDataType("String");
         table.getTableLines().add(tableLine);
         tableLine = new TableLine();
         tableLine.setProName("LineNum");

@@ -41,15 +41,11 @@ public class SimpleProjectBuilder implements IProjectService {
         projectStructure.getModelNames().add(modelParameter.getModelName());
 
 
-        if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.HTTP)){
-            modelParameter = new APIModelParameter(projectStructure);
-            apiModelService.createPOM(modelParameter);
-            apiModelService.createSourcesFile(domainModels,modelParameter);
-            apiModelService.createTestsFile(domainModels,modelParameter);
-            projectStructure.getModelNames().add(modelParameter.getModelName());
-        }else if(projectStructure.getServiceProtocol().equals(ServiceProtocolType.SOAP)){
-
-        }
+        modelParameter = new APIModelParameter(projectStructure);
+        apiModelService.createPOM(modelParameter);
+        apiModelService.createSourcesFile(domainModels,modelParameter);
+        apiModelService.createTestsFile(domainModels,modelParameter);
+        projectStructure.getModelNames().add(modelParameter.getModelName());
     }
 
 }
