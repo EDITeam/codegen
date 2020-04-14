@@ -41,7 +41,7 @@ public class ${domainModel.modelName}V1API {
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) String id){
+    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
         return ${domainModel.modelName?uncap_first}V1Client.delete${domainModel.modelName}(id);
     }
 }

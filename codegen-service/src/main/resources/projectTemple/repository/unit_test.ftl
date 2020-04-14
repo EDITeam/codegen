@@ -28,11 +28,13 @@ public class ${mapperObject.mapperObjName}RepositoryImpTest {
     @Autowired
     private ${mapperObject.mapperObjName}Repository ${mapperObject.mapperObjName?uncap_first}Repository;
 
-    private String id;
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
 
-    private String getId(){
-        if(StringUtils.isNullOrEmpty(id)){
-            String id = UUID.randomUUID().toString();
+    private Long id;
+
+    private Long getId(){
+        if(id == null || id == 0){
+            Long id = snowflakeIdWorker.nextId();
             this.id = id;
             return id;
         }else {

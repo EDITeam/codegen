@@ -59,7 +59,7 @@ public class ${domainModel.modelName}V1API {
     }
 
     @DeleteMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) String id){
+    public @ResponseBody Result delete${domainModel.modelName}(@PathVariable(value="id",required = true) Long id){
         try{
             ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
             ${domainModel.modelName?uncap_first}.setId(id);

@@ -1,5 +1,4 @@
-package com.avatech.dahupt.demo.api.v1;
-
+package com.avatech.dahupt.${projectName}.api.v1;
 
 import com.avatech.dahupt.${projectName}.model.bo.${domainModel.modelName?lower_case}.${domainModel.modelName};
 import com.avatech.edi.model.dto.Result;
@@ -46,7 +45,7 @@ public interface I${domainModel.modelName}API {
     * @return
     */
     @WebMethod(operationName = "delete${domainModel.modelName}")
-    Result delete${domainModel.modelName}(String id);
+    Result delete${domainModel.modelName}(Long id);
 
 
 

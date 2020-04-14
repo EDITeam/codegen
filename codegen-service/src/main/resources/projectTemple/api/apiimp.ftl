@@ -1,13 +1,13 @@
-package com.avatech.dahupt.demo.api.v1.impl;
+package com.avatech.dahupt.${projectName}.api.v1.impl;
 
-import com.avatech.dahupt.demo.api.v1.I${domainModel.modelName}API;
+import com.avatech.dahupt.${projectName}.api.v1.I${domainModel.modelName}API;
 import com.avatech.dahupt.${projectName}.service.${domainModel.modelName}Service;
 import com.avatech.dahupt.${projectName}.repository.${domainModel.modelName}Repository;
 import com.avatech.dahupt.${projectName}.model.bo.${domainModel.modelName?lower_case}.${domainModel.modelName};
 import com.avatech.edi.model.dto.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import java.util.List;
 /**
 * PLEASE KEEP THIS INFOMATION
 * CREATE BY AVATECH EDI CODE TOOL
@@ -30,7 +30,7 @@ public class ${domainModel.modelName}APIImpl implements I${domainModel.modelName
 
     @Override
     public Result add${domainModel.modelName}(${domainModel.modelName} ${domainModel.modelName?uncap_first}) {
-        String id = ${domainModel.modelName?uncap_first}Service.save(${domainModel.modelName?uncap_first});
+        Long id = ${domainModel.modelName?uncap_first}Service.save(${domainModel.modelName?uncap_first});
         return (new Result()).ok(id);
     }
 
@@ -41,7 +41,7 @@ public class ${domainModel.modelName}APIImpl implements I${domainModel.modelName
     }
 
     @Override
-    public Result delete${domainModel.modelName}(String id){
+    public Result delete${domainModel.modelName}(Long id){
         ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
         ${domainModel.modelName?uncap_first}.setId(id);
         ${domainModel.modelName?uncap_first}Service.delete(${domainModel.modelName?uncap_first});

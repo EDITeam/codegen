@@ -39,7 +39,7 @@ public class AbastractTransactionService<T extends IBusinessObject> {
         }
     }
 
-    public String save(T bo){
+    public Long save(T bo){
         this.callTransaction(bo,"A");
         return bo.getId();
     }

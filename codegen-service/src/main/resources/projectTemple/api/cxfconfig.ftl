@@ -1,8 +1,7 @@
-package com.avatech.dahupt.demo.api.v1.config;
+package com.avatech.dahupt.${projectName}.api.v1.config;
 
-import com.avatech.dahupt.demo.api.v1.IMaterialAPI;
 <#list domainModels as domainModel>
-import com.avatech.dahupt.${projectName}.api.v1.I${domainModel.modelName};
+import com.avatech.dahupt.${projectName}.api.v1.I${domainModel.modelName}API;
 </#list>
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;

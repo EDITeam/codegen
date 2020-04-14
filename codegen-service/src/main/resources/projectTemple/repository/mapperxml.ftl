@@ -5,7 +5,7 @@
     <#if mapperObject.mapperObjectItems?has_content>
         <#list mapperObject.mapperObjectItems as mapperItem>
     <resultMap id="${mapperItem.tableProperty}Map" type="${mapperItem.boPackageName}">
-        <result column="id" property="id" jdbcType="BIGINY"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
         <#if mapperItem.tableLines?has_content>
             <#list mapperItem.tableLines as mapperItemLine>
         <result column="${mapperItemLine.fieldName}" property="${mapperItemLine.proName?uncap_first}" jdbcType="${mapperItemLine.fieldType}"/>

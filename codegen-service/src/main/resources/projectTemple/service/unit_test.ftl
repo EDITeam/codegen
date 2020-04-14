@@ -6,7 +6,7 @@ package ${mapperObject.packageName}.service;
     </#list>
 </#if>
 import ${mapperObject.packageName}.model.bo.${mapperObject.mapperObjName?lower_case}.${mapperObject.mapperObjName};
-import java.util.UUID;
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,11 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     @Autowired
     private ${mapperObject.mapperObjName}Service ${mapperObject.mapperObjName?uncap_first}Service;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     private ${mapperObject.mapperObjName} get${mapperObject.mapperObjName}(){
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = new ${mapperObject.mapperObjName}();
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${mapperObject.mapperObjName?uncap_first};
     }
 
@@ -55,7 +57,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     public void update() throws Exception {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
 
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
 
         //update
@@ -67,7 +69,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     public void delete() {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
 
-        ${mapperObject.mapperObjName?uncap_first}.setId(UUID.randomUUID().toString());
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
         ${mapperObject.mapperObjName?uncap_first}Service.delete(${mapperObject.mapperObjName?uncap_first});
     }

@@ -48,8 +48,11 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
+            int i = 1;
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
                 ${tableMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
+                ${tableMap.childTableProName?uncap_first}.setLineId(i);
+                i++;
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
@@ -66,7 +69,7 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
             </#if>
         <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
             if (true) {
-            super.save(${mapperObject.mapperObjName?uncap_first});
+                super.save(${mapperObject.mapperObjName?uncap_first});
             }
         </#if>
             return rowNumber;
