@@ -35,7 +35,7 @@
         <repository>
             <id>edi.maven</id>
             <name>EDI Maven Repository</name>
-            <url>http://47.92.196.35:8081/repository/maven-public/</url>
+            <url>http://114.113.221.167:18081/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -55,6 +55,10 @@
             <groupId>com.avatech.edi</groupId>
             <artifactId>dahupt-common-security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </#if>
         <dependency>
