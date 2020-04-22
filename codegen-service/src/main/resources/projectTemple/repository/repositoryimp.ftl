@@ -7,7 +7,7 @@ import ${mapperItem.boPackageName};
 </#if>
 import com.avatech.dahupt.${mapperObject.mapperApplicationName?lower_case}.repository.mapper.${mapperObject.mapperObjName}Mapper;
 import ${mapperObject.packageName}.${mapperObject.mapperObjName}Repository;
-import ${mapperObject.packageName}.repository.AbastractTransactionService;
+import ${mapperObject.packageName}.AbastractTransactionService;
 import com.avatech.edi.common.data.SnowflakeIdWorker;
 import com.avatech.edi.common.exception.DBException;
 import com.avatech.edi.common.data.EmYesOrNo;
@@ -48,8 +48,11 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
                 <#list modelObject.tableList as table>
                     <#if table.tableProperty == modelObject.modelName && table.businessObjectMaps?has_content>
                         <#list table.businessObjectMaps as tableMap>
+            int i = 1;
             for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${modelObject.modelName?uncap_first}.get${tableMap.childTableProName?cap_first}s()) {
                 ${tableMap.childTableProName?uncap_first}.setId(${modelObject.modelName?uncap_first}.getId());
+                ${tableMap.childTableProName?uncap_first}.setLineId(i);
+                i++;
                 ${mapperObject.mapperObjName?uncap_first}Mapper.insert${tableMap.childTableProName?cap_first}(${tableMap.childTableProName?uncap_first});
                 <#list modelObject.businessObjectMaps as boMap>
                     <#if boMap.tableName == tableMap.childTableName>
@@ -64,6 +67,11 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
                     </#if>
                 </#list>
             </#if>
+        <#if businessObjectType == "bott_MasterData" || businessObjectType == "bott_Document">
+            if (true) {
+                super.save(${mapperObject.mapperObjName?uncap_first});
+            }
+        </#if>
             return rowNumber;
         }catch(Exception e){
             logger.error("save ${modelObject.modelName?uncap_first} error:",e);
@@ -85,7 +93,7 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
                      <#--查找孙子表-->
                         <#list modelObject.businessObjectMaps as boMap>
                             <#if boMap.tableName == tableMap.childTableName>
-                for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?cap_first}s){
+                for (${tableMap.childTableProName?cap_first} ${tableMap.childTableProName?uncap_first} : ${tableMap.childTableProName?uncap_first}s){
                     List<${boMap.childTableProName?cap_first}>  ${boMap.childTableProName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${boMap.childTableProName?cap_first}sByView(${tableMap.childTableProName?uncap_first}.getId());
                     ${tableMap.childTableProName?uncap_first}.get${boMap.childTableProName?cap_first}s().addAll(${boMap.childTableProName?uncap_first}s);
                 }

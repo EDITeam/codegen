@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service.model;
 
+import com.avatech.edi.codegen.data.ServiceProtocolType;
 import com.avatech.edi.codegen.model.bo.DomainModel;
 import com.avatech.edi.codegen.model.bo.project.modelparameter.BaseModelParameter;
 import com.avatech.edi.codegen.service.TemplateService;
@@ -38,11 +39,41 @@ public class APIModelService extends AbstractModelService {
                 HashMap map = new HashMap();
                 map.put("domainModel",domainModel);
                 map.put("projectName",modelParameter.getProjectNamePrefix());
-                templateService.createTmpleFile(map
-                        , modelParameter.getSourcesBasePath().concat(File.separator).concat(domainModel.getModelName().concat("V1API.java"))
-                        ,"api"
-                        ,"api.ftl");
+                if(modelParameter.getProjectStructure().getServiceProtocol().equals(ServiceProtocolType.HTTP)) {
+                    templateService.createTmpleFile(map
+                            , modelParameter.getSourcesBasePath().concat(File.separator).concat(domainModel.getModelName().concat("V1API.java"))
+                            , "api"
+                            , "api.ftl");
+                }else if(modelParameter.getProjectStructure().getServiceProtocol().equals(ServiceProtocolType.SOAP)){
+                    templateService.createTmpleFile(map
+                            , modelParameter.getSourcesBasePath().concat(File.separator).concat("I".concat(domainModel.getModelName().concat("API.java")))
+                            , "api"
+                            , "soapapi.ftl");
 
+                    String implSourceFullFilePath = modelParameter.getSourcesBasePath()
+                            .concat(File.separator)
+                            .concat("impl");
+                    File file = new File(implSourceFullFilePath);
+                    file.mkdirs();
+                    templateService.createTmpleFile(map
+                            , implSourceFullFilePath.concat(File.separator).concat(domainModel.getModelName().concat("APIImpl.java"))
+                            , "api"
+                            , "apiimp.ftl");
+                }
+            }
+            if(modelParameter.getProjectStructure().getServiceProtocol().equals(ServiceProtocolType.SOAP)) {
+                String configSourceFullFilePath = modelParameter.getSourcesBasePath()
+                        .concat(File.separator)
+                        .concat("config");
+                File file = new File(configSourceFullFilePath);
+                file.mkdirs();
+                HashMap map = new HashMap();
+                map.put("domainModels",domainModels);
+                map.put("projectName",modelParameter.getProjectNamePrefix());
+                templateService.createTmpleFile(map
+                        , configSourceFullFilePath.concat(File.separator).concat("CxfConfig.java")
+                        , "api"
+                        , "cxfconfig.ftl");
             }
 
 
@@ -54,7 +85,9 @@ public class APIModelService extends AbstractModelService {
     @Override
     public void createTestsFile(List<DomainModel> domainModels, BaseModelParameter modelParameter) {
         try {
-            super.createTestsFile(domainModels,modelParameter);
+            if(!modelParameter.getProjectStructure().getServiceProtocol().equals(ServiceProtocolType.SOAP)) {
+                super.createTestsFile(domainModels, modelParameter);
+            }
         } catch (IOException e) {
             logger.error("创建资源文件异常:",e);
         }

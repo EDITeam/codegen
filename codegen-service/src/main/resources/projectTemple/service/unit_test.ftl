@@ -29,9 +29,11 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     @Autowired
     private ${mapperObject.mapperObjName}Service ${mapperObject.mapperObjName?uncap_first}Service;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     private ${mapperObject.mapperObjName} get${mapperObject.mapperObjName}(){
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = new ${mapperObject.mapperObjName}();
-
+        ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${mapperObject.mapperObjName?uncap_first};
     }
 
@@ -54,7 +56,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     @Test
     public void update() throws Exception {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
-        SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
         ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
 
@@ -66,7 +68,7 @@ public class ${mapperObject.mapperObjName}ServiceTest {
     @Test
     public void delete() {
         ${mapperObject.mapperObjName} ${mapperObject.mapperObjName?uncap_first} = get${mapperObject.mapperObjName}();
-        SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
         ${mapperObject.mapperObjName?uncap_first}.setId(snowflakeIdWorker.nextId());
         ${mapperObject.mapperObjName?uncap_first}Service.save(${mapperObject.mapperObjName?uncap_first});
         ${mapperObject.mapperObjName?uncap_first}Service.delete(${mapperObject.mapperObjName?uncap_first});

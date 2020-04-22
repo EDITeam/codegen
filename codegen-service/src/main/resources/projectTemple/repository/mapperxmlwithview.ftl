@@ -35,9 +35,18 @@
     <insert id="insert${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
         INSERT INTO ${quotation}${mapperItem.tableName}${quotation} (
         <#if mapperItem.tableLines?has_content>
-        ${quotation}id${quotation},
-            <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
+            ${quotation}id${quotation},
+            <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" ||mapperItem.tableType == "bott_SimpleDataLines">
+            ${quotation}line_id${quotation},
+            </#if>
+            <#if mapperItem.tableType == "bott_Document" >
             ${quotation}object_code${quotation},
+            ${quotation}doc_date${quotation},
+            </#if>
+            <#if mapperItem.tableType == "bott_MasterData">
+            ${quotation}object_code${quotation},
+            ${quotation}code${quotation},
+            ${quotation}name${quotation},
             </#if>
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
             ${quotation}create_date${quotation},
@@ -53,8 +62,17 @@
         values(
         <#if mapperItem.tableLines?has_content>
                 #${r"{"}id${r"}"},
-            <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
+            <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" ||mapperItem.tableType == "bott_SimpleDataLines">
+                #${r"{"}lineId${r"}"},
+            </#if>
+            <#if mapperItem.tableType == "bott_Document">
                 #${r"{"}objectCode${r"}"},
+                #${r"{"}docDate${r"}"},
+            </#if>
+            <#if mapperItem.tableType == "bott_MasterData">
+                #${r"{"}objectCode${r"}"},
+                #${r"{"}code${r"}"},
+                #${r"{"}name${r"}"},
             </#if>
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" ||mapperItem.tableType == "bott_SimpleData">
                 #${r"{"}createDate${r"}"},
@@ -93,11 +111,11 @@
             <if test="${mapperItemLine.proName?uncap_first} != null">
             ${quotation}${mapperItemLine.fieldName}${quotation} =  #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"},
             </if>
+            </#list>
             <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
             ${quotation}modifier${quotation} = #${r"{"}modifier${r"}"},
             ${quotation}modify_date${quotation} = #${r"{"}modifyDate${r"}"}
             </#if>
-            </#list>
         </#if>
             </set>
         WHERE ${quotation}id${quotation} = #${r"{"}id${r"}"};

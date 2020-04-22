@@ -11,7 +11,7 @@ create proc [ava_sp_transactionnotification]
     @object_code nvarchar(20), 			-- SBO Object Type
     @transaction_type nchar(1),			-- [A]dd, [U]pdate, [D]elete
     @table_name nvarchar(255),
-    @cols_val_tab_del bigint
+    @cols_val_tab_del varchar(36)
 AS
 begin
 
@@ -36,7 +36,7 @@ CREATE PROCEDURE `ava_sp_transactionnotification`(
     in object_code nvarchar(20), 			-- SBO Object Type
     in transaction_type nchar(1),			-- [A]dd, [U]pdate, [D]elete
     in table_name nvarchar(255),
-    in cols_val_tab_del bigint
+    in cols_val_tab_del varchar(36)
 )
 BEGIN
     declare `code` int;
@@ -61,7 +61,7 @@ CREATE PROCEDURE "ava_sp_transactionnotification"
     object_code nvarchar(20), 				-- SBO Object Type
     transaction_type nchar(1),			    -- [A]dd, [U]pdate, [D]elete
     table_name nvarchar(255),
-    cols_val_tab_del bigint
+    cols_val_tab_del varchar(36)
 )
 LANGUAGE SQLSCRIPT AS
 BEGIN

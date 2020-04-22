@@ -36,7 +36,7 @@ public class ${domainModel.modelName}V1API {
     }
 
     @PutMapping("${domainModel.modelName?lower_case}/{id}")
-    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) Long id){
+    public @ResponseBody Result update${domainModel.modelName}(@RequestBody ${domainModel.modelName} ${domainModel.modelName?uncap_first},@PathVariable(value="id",required = true) String id){
         return ${domainModel.modelName?uncap_first}V1Client.update${domainModel.modelName}(${domainModel.modelName?uncap_first},id);
     }
 

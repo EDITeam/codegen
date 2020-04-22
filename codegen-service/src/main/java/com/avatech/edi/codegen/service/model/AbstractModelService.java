@@ -48,7 +48,7 @@ public abstract class AbstractModelService {
         String sourcesFullFilePath = modelParameter.getSourcesBasePath();
         File file = new File(sourcesFullFilePath);
         file.mkdirs();
-        file = new File(sourcesFullFilePath,".getkeep");
+        file = new File(sourcesFullFilePath,".gitkeep");
         file.createNewFile();
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractModelService {
         String testsFullFilePath = modelParameter.getTestsBasePath();
         File file = new File(testsFullFilePath);
         file.mkdirs();
-        file = new File(testsFullFilePath,".getkeep");
+        file = new File(testsFullFilePath,".gitkeep");
         file.createNewFile();
     }
 

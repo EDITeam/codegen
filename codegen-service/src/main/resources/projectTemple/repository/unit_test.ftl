@@ -10,10 +10,11 @@ import com.avatech.edi.common.data.SnowflakeIdWorker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import com.avatech.edi.common.data.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import java.util.UUID;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -32,7 +33,7 @@ public class ${mapperObject.mapperObjName}RepositoryImpTest {
     private Long id;
 
     private Long getId(){
-        if(id == null){
+        if(id == null || id == 0){
             Long id = snowflakeIdWorker.nextId();
             this.id = id;
             return id;

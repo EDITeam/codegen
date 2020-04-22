@@ -82,7 +82,7 @@ public class ${apiDocVO.modelName}Service{
     * @description ${apiDocVO.modelDesc}删除的接口
     * @method delete
     * @url ${apiDocVO.deletionUrl}
-    * @param id 必选 long 单据流水号
+    * @param id 必选 String 单据流水号
     * @return {"code":0,"message":"OK"}
     * @return_param code string 操作结果编码
     * @return_param message string 操作结果描述

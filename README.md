@@ -102,7 +102,7 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 
 + 支持rpc协议 √
 
-+ 支持soap协议
++ 支持soap协议 √
 
 + 仓储层增删改查功能 √
 
@@ -111,6 +111,8 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 + 支持标准SBO对象DI生成
 
 + 支持标准SBO对象Service Layer生成
+
+[帮助文档](https://github.com/EDITeam/codegen/wiki)
 
 
 

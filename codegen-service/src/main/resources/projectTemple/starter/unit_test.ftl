@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Date;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import com.avatech.edi.common.data.SnowflakeIdWorker;
 
 /**
 * PLEASE KEEP THIS INFOMATION
@@ -33,9 +33,11 @@ public class ${domainModel.modelName}V1APITest {
     @Autowired
     MockMvc mockMvc;
 
+    SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
+
     private ${domainModel.modelName} get${domainModel.modelName}(){
         ${domainModel.modelName} ${domainModel.modelName?uncap_first} = new ${domainModel.modelName}();
-        ${domainModel.modelName?uncap_first}.setId(1L);
+        ${domainModel.modelName?uncap_first}.setId(snowflakeIdWorker.nextId());
         return ${domainModel.modelName?uncap_first};
     }
 
@@ -70,7 +72,7 @@ public class ${domainModel.modelName}V1APITest {
                 .andReturn();
 
         String str = mvcResult.getResponse().getContentAsString();
-        Result<Long> result = mapper.readValue(str, new TypeReference<Result<Long>>() {});
+        Result<String> result = mapper.readValue(str, new TypeReference<Result<String>>() {});
         ${domainModel.modelName?uncap_first}JsonStr = mapper.writeValueAsString(${domainModel.modelName?uncap_first});
 
         // update
@@ -96,7 +98,7 @@ public class ${domainModel.modelName}V1APITest {
             .andReturn();
 
         String str = mvcResult.getResponse().getContentAsString();
-        Result<Long> result = mapper.readValue(str, new TypeReference<Result<Long>>() {});
+        Result<String> result = mapper.readValue(str, new TypeReference<Result<String>>() {});
         // delete
         mvcResult = mockMvc.perform(delete("/${projectName?lower_case}/v1/${domainModel.modelName?lower_case}/"+result.getData()))
                 .andExpect(status().isOk())
