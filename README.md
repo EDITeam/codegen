@@ -86,8 +86,9 @@ shell脚本文件的`api_key`和`api_token`需要与平台中此项目的`api_ke
 
 |codegen分支|edi-freamwork版本|说明|
 |--|--|--|
-|2.0.0.01|1.0.0.02|id为Long类型（雪花算法），lineId为integer类型|
-|2.0.1.01|1.0.1.02|id、lineId都为String类型（UUID）|
+|1.0.0.02|1.0.0.02|id为Long类型（雪花算法），lineId为integer类型|
+|1.0.1.02|1.0.1.02|id、lineId都为String类型（UUID）|
+|2.0.0|2.0.0|id、lineId都为Long类型，为最新支持的版本，将不再对以前分支版本进行维护|
 
 
 ### 项目功能计划
