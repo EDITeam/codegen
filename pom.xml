@@ -27,7 +27,7 @@
 <!--        <repository>-->
 <!--            <id>edi.maven</id>-->
 <!--            <name>EDI Maven Repository</name>-->
-<!--            <url>http://47.92.196.35:8081/repository/maven-public/</url>-->
+<!--            <url>http://rds.avatech.com.cn:8081/repository/maven-public/</url>-->
 <!--            <releases>-->
 <!--                <enabled>true</enabled>-->
 <!--            </releases>-->
