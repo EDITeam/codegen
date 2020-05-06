@@ -11,9 +11,13 @@ import java.util.List;
 public class Table {
 
     public static String getViewName(String tableName){
-        String prefixTableName = tableName.substring(0,tableName.lastIndexOf("_"));
-        String suffixTableName = tableName.substring(tableName.lastIndexOf("_"),tableName.length());
-        return prefixTableName+"_VIEW"+suffixTableName;
+        if(tableName.contains("_")) {
+            String prefixTableName = tableName.substring(0, tableName.lastIndexOf("_"));
+            String suffixTableName = tableName.substring(tableName.lastIndexOf("_"), tableName.length());
+            return prefixTableName + "_VIEW" + suffixTableName;
+        }else {
+            return "AVA_VIEW_" + tableName;
+        }
     }
 
     public Table(){
