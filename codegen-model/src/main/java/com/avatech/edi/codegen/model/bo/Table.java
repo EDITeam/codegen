@@ -14,9 +14,9 @@ public class Table {
         if(tableName.contains("_")) {
             String prefixTableName = tableName.substring(0, tableName.lastIndexOf("_"));
             String suffixTableName = tableName.substring(tableName.lastIndexOf("_"), tableName.length());
-            return prefixTableName + "_VIEW" + suffixTableName;
+            return prefixTableName + "_view" + suffixTableName;
         }else {
-            return "AVA_VIEW_" + tableName;
+            return "ava_view_" + tableName;
         }
     }
 

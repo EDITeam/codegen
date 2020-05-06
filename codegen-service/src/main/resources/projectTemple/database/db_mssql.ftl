@@ -9,23 +9,23 @@ CREATE TABLE ${tables.tableName?lower_case}(
     <#if tables.tableLines?has_content>
     "id" BIGINT,
     <#if tables.tableType == "bott_DocumentLines" || tables.tableType == "bott_MasterDataLines" || tables.tableType == "bott_SimpleDataLines">
-    "line_id" INT NOT NULL COMMENT '行号',
+    "line_id" INT NOT NULL,
     </#if>
     <#if tables.tableType == "bott_Document">
-    "object_code" varchar(60) NOT NULL COMMENT '对象编码',
-    "doc_date" date NOT NULL COMMENT '单据日期',
+    "object_code" varchar(60) NOT NULL,
+    "doc_date" date NOT NULL,
     </#if>
     <#if tables.tableType == "bott_MasterData" >
-    "object_code" varchar(60) NOT NULL COMMENT '对象编码',
-    "code" varchar(60) NOT NULL COMMENT '代码',
-    "name" varchar(100) NOT NULL COMMENT '名称',
+    "object_code" varchar(60) NOT NULL ,
+    "code" varchar(60) NOT NULL,
+    "name" varchar(100) NOT NULL ,
     </#if>
     <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
-    "is_delete" char(1) default N'N' COMMENT '删除标志 Y:已删除，N：未删除',
-    "create_date" timestamp NOT NULL COMMENT '创建时间',
-    "creator" varchar(60) NOT NULL COMENT '创建人',
-    "modify_date" timestamp COMMENT '最后修改时间',
-    "modifier" varchar(60) COMMENT '最后修改人',
+    "is_delete" char(1) default N'N',
+    "create_date" timestamp NOT NULL,
+    "creator" varchar(60) NOT NULL ,
+    "modify_date" timestamp COMMENT,
+    "modifier" varchar(60) COMMENT ,
     </#if>
         <#list tables.tableLines as tableLines>
             <#if tableLines.fieldType == "NVARCHAR" ||tableLines.fieldType == "VARCHAR"||tableLines.fieldType == "NCHAR" ||tableLines.fieldType == "CHAR">
@@ -38,7 +38,6 @@ CREATE TABLE ${tables.tableName?lower_case}(
             <#if tableLines.required >
     NOT NULL <#t>
             </#if>
-    COMMENT '${tableLines.proDesc}',<#lt>
         </#list>
         <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
     PRIMARY KEY ("id")
