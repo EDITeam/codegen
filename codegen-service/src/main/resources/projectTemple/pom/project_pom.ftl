@@ -56,6 +56,10 @@
             <artifactId>dahupt-common-security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </#if>
         <dependency>
             <groupId>org.springframework.boot</groupId>
