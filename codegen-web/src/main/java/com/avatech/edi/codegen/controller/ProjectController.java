@@ -10,6 +10,8 @@ import com.avatech.edi.codegen.data.ProjectType;
 import com.avatech.edi.codegen.service.IDataStructureFileService;
 import com.avatech.edi.codegen.service.project.IProjectService;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     @Autowired
     private IDataStructureFileService dataStructureFileService;
@@ -98,6 +102,7 @@ public class ProjectController {
 
             }catch (Exception e){
                 map.put("message",e.getMessage());
+                logger.error("create project error:",e);
             }
         }
         map.put("project", projectStructure);
