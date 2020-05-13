@@ -22,9 +22,9 @@ CREATE TABLE ${tables.tableName?lower_case}(
     </#if>
     <#if tables.tableType == "bott_Document" || tables.tableType == "bott_MasterData" || tables.tableType == "bott_SimpleData">
     "is_delete" char(1) default N'N',
-    "create_date" timestamp NOT NULL,
+    "create_date" date NOT NULL,
     "creator" varchar(60) NOT NULL ,
-    "modify_date" timestamp COMMENT,
+    "modify_date" date COMMENT,
     "modifier" varchar(60) COMMENT ,
     </#if>
         <#list tables.tableLines as tableLines>

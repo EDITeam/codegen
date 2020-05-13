@@ -80,10 +80,10 @@ implements ${mapperObject.mapperObjName}Repository{<#lt>
     }
 
     @Override
-    public List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(){
+    public List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}Param){
         try{
             List<${modelObject.modelName?cap_first}> ${modelObject.modelName?uncap_first}s = new ArrayList();
-            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}sByView();
+            ${modelObject.modelName?uncap_first}s = ${mapperObject.mapperObjName?uncap_first}Mapper.search${modelObject.modelName?cap_first}sByView(${modelObject.modelName?uncap_first}Param);
             <#if modelObject.tableList?has_content && modelObject.tableList?size gt 1>
             for(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first}:${modelObject.modelName?uncap_first}s){
                 <#list modelObject.tableList as table>

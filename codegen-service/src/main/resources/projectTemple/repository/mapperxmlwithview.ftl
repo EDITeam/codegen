@@ -29,7 +29,17 @@
             </#list>
         </#if>
     </sql>
+    <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData">
+    <sql id = "WhereParam">
+        <#list mapperItem.tableLines as mapperItemLine>
+        <if test="${mapperItemLine.proName?uncap_first} != null">
+            AND T0.${quotation}${mapperItemLine.fieldName}${quotation} = #${r"{"}${mapperItemLine.proName?uncap_first}${r"}"}
+        </if>
+        </#list>
+    </sql>
+    </#if>
     </#list>
+
 
     <#list mapperObject.mapperObjectItems as mapperItem>
     <insert id="insert${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">
@@ -94,13 +104,22 @@
         FROM ${quotation}${mapperItem.tableName}${quotation} T0
         <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" || mapperItem.tableType == "bott_SimpleDataLines">
         WHERE T0.${quotation}id${quotation} = #${r"{"}id${r"}"}
+        <#else>
+        WHERE 1 = 1
+        <include refid="WhereParam"/>
         </#if>
     </select>
 
     <select id="search${mapperItem.tableProperty?cap_first}sByView" resultMap="${mapperItem.tableProperty}Map">
         SELECT  T0.${quotation}id${quotation},
         <include refid="${mapperItem.tableProperty?cap_first}Columns"/>
-        from ${quotation}${mapperItem.viewName}${quotation} T0
+        FROM ${quotation}${mapperItem.viewName}${quotation} T0
+        <#if mapperItem.tableType == "bott_DocumentLines" ||  mapperItem.tableType == "bott_MasterDataLines" || mapperItem.tableType == "bott_SimpleDataLines">
+        WHERE T0.${quotation}id${quotation} = #${r"{"}id${r"}"}
+        <#else>
+        WHERE 1 = 1
+        <include refid="WhereParam"/>
+        </#if>
     </select>
 
     <update id="update${mapperItem.tableProperty?cap_first}" parameterType="${mapperItem.boPackageName}">

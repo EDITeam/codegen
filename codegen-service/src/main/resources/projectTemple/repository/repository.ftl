@@ -25,7 +25,7 @@ public interface ${mapperObject.mapperObjName}Repository{
     /**
     * 查询
     **/
-    List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s();
+    List<${modelObject.modelName?cap_first}> fetch${modelObject.modelName?cap_first}s(${modelObject.modelName?cap_first} ${modelObject.modelName?uncap_first});
 
     /**
     * 更新

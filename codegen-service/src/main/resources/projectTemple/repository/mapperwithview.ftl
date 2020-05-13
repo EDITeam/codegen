@@ -22,7 +22,7 @@ public interface ${mapperObject.mapperObjName}Mapper{
         <#if mapperItem.tableType == "bott_Document" ||  mapperItem.tableType == "bott_MasterData" || mapperItem.tableType == "bott_SimpleData">
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s();
 
-    List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView();
+    List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}sByView(${mapperItem.tableProperty?cap_first} ${mapperItem.tableProperty?uncap_first}Param);
         <#else>
     List<${mapperItem.tableProperty?cap_first}> search${mapperItem.tableProperty?cap_first}s(Long id);
 
