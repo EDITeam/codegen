@@ -1,5 +1,6 @@
 package com.avatech.edi.codegen.service;
 
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.slf4j.Logger;
@@ -32,18 +33,8 @@ public class TemplateService {
 
         try{
             Configuration configuration = new Configuration(Configuration.getVersion());
-            /**
-             * 打成jar包后无法通过这种方式获取路径，因为最后获取的路径可能是这样：
-             * codegen/codegen-starter/target/codegen.application.server.jar!/BOOT-INF/lib/codegen-service-0.0.1-SNAPSHOT.jar!/projectTemple/repository
-             **/
 
-            configuration.setClassLoaderForTemplateLoading(ClassLoader.getSystemClassLoader(),String.format("projectTemple/%s",templateFilePath));
-            logger.info(ClassLoader.getSystemClassLoader().toString());
-            //configuratio
-            //configuration.setClassForTemplateLoading(ClassLoader.getSystemClassLoader(),String.format("projectTemple/%s",templateFile));
-            //configuration.get
-            //configuration.setDirectoryForTemplateLoading(new File(this.getClass().getResource(String.format("projectTemple/%s",templateFile)).getPath()));
-            // 第五步：设置config的默认字符集。一般是utf-8
+            configuration.setClassForTemplateLoading(this.getClass(), String.format("/projectTemple/%s",templateFilePath));
             configuration.setDefaultEncoding("utf-8");
             // 第六步：从config对象中获得模板对象。需要制定一个模板文件的名字。
             Template template = configuration.getTemplate(templateCode);
